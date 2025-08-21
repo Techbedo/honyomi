@@ -1,22 +1,23 @@
-# Honyomi
-
-**Your Smart Language Learning Reader**
-
-[![Language](https://img.shields.io/badge/Language-Dart-blue.svg)](https://dart.dev/)
-[![Framework](https://img.shields.io/badge/Framework-Flutter-blue.svg)](https://flutter.dev/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Android%20%7C%20iOS%20%7C%20Web-lightgrey.svg)](https://flutter.dev/docs/development/tools/sdk/release-notes/supported-platforms)
-[![UI Design](https://img.shields.io/badge/UI-Fluent%20Design-0078D4.svg)](https://github.com/bdlukaa/fluent_ui)
-
 <div align="center">
   <img src="assets/icons/icon.png" alt="Honyomi Icon" width="128" height="128">
   
+  # Honyomi
+  **Your Smart Language Learning Reader**
+
   *Enhance your language learning journey with Honyomi!*
+
+  
+[![Language](https://img.shields.io/badge/Language-Dart-0175C2?logo=dart&logoColor=white)](https://dart.dev/)
+[![Framework](https://img.shields.io/badge/Framework-Flutter-02569B?logo=flutter&logoColor=white)](https://flutter.dev/)
+[![UI Design](https://img.shields.io/badge/UI-Fluent%20Design-0078D4?logo=microsoft&logoColor=white)](https://github.com/bdlukaa/fluent_ui)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Android%20%7C%20iOS%20%7C%20Web-lightgrey)](https://flutter.dev/docs/development/tools/sdk/release-notes/supported-platforms)
+[![License](https://img.shields.io/badge/License-Apache%202.0-green?logo=apache)](LICENSE)
+
+  **Languages:** **🇺🇸 English** | [🇺🇦 Українська](README_UK.md)
+
 </div>
 
 ---
-
-**Languages:** **🇺🇸 English** | [🇺🇦 Українська](README_uk.md)
 
 ## 📖 About
 
@@ -156,7 +157,10 @@ We welcome contributions! Please feel free to submit a Pull Request. For major c
 - Update documentation as needed
 
 ---
+<div align="center">
 
-**Made with ❤️ by [Techbedo](https://techbedo.com)**
-
-*Enhance your language learning journey with Honyomi!*
+  <div align="center">
+  <strong>Made with ❤️ by <a href="https://techbedo.com">Techbedo</a></strong>
+  
+  *Enhance your language learning journey with Honyomi!*
+</div>

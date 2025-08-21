@@ -1,22 +1,24 @@
-# Honyomi
-
-**Ваш розумний читач для вивчення мов**
-
-[![Language](https://img.shields.io/badge/Language-Dart-blue.svg)](https://dart.dev/)
-[![Framework](https://img.shields.io/badge/Framework-Flutter-blue.svg)](https://flutter.dev/)
-[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Android%20%7C%20iOS%20%7C%20Web-lightgrey.svg)](https://flutter.dev/docs/development/tools/sdk/release-notes/supported-platforms)
-[![UI Design](https://img.shields.io/badge/UI-Fluent%20Design-0078D4.svg)](https://github.com/bdlukaa/fluent_ui)
-
 <div align="center">
   <img src="assets/icons/icon.png" alt="Honyomi Icon" width="128" height="128">
+
+  # Honyomi
+
+  **Ваш розумний читач для вивчення мов**
   
   *Покращте свою подорож вивчення мов з Honyomi!*
+
+  [![Language](https://img.shields.io/badge/Мова-Dart-0175C2?logo=dart&logoColor=white)](https://dart.dev/)
+  [![Фреймворк](https://img.shields.io/badge/Фреймворк-Flutter-02569B?logo=flutter&logoColor=white)](https://flutter.dev/)
+  [![UI](https://img.shields.io/badge/UI-Fluent%20Design-0078D4?logo=microsoft&logoColor=white)](https://github.com/bdlukaa/fluent_ui)
+  [![Платформи](https://img.shields.io/badge/Платформи-Windows%20%7C%20Android%20%7C%20iOS%20%7C%20Web-lightgrey)](https://flutter.dev/docs/development/tools/sdk/release-notes/supported-platforms)
+  [![Ліцензія](https://img.shields.io/badge/Ліцензія-Apache%202.0-green?logo=apache)](LICENSE)
+  
+  **Мови:** [🇺🇸 English](README.md) | **🇺🇦 Українська**
 </div>
 
 ---
 
-**Мови:** [🇺🇸 English](README.md) | **🇺🇦 Українська**
+
 
 ## 📖 Про проект
 
@@ -141,7 +143,7 @@ lib/
 Детальну документацію можна знайти в папці [docs/](docs/):
 
 - [📖 Керівництво користувача](docs/USER_GUIDE_uk.md)
-- [💻 Керівництво розробника](docs/DEVELOPER_GUIDE_uk.md)
+- [💻 Керівництво розробника](docs/DEVELOPER_GUIDE.md)
 - [📝 Журнал змін](docs/CHANGELOG.md)
 - [🔧 API документація](docs/API.md)
 
