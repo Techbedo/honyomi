@@ -12,6 +12,7 @@
   [![UI](https://img.shields.io/badge/UI-Fluent%20Design-0078D4?logo=microsoft&logoColor=white)](https://github.com/bdlukaa/fluent_ui)
   [![Платформи](https://img.shields.io/badge/Платформи-Windows%20%7C%20Android%20%7C%20iOS%20%7C%20Web-lightgrey)](https://flutter.dev/docs/development/tools/sdk/release-notes/supported-platforms)
   [![Ліцензія](https://img.shields.io/badge/Ліцензія-Apache%202.0-green?logo=apache)](LICENSE)
+  [![Версія](https://img.shields.io/github/v/release/Techbedo/honyomi?sort=semver&label=Версія&logo=github&logoColor=white)](https://github.com/Techbedo/honyomi/releases)
   
   **Мови:** [🇺🇸 English](README.md) | **🇺🇦 Українська**
 </div>
