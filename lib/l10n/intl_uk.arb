@@ -1,0 +1,255 @@
+﻿{
+  "@@locale": "uk",
+  "appTitle": "Хоньомі",
+  "@appTitle": {
+    "description": "Назва застосунку"
+  },
+  "library": "Бібліотека",
+  "@library": {
+    "description": "Назва сторінки бібліотеки"
+  },
+  "dictionary": "Словник",
+  "@dictionary": {
+    "description": "Назва сторінки словника"
+  },
+  "settings": "Налаштування",
+  "@settings": {
+    "description": "Назва сторінки налаштувань"
+  },
+  "about": "Про застосунок",
+  "@about": {
+    "description": "Назва сторінки про застосунок"
+  },
+  "openPdf": "Відкрити PDF",
+  "@openPdf": {
+    "description": "Кнопка відкриття PDF файлу"
+  },
+  "openFile": "Відкрити файл",
+  "@openFile": {
+    "description": "Кнопка відкриття файлу"
+  },
+  "lastOpenedFiles": "Нещодавно відкриті файли",
+  "@lastOpenedFiles": {
+    "description": "Заголовок секції нещодавно відкритих файлів"
+  },
+  "recentFiles": "Останні файли",
+  "@recentFiles": {
+    "description": "Секція останніх файлів"
+  },
+  "noRecentFiles": "Немає останніх файлів",
+  "@noRecentFiles": {
+    "description": "Повідомлення коли немає останніх файлів"
+  },
+  "noRecentFilesDescription": "Відкрийте PDF файл щоб почати",
+  "@noRecentFilesDescription": {
+    "description": "Опис для порожнього списку останніх файлів"
+  },
+  "libraryDescription": "Керуйте вашими PDF файлами та останніми документами",
+  "@libraryDescription": {
+    "description": "Опис сторінки бібліотеки"
+  },
+  "fileNotFound": "Файл не знайдено",
+  "@fileNotFound": {
+    "description": "Повідомлення про помилку коли файл не знайдено"
+  },
+  "remove": "Видалити",
+  "@remove": {
+    "description": "Текст кнопки видалення"
+  },
+  "previousPage": "Попередня сторінка",
+  "@previousPage": {
+    "description": "Кнопка переходу до попередньої сторінки"
+  },
+  "nextPage": "Наступна сторінка",
+  "@nextPage": {
+    "description": "Кнопка переходу до наступної сторінки"
+  },
+  "zoomIn": "Збільшити",
+  "@zoomIn": {
+    "description": "Кнопка збільшення"
+  },
+  "zoomOut": "Зменшити",
+  "@zoomOut": {
+    "description": "Кнопка зменшення"
+  },
+  "addBookmark": "Додати закладку",
+  "@addBookmark": {
+    "description": "Кнопка додавання закладки"
+  },
+  "closePdf": "Закрити PDF",
+  "@closePdf": {
+    "description": "Кнопка закриття PDF"
+  },
+  "addWord": "Додати слово",
+  "@addWord": {
+    "description": "Кнопка додавання слова до словника"
+  },
+  "copy": "Копіювати",
+  "@copy": {
+    "description": "Кнопка копіювання"
+  },
+  "selectAll": "Вибрати все",
+  "@selectAll": {
+    "description": "Кнопка вибору всього"
+  },
+  "addToDictionary": "Додати до словника",
+  "@addToDictionary": {
+    "description": "Кнопка додавання до словника"
+  },
+  "translate": "Перекласти",
+  "@translate": {
+    "description": "Кнопка перекладу"
+  },
+  "delete": "Видалити",
+  "@delete": {
+    "description": "Кнопка видалення"
+  },
+  "theme": "Тема",
+  "@theme": {
+    "description": "Налаштування теми"
+  },
+  "language": "Мова",
+  "@language": {
+    "description": "Налаштування мови"
+  },
+  "darkMode": "Темна тема",
+  "@darkMode": {
+    "description": "Налаштування темної теми"
+  },
+  "version": "Версія",
+  "@version": {
+    "description": "Мітка версії"
+  },
+  "license": "Ліцензія",
+  "@license": {
+    "description": "Мітка ліцензії"
+  },
+  "description": "Опис",
+  "@description": {
+    "description": "Мітка опису"
+  },
+  "appDescription": "Хоньомі  це розумний читач для вивчення мов, який допомагає читати PDF документи та поповнювати словниковий запас. Ідеально підходить для тих, хто вивчає мови та хоче покращити навички читання під час навчання.",
+  "@appDescription": {
+    "description": "Опис застосунку"
+  },
+  "word": "Слово",
+  "@word": {
+    "description": "Мітка слова"
+  },
+  "translation": "Переклад",
+  "@translation": {
+    "description": "Мітка перекладу"
+  },
+  "enterWord": "Введіть слово",
+  "@enterWord": {
+    "description": "Підказка для введення слова"
+  },
+  "enterTranslation": "Введіть переклад",
+  "@enterTranslation": {
+    "description": "Підказка для введення перекладу"
+  },
+  "cancel": "Скасувати",
+  "@cancel": {
+    "description": "Кнопка скасування"
+  },
+  "add": "Додати",
+  "@add": {
+    "description": "Кнопка додавання"
+  },
+  "wordAdded": "Слово додано до словника",
+  "@wordAdded": {
+    "description": "Повідомлення про успішне додавання слова"
+  },
+  "emptyDictionary": "Ваш словник порожній",
+  "@emptyDictionary": {
+    "description": "Повідомлення коли словник порожній"
+  },
+  "addFirstWord": "Додайте ваше перше слово щоб почати поповнювати словниковий запас",
+  "@addFirstWord": {
+    "description": "Опис для порожнього словника"
+  },
+  "system": "Системна",
+  "@system": {
+    "description": "Системна тема"
+  },
+  "light": "Світла",
+  "@light": {
+    "description": "Світла тема"
+  },
+  "dark": "Темна",
+  "@dark": {
+    "description": "Темна тема"
+  },
+  "english": "English",
+  "@english": {
+    "description": "Англійська мова"
+  },
+  "ukrainian": "Українська",
+  "@ukrainian": {
+    "description": "Українська мова"
+  },
+  "pdfViewerSettings": "Налаштування PDF переглядача",
+  "@pdfViewerSettings": {
+    "description": "Заголовок секції налаштувань PDF переглядача"
+  },
+  "configurePdfPreferences": "Налаштуйте параметри перегляду PDF",
+  "@configurePdfPreferences": {
+    "description": "Опис налаштувань PDF переглядача"
+  },
+  "enableZoom": "Увімкнути масштабування",
+  "@enableZoom": {
+    "description": "Налаштування масштабування"
+  },
+  "allowZoomingInPdfViewer": "Дозволити масштабування в PDF переглядачі",
+  "@allowZoomingInPdfViewer": {
+    "description": "Опис налаштування масштабування"
+  },
+  "autoSaveBookmarks": "Автозбереження закладок",
+  "@autoSaveBookmarks": {
+    "description": "Налаштування автозбереження закладок"
+  },
+  "automaticallySaveReadingPosition": "Автоматично зберігати позицію читання",
+  "@automaticallySaveReadingPosition": {
+    "description": "Опис налаштування закладок"
+  },
+  "builtWith": "Розроблено з",
+  "@builtWith": {
+    "description": "Мітка розробки"
+  },
+  "features": "Функції",
+  "@features": {
+    "description": "Заголовок секції функцій"
+  },
+  "pdfReading": "Читання PDF",
+  "@pdfReading": {
+    "description": "Заголовок функції читання PDF"
+  },
+  "pdfReadingDescription": "Відкривайте та читайте PDF документи з плавною навігацією",
+  "@pdfReadingDescription": {
+    "description": "Опис функції читання PDF"
+  },
+  "personalDictionary": "Особистий словник",
+  "@personalDictionary": {
+    "description": "Заголовок функції особистого словника"
+  },
+  "personalDictionaryDescription": "Поповнюйте словниковий запас з власними перекладами слів",
+  "@personalDictionaryDescription": {
+    "description": "Опис функції особистого словника"
+  },
+  "multiLanguageSupport": "Багатомовна підтримка",
+  "@multiLanguageSupport": {
+    "description": "Заголовок функції багатомовності"
+  },
+  "multiLanguageSupportDescription": "Доступно англійською та українською мовами",
+  "@multiLanguageSupportDescription": {
+    "description": "Опис функції багатомовності"
+  },
+  "material3Design": "Material 3 дизайн",
+  "@material3Design": {
+    "description": "Заголовок функції Material 3"
+  },
+  "material3DesignDescription": "Сучасний та адаптивний користувацький інтерфейс",
+  "@material3DesignDescription": {
+    "description": "Опис функції Material 3"
+  }
+}

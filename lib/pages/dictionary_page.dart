@@ -1,5 +1,8 @@
-import 'package:fluent_ui/fluent_ui.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import '../generated/l10n.dart';
 import '../providers/app_state.dart';
 
 class DictionaryPage extends StatefulWidget {
@@ -10,104 +13,80 @@ class DictionaryPage extends StatefulWidget {
 }
 
 class _DictionaryPageState extends State<DictionaryPage> {
-  int? _selectedIndex;
-  
+  final TextEditingController _wordController = TextEditingController();
+  final TextEditingController _translationController = TextEditingController();
+
+  @override
+  void dispose() {
+    _wordController.dispose();
+    _translationController.dispose();
+    super.dispose();
+  }
+
   void _showAddWordDialog() {
-    final wordController = TextEditingController();
-    final translationController = TextEditingController();
+    _wordController.clear();
+    _translationController.clear();
     
     showDialog(
       context: context,
-      builder: (context) => ContentDialog(
-        title: const Text('Add Word'),
+      builder: (context) => AlertDialog(
+        title: Text(S.of(context).addWord),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextBox(
-              controller: wordController,
-              placeholder: 'Word',
+            TextField(
+              controller: _wordController,
+              decoration: InputDecoration(
+                labelText: S.of(context).word,
+                hintText: S.of(context).enterWord,
+                border: const OutlineInputBorder(),
+              ),
             ),
             const SizedBox(height: 16),
-            TextBox(
-              controller: translationController,
-              placeholder: 'Translation',
+            TextField(
+              controller: _translationController,
+              decoration: InputDecoration(
+                labelText: S.of(context).translation,
+                hintText: S.of(context).enterTranslation,
+                border: const OutlineInputBorder(),
+              ),
             ),
           ],
         ),
         actions: [
-          Button(
-            child: const Text('Cancel'),
+          TextButton(
             onPressed: () => Navigator.of(context).pop(),
+            child: Text(S.of(context).cancel),
           ),
           FilledButton(
-            child: const Text('Add'),
             onPressed: () {
-              if (wordController.text.isNotEmpty && translationController.text.isNotEmpty) {
-                final appState = context.read<AppState>();
-                appState.addToDictionary(wordController.text, translationController.text);
+              if (_wordController.text.isNotEmpty && 
+                  _translationController.text.isNotEmpty) {
+                final appState = Provider.of<AppState>(context, listen: false);
+                appState.addDictionaryWord(
+                  _wordController.text.trim(),
+                  _translationController.text.trim(),
+                );
+                
                 Navigator.of(context).pop();
+                
+                final snackBar = SnackBar(
+                  elevation: 0,
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.transparent,
+                  content: AwesomeSnackbarContent(
+                    title: S.of(context).wordAdded,
+                    message: '"\" - "\"',
+                    contentType: ContentType.success,
+                  ),
+                );
+                
+                if (mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                }
               }
             },
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showEditWordDialog(int index) {
-    final appState = context.read<AppState>();
-    final word = appState.dictionaryWords[index];
-    final wordController = TextEditingController(text: word['word']);
-    final translationController = TextEditingController(text: word['translation']);
-    
-    showDialog(
-      context: context,
-      builder: (context) => ContentDialog(
-        title: const Text('Edit Word'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextBox(
-              controller: wordController,
-              placeholder: 'Word',
-            ),
-            const SizedBox(height: 16),
-            TextBox(
-              controller: translationController,
-              placeholder: 'Translation',
-            ),
-          ],
-        ),
-        actions: [
-          Button(
-            child: const Text('Cancel'),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          FilledButton(
-            child: const Text('Save'),
-            onPressed: () {
-              if (wordController.text.isNotEmpty && translationController.text.isNotEmpty) {
-                appState.updateDictionaryWord(index, wordController.text, translationController.text);
-                Navigator.of(context).pop();
-              }
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _copyToClipboard(String text) {
-    // TODO: Implement clipboard functionality
-    showDialog(
-      context: context,
-      builder: (context) => ContentDialog(
-        title: const Text('Copied'),
-        content: Text('Copied "$text" to clipboard'),
-        actions: [
-          Button(
-            child: const Text('OK'),
-            onPressed: () => Navigator.of(context).pop(),
+            child: Text(S.of(context).add),
           ),
         ],
       ),
@@ -116,116 +95,121 @@ class _DictionaryPageState extends State<DictionaryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldPage(
-      header: PageHeader(
-        title: const Text('Dictionary'),
-        commandBar: CommandBar(
-          primaryItems: [
-            CommandBarButton(
-              icon: const Icon(FluentIcons.add),
-              label: const Text('Add Word'),
-              onPressed: _showAddWordDialog,
-            ),
-            CommandBarButton(
-              icon: const Icon(FluentIcons.copy),
-              label: const Text('Copy'),
-              onPressed: _selectedIndex != null ? () {
-                final appState = context.read<AppState>();
-                final word = appState.dictionaryWords[_selectedIndex!];
-                _copyToClipboard('${word['word']} - ${word['translation']}');
-              } : null,
-            ),
-            CommandBarButton(
-              icon: const Icon(FluentIcons.delete),
-              label: const Text('Delete'),
-              onPressed: _selectedIndex != null ? () {
-                final appState = context.read<AppState>();
-                appState.removeDictionaryWord(_selectedIndex!);
-                setState(() {
-                  _selectedIndex = null;
-                });
-              } : null,
-            ),
-          ],
-        ),
-      ),
-      content: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Consumer<AppState>(
-          builder: (context, appState, child) {
-            if (appState.dictionaryWords.isEmpty) {
-              return const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      FluentIcons.dictionary,
-                      size: 64,
-                      color: Colors.grey,
-                    ),
-                    SizedBox(height: 16),
-                    Text(
-                      'No words in dictionary',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'Add words from PDF viewer or use the Add Word button',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              );
-            }
-
-            return ListView.builder(
-              itemCount: appState.dictionaryWords.length,
-              itemBuilder: (context, index) {
-                final word = appState.dictionaryWords[index];
-                final isSelected = _selectedIndex == index;
-                
-                return Card(
-                  backgroundColor: isSelected 
-                    ? FluentTheme.of(context).accentColor.withOpacity(0.1)
-                    : null,
-                  child: ListTile(
-                    title: Text(
-                      word['word'] ?? '',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(word['translation'] ?? ''),
-                    onPressed: () {
-                      setState(() {
-                        _selectedIndex = isSelected ? null : index;
-                      });
-                    },
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: const Icon(FluentIcons.edit),
-                          onPressed: () => _showEditWordDialog(index),
+    return Consumer<AppState>(
+      builder: (context, appState, child) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.book, size: 32),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              S.of(context).dictionary,
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
+                            Text(
+                              '\ words',
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
                         ),
-                        IconButton(
-                          icon: const Icon(FluentIcons.copy),
-                          onPressed: () => _copyToClipboard('${word['word']} - ${word['translation']}'),
-                        ),
-                      ],
-                    ),
+                      ),
+                      FilledButton.icon(
+                        onPressed: _showAddWordDialog,
+                        icon: const Icon(Icons.add),
+                        label: Text(S.of(context).addWord),
+                      ),
+                    ],
                   ),
-                );
-              },
-            );
-          },
-        ),
-      ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: appState.dictionaryWords.isEmpty
+                    ? Card(
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(32.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.menu_book,
+                                  size: 64,
+                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  S.of(context).emptyDictionary,
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  S.of(context).addFirstWord,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: appState.dictionaryWords.length,
+                        itemBuilder: (context, index) {
+                          final word = appState.dictionaryWords[index];
+                          return Card(
+                            margin: const EdgeInsets.only(bottom: 8),
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                child: Text(
+                                  word['word']![0].toUpperCase(),
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              title: Text(
+                                word['word']!,
+                                style: const TextStyle(fontWeight: FontWeight.w500),
+                              ),
+                              subtitle: Text(word['translation']!),
+                              trailing: PopupMenuButton<String>(
+                                onSelected: (value) {
+                                  if (value == 'delete') {
+                                    appState.removeDictionaryWord(index);
+                                  }
+                                },
+                                itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                    value: 'delete',
+                                    child: Row(
+                                      children: [
+                                        const Icon(Icons.delete),
+                                        const SizedBox(width: 8),
+                                        Text(S.of(context).delete),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

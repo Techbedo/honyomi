@@ -1,218 +1,264 @@
-import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../generated/l10n.dart';
+import '../providers/app_state.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldPage(
-      header: const PageHeader(
-        title: Text('About'),
-      ),
-      content: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // App Icon
-              Container(
-                width: 128,
-                height: 128,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: FluentTheme.of(context).accentColor.withOpacity(0.1),
-                ),
-                child: Icon(
-                  FluentIcons.reading_mode_solid,
-                  size: 64,
-                  color: FluentTheme.of(context).accentColor,
-                ),
+    return Consumer<AppState>(
+      builder: (context, appState, child) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              S.of(context).about,
+              style: GoogleFonts.inter(
+                fontSize: 28,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
               ),
-              
-              const SizedBox(height: 32),
-              
-              // App Name
-              Text(
-                'Honyomi',
-                style: FluentTheme.of(context).typography.title?.copyWith(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              
-              const SizedBox(height: 8),
-              
-              // App Tagline
-              Text(
-                'Your Smart Language Learning Reader',
-                style: FluentTheme.of(context).typography.subtitle?.copyWith(
-                  color: Colors.grey[100],
-                ),
-                textAlign: TextAlign.center,
-              ),
-              
-              const SizedBox(height: 32),
-              
-              // Version
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(FluentIcons.info),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Version 1.0.0',
-                            style: FluentTheme.of(context).typography.body,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16),
-                      
-                      // Description
-                      Text(
-                        'Honyomi is a modern PDF reader designed for language learners. '
-                        'It helps you read documents while building your personal dictionary '
-                        'and improving your language skills.',
-                        style: FluentTheme.of(context).typography.body,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              
-              const SizedBox(height: 24),
-              
-              // Features
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Features',
-                        style: FluentTheme.of(context).typography.subtitle,
-                      ),
-                      const SizedBox(height: 16),
-                      
-                      _buildFeatureRow(
-                        context,
-                        FluentIcons.pdf,
-                        'PDF Viewer',
-                        'Read PDF documents with zoom and navigation controls',
-                      ),
-                      const SizedBox(height: 12),
-                      
-                      _buildFeatureRow(
-                        context,
-                        FluentIcons.dictionary,
-                        'Personal Dictionary',
-                        'Build your vocabulary with words from your reading',
-                      ),
-                      const SizedBox(height: 12),
-                      
-                      _buildFeatureRow(
-                        context,
-                        FluentIcons.library,
-                        'Recent Files',
-                        'Quick access to your recently opened documents',
-                      ),
-                      const SizedBox(height: 12),
-                      
-                      _buildFeatureRow(
-                        context,
-                        FluentIcons.locale_language,
-                        'Multi-language',
-                        'Support for English and Ukrainian interfaces',
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              
-              const SizedBox(height: 24),
-              
-              // Developer Info
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Developed by Techbedo',
-                        style: FluentTheme.of(context).typography.body?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '© 2024 Techbedo. All rights reserved.',
-                        style: FluentTheme.of(context).typography.caption,
-                      ),
-                      const SizedBox(height: 16),
-                      
-                      // Links
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          HyperlinkButton(
-                            child: const Text('GitHub'),
-                            onPressed: () {
-                              // TODO: Open GitHub link
-                              _showLinkDialog(context, 'GitHub', 'https://github.com/Techbedo');
-                            },
-                          ),
-                          const SizedBox(width: 16),
-                          HyperlinkButton(
-                            child: const Text('Website'),
-                            onPressed: () {
-                              // TODO: Open website link
-                              _showLinkDialog(context, 'Website', 'https://techbedo.com');
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+            ),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
           ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 32),
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Theme.of(context).colorScheme.primary,
+                        Theme.of(context).colorScheme.primary.withOpacity(0.7),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(32),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.menu_book_rounded,
+                    size: 64,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                Text(
+                  S.of(context).appTitle,
+                  style: GoogleFonts.inter(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: -1,
+                    height: 1.1,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'Smart Language Learning Reader',
+                  style: GoogleFonts.inter(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    letterSpacing: 0.1,
+                  ),
+                ),
+                const SizedBox(height: 48),
+                
+                _buildInfoCard(
+                  context,
+                  S.of(context).description,
+                  S.of(context).appDescription,
+                  Icons.info_outline_rounded,
+                ),
+                const SizedBox(height: 24),
+                
+                _buildInfoCard(
+                  context,
+                  S.of(context).version,
+                  '1.0.0',
+                  Icons.tag_rounded,
+                ),
+                const SizedBox(height: 24),
+                
+                _buildInfoCard(
+                  context,
+                  S.of(context).license,
+                  'Apache License 2.0',
+                  Icons.gavel_rounded,
+                ),
+                const SizedBox(height: 48),
+                
+                _buildFeaturesCard(context),
+                const SizedBox(height: 48),
+                
+                _buildContactCard(context),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildInfoCard(BuildContext context, String title, String content, IconData icon) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5),
+              ),
+              child: Icon(
+                icon,
+                size: 24,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).colorScheme.primary,
+                      letterSpacing: 0.1,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    content,
+                    style: GoogleFonts.inter(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      height: 1.4,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildFeatureRow(BuildContext context, IconData icon, String title, String description) {
+  Widget _buildFeaturesCard(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5),
+                  ),
+                  child: Icon(
+                    Icons.auto_awesome_rounded,
+                    size: 24,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Text(
+                  S.of(context).features,
+                  style: GoogleFonts.inter(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            _buildFeatureItem(
+              context,
+              S.of(context).dictionary,
+              'Instant word lookup and translation',
+              Icons.book_outlined,
+            ),
+            const SizedBox(height: 16),
+            _buildFeatureItem(
+              context,
+              'PDF Viewer',
+              'Read and annotate PDF documents',
+              Icons.picture_as_pdf_outlined,
+            ),
+            const SizedBox(height: 16),
+            _buildFeatureItem(
+              context,
+              S.of(context).library,
+              'Manage your document collection',
+              Icons.library_books_outlined,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFeatureItem(BuildContext context, String title, String description, IconData icon) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(
-          icon,
-          size: 20,
-          color: FluentTheme.of(context).accentColor,
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.5),
+          ),
+          child: Icon(
+            icon,
+            size: 20,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: 16),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
-                style: FluentTheme.of(context).typography.body?.copyWith(
-                  fontWeight: FontWeight.bold,
+                style: GoogleFonts.inter(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 2),
+              const SizedBox(height: 4),
               Text(
                 description,
-                style: FluentTheme.of(context).typography.caption,
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  height: 1.4,
+                ),
               ),
             ],
           ),
@@ -221,37 +267,77 @@ class AboutPage extends StatelessWidget {
     );
   }
 
-  void _showLinkDialog(BuildContext context, String title, String url) {
-    showDialog(
-      context: context,
-      builder: (context) => ContentDialog(
-        title: Text(title),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
+  Widget _buildContactCard(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Would you like to open the following link?'),
-            const SizedBox(height: 8),
-            SelectableText(
-              url,
-              style: TextStyle(
-                color: FluentTheme.of(context).accentColor,
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5),
+                  ),
+                  child: Icon(
+                    Icons.contact_support_rounded,
+                    size: 24,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Text(
+                  'Contact & Support',
+                  style: GoogleFonts.inter(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Thank you for using Honyomi! We hope this app helps you in your language learning journey.',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.favorite_rounded,
+                    size: 20,
+                    color: Colors.red[400],
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      'Made with love for language learners',
+                      style: GoogleFonts.inter(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
-        actions: [
-          Button(
-            child: const Text('Cancel'),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          FilledButton(
-            child: const Text('Open'),
-            onPressed: () {
-              // TODO: Implement URL launcher
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
       ),
     );
   }

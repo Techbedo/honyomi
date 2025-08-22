@@ -1,0 +1,255 @@
+﻿{
+  "@@locale": "en",
+  "appTitle": "Honyomi",
+  "@appTitle": {
+    "description": "The application title"
+  },
+  "library": "Library",
+  "@library": {
+    "description": "Library page title"
+  },
+  "dictionary": "Dictionary",
+  "@dictionary": {
+    "description": "Dictionary page title"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings page title"
+  },
+  "about": "About",
+  "@about": {
+    "description": "About page title"
+  },
+  "openPdf": "Open PDF",
+  "@openPdf": {
+    "description": "Button to open PDF file"
+  },
+  "openFile": "Open File",
+  "@openFile": {
+    "description": "Button to open file"
+  },
+  "lastOpenedFiles": "Recently opened files",
+  "@lastOpenedFiles": {
+    "description": "Section title for recently opened files"
+  },
+  "recentFiles": "Recent Files",
+  "@recentFiles": {
+    "description": "Recent files section"
+  },
+  "noRecentFiles": "No recent files",
+  "@noRecentFiles": {
+    "description": "Message when no recent files are available"
+  },
+  "noRecentFilesDescription": "Open a PDF file to get started",
+  "@noRecentFilesDescription": {
+    "description": "Description for empty recent files"
+  },
+  "libraryDescription": "Manage your PDF files and recent documents",
+  "@libraryDescription": {
+    "description": "Description for library page"
+  },
+  "fileNotFound": "File not found",
+  "@fileNotFound": {
+    "description": "Error message when file is not found"
+  },
+  "remove": "Remove",
+  "@remove": {
+    "description": "Remove button text"
+  },
+  "previousPage": "Previous Page",
+  "@previousPage": {
+    "description": "Button to go to previous page"
+  },
+  "nextPage": "Next Page",
+  "@nextPage": {
+    "description": "Button to go to next page"
+  },
+  "zoomIn": "Zoom In",
+  "@zoomIn": {
+    "description": "Button to zoom in"
+  },
+  "zoomOut": "Zoom Out",
+  "@zoomOut": {
+    "description": "Button to zoom out"
+  },
+  "addBookmark": "Add Bookmark",
+  "@addBookmark": {
+    "description": "Button to add bookmark"
+  },
+  "closePdf": "Close PDF",
+  "@closePdf": {
+    "description": "Button to close PDF"
+  },
+  "addWord": "Add Word",
+  "@addWord": {
+    "description": "Button to add word to dictionary"
+  },
+  "copy": "Copy",
+  "@copy": {
+    "description": "Copy button"
+  },
+  "selectAll": "Select All",
+  "@selectAll": {
+    "description": "Select all button"
+  },
+  "addToDictionary": "Add to Dictionary",
+  "@addToDictionary": {
+    "description": "Add to dictionary button"
+  },
+  "translate": "Translate",
+  "@translate": {
+    "description": "Translate button"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme setting"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode setting"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "Version label"
+  },
+  "license": "License",
+  "@license": {
+    "description": "License label"
+  },
+  "description": "Description",
+  "@description": {
+    "description": "Description label"
+  },
+  "appDescription": "Honyomi is a smart language learning reader that helps you read PDF documents while building your vocabulary. Perfect for language learners who want to improve their reading skills while studying.",
+  "@appDescription": {
+    "description": "Application description"
+  },
+  "word": "Word",
+  "@word": {
+    "description": "Word label"
+  },
+  "translation": "Translation",
+  "@translation": {
+    "description": "Translation label"
+  },
+  "enterWord": "Enter word",
+  "@enterWord": {
+    "description": "Placeholder for word input"
+  },
+  "enterTranslation": "Enter translation",
+  "@enterTranslation": {
+    "description": "Placeholder for translation input"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Add button"
+  },
+  "wordAdded": "Word added to dictionary",
+  "@wordAdded": {
+    "description": "Success message when word is added"
+  },
+  "emptyDictionary": "Your dictionary is empty",
+  "@emptyDictionary": {
+    "description": "Message when dictionary is empty"
+  },
+  "addFirstWord": "Add your first word to start building your vocabulary",
+  "@addFirstWord": {
+    "description": "Description for empty dictionary"
+  },
+  "system": "System",
+  "@system": {
+    "description": "System theme option"
+  },
+  "light": "Light",
+  "@light": {
+    "description": "Light theme option"
+  },
+  "dark": "Dark",
+  "@dark": {
+    "description": "Dark theme option"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "ukrainian": "Ukrainian",
+  "@ukrainian": {
+    "description": "Ukrainian language option"
+  },
+  "pdfViewerSettings": "PDF Viewer Settings",
+  "@pdfViewerSettings": {
+    "description": "PDF viewer settings section title"
+  },
+  "configurePdfPreferences": "Configure PDF viewing preferences",
+  "@configurePdfPreferences": {
+    "description": "PDF viewer settings description"
+  },
+  "enableZoom": "Enable Zoom",
+  "@enableZoom": {
+    "description": "Enable zoom setting"
+  },
+  "allowZoomingInPdfViewer": "Allow zooming in PDF viewer",
+  "@allowZoomingInPdfViewer": {
+    "description": "Zoom setting description"
+  },
+  "autoSaveBookmarks": "Auto-save Bookmarks",
+  "@autoSaveBookmarks": {
+    "description": "Auto-save bookmarks setting"
+  },
+  "automaticallySaveReadingPosition": "Automatically save reading position",
+  "@automaticallySaveReadingPosition": {
+    "description": "Bookmark setting description"
+  },
+  "builtWith": "Built with",
+  "@builtWith": {
+    "description": "Built with label"
+  },
+  "features": "Features",
+  "@features": {
+    "description": "Features section title"
+  },
+  "pdfReading": "PDF Reading",
+  "@pdfReading": {
+    "description": "PDF reading feature title"
+  },
+  "pdfReadingDescription": "Open and read PDF documents with smooth navigation",
+  "@pdfReadingDescription": {
+    "description": "PDF reading feature description"
+  },
+  "personalDictionary": "Personal Dictionary",
+  "@personalDictionary": {
+    "description": "Personal dictionary feature title"
+  },
+  "personalDictionaryDescription": "Build your vocabulary with custom word translations",
+  "@personalDictionaryDescription": {
+    "description": "Personal dictionary feature description"
+  },
+  "multiLanguageSupport": "Multi-language Support",
+  "@multiLanguageSupport": {
+    "description": "Multi-language support feature title"
+  },
+  "multiLanguageSupportDescription": "Available in English and Ukrainian",
+  "@multiLanguageSupportDescription": {
+    "description": "Multi-language support feature description"
+  },
+  "material3Design": "Material 3 Design",
+  "@material3Design": {
+    "description": "Material 3 design feature title"
+  },
+  "material3DesignDescription": "Modern and adaptive user interface",
+  "@material3DesignDescription": {
+    "description": "Material 3 design feature description"
+  }
+}
