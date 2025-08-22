@@ -668,6 +668,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Word '{word}' - '{translation}' added to dictionary`
+  String wordAddedMessage(String word, String translation) {
+    return Intl.message(
+      'Word \'$word\' - \'$translation\' added to dictionary',
+      name: 'wordAddedMessage',
+      desc: 'Success message when word is added with word and translation',
+      args: [word, translation],
+    );
+  }
+
+  /// `Saved Words`
+  String get savedWords {
+    return Intl.message(
+      'Saved Words',
+      name: 'savedWords',
+      desc: 'Title for the list of saved words in the dictionary',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

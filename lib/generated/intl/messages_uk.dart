@@ -20,6 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'uk';
 
+  static String m0(word, translation) =>
+      "Слово \'${word}\' - \'${translation}\' додано до словника";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("Про застосунок"),
@@ -117,6 +120,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "previousPage": MessageLookupByLibrary.simpleMessage("Попередня сторінка"),
     "recentFiles": MessageLookupByLibrary.simpleMessage("Останні файли"),
     "remove": MessageLookupByLibrary.simpleMessage("Видалити"),
+    "savedWords": MessageLookupByLibrary.simpleMessage("Збережені слова"),
     "selectAll": MessageLookupByLibrary.simpleMessage("Вибрати все"),
     "settings": MessageLookupByLibrary.simpleMessage("Налаштування"),
     "system": MessageLookupByLibrary.simpleMessage("Системна"),
@@ -129,6 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "wordAdded": MessageLookupByLibrary.simpleMessage(
       "Слово додано до словника",
     ),
+    "wordAddedMessage": m0,
     "zoomIn": MessageLookupByLibrary.simpleMessage("Збільшити"),
     "zoomOut": MessageLookupByLibrary.simpleMessage("Зменшити"),
   };

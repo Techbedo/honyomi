@@ -1,6 +1,5 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import '../generated/l10n.dart';
 import '../providers/app_state.dart';
@@ -76,7 +75,9 @@ class _DictionaryPageState extends State<DictionaryPage> {
                   backgroundColor: Colors.transparent,
                   content: AwesomeSnackbarContent(
                     title: S.of(context).wordAdded,
-                    message: '"\" - "\"',
+                    message: S.of(context).wordAddedMessage(
+                        _wordController.text.trim(),
+                        _translationController.text.trim()),
                     contentType: ContentType.success,
                   ),
                 );
@@ -97,116 +98,99 @@ class _DictionaryPageState extends State<DictionaryPage> {
   Widget build(BuildContext context) {
     return Consumer<AppState>(
       builder: (context, appState, child) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.book, size: 32),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              S.of(context).dictionary,
-                              style: Theme.of(context).textTheme.headlineSmall,
-                            ),
-                            Text(
-                              '\ words',
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
-                        ),
-                      ),
-                      FilledButton.icon(
-                        onPressed: _showAddWordDialog,
-                        icon: const Icon(Icons.add),
-                        label: Text(S.of(context).addWord),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Expanded(
-                child: appState.dictionaryWords.isEmpty
-                    ? Card(
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(32.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.menu_book,
-                                  size: 64,
-                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  S.of(context).emptyDictionary,
-                                  style: Theme.of(context).textTheme.titleMedium,
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  S.of(context).addFirstWord,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    : ListView.builder(
-                        itemCount: appState.dictionaryWords.length,
-                        itemBuilder: (context, index) {
-                          final word = appState.dictionaryWords[index];
-                          return Card(
-                            margin: const EdgeInsets.only(bottom: 8),
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                child: Text(
-                                  word['word']![0].toUpperCase(),
-                                  style: const TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              title: Text(
-                                word['word']!,
-                                style: const TextStyle(fontWeight: FontWeight.w500),
-                              ),
-                              subtitle: Text(word['translation']!),
-                              trailing: PopupMenuButton<String>(
-                                onSelected: (value) {
-                                  if (value == 'delete') {
-                                    appState.removeDictionaryWord(index);
-                                  }
-                                },
-                                itemBuilder: (context) => [
-                                  PopupMenuItem(
-                                    value: 'delete',
-                                    child: Row(
-                                      children: [
-                                        const Icon(Icons.delete),
-                                        const SizedBox(width: 8),
-                                        Text(S.of(context).delete),
-                                      ],
-                                    ),
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(S.of(context).dictionary),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      S.of(context).savedWords,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 8),
+                    Expanded(
+                      child: appState.dictionaryWords.isEmpty
+                          ? Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.menu_book,
+                                    size: 64,
+                                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Text(
+                                    S.of(context).emptyDictionary,
+                                    style: Theme.of(context).textTheme.titleMedium,
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    S.of(context).addFirstWord,
+                                    style: Theme.of(context).textTheme.bodyMedium,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ],
                               ),
+                            )
+                          : ListView.builder(
+                              itemCount: appState.dictionaryWords.length,
+                              itemBuilder: (context, index) {
+                                final word = appState.dictionaryWords[index];
+                                return ListTile(
+                                  leading: CircleAvatar(
+                                    child: Text(
+                                      word['word']![0].toUpperCase(),
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  title: Text(
+                                    word['word']!,
+                                    style: const TextStyle(fontWeight: FontWeight.w500),
+                                  ),
+                                  subtitle: Text(word['translation']!),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.more_vert),
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return Wrap(
+                                            children: [
+                                              ListTile(
+                                                leading: const Icon(Icons.delete),
+                                                title: Text(S.of(context).delete),
+                                                onTap: () {
+                                                  appState.removeDictionaryWord(index);
+                                                  Navigator.of(context).pop();
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
+                    ),
+                  ],
+                ),
               ),
-            ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: _showAddWordDialog,
+            label: Text(S.of(context).addWord),
+            icon: const Icon(Icons.add),
           ),
         );
       },

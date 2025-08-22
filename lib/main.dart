@@ -35,18 +35,18 @@ class MyApp extends StatelessWidget {
             supportedLocales: S.delegate.supportedLocales,
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(
-                seedColor: const Color(0xFF6750A4), // Material 3 Purple
+                seedColor: Colors.blue,
                 brightness: Brightness.light,
               ),
               useMaterial3: true,
-              textTheme: GoogleFonts.interTextTheme(),
+              textTheme: GoogleFonts.robotoTextTheme(),
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: AppBarTheme(
                 centerTitle: false,
                 elevation: 0,
                 backgroundColor: Colors.transparent,
                 foregroundColor: const Color(0xFF1D1B20),
-                titleTextStyle: GoogleFonts.inter(
+                titleTextStyle: GoogleFonts.roboto(
                   fontSize: 22,
                   fontWeight: FontWeight.w500,
                   color: const Color(0xFF1D1B20),
@@ -55,48 +55,47 @@ class MyApp extends StatelessWidget {
               cardTheme: CardThemeData(
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                color: const Color(0xFFF7F2FA),
+                color: Colors.white,
                 surfaceTintColor: Colors.transparent,
               ),
-              navigationRailTheme: const NavigationRailThemeData(
-                backgroundColor: Colors.white,
+              navigationRailTheme: NavigationRailThemeData(
+                backgroundColor: const Color(0xFFF7F9FC),
                 elevation: 0,
                 selectedIconTheme: IconThemeData(
                   size: 24,
-                  color: Color(0xFF6750A4),
+                  color: Colors.blue[800],
                 ),
-                unselectedIconTheme: IconThemeData(
+                unselectedIconTheme: const IconThemeData(
                   size: 24,
                   color: Color(0xFF49454F),
                 ),
                 selectedLabelTextStyle: TextStyle(
-                  color: Color(0xFF6750A4),
+                  color: Colors.blue[800],
                   fontWeight: FontWeight.w500,
                 ),
-                unselectedLabelTextStyle: TextStyle(
+                unselectedLabelTextStyle: const TextStyle(
                   color: Color(0xFF49454F),
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              scaffoldBackgroundColor: Colors.white,
-              dividerColor: const Color(0xFFE6E0E9),
+              scaffoldBackgroundColor: const Color(0xFFF7F9FC),
             ),
             darkTheme: ThemeData(
               colorScheme: ColorScheme.fromSeed(
-                seedColor: const Color(0xFFD0BCFF), // Material 3 Purple Dark
+                seedColor: Colors.blue,
                 brightness: Brightness.dark,
               ),
               useMaterial3: true,
-              textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
+              textTheme: GoogleFonts.robotoTextTheme(ThemeData.dark().textTheme),
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: AppBarTheme(
                 centerTitle: false,
                 elevation: 0,
                 backgroundColor: Colors.transparent,
                 foregroundColor: const Color(0xFFE6E0E9),
-                titleTextStyle: GoogleFonts.inter(
+                titleTextStyle: GoogleFonts.roboto(
                   fontSize: 22,
                   fontWeight: FontWeight.w500,
                   color: const Color(0xFFE6E0E9),
@@ -105,13 +104,13 @@ class MyApp extends StatelessWidget {
               cardTheme: CardThemeData(
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                color: const Color(0xFF322F35),
+                color: const Color(0xFF2D2E31),
                 surfaceTintColor: Colors.transparent,
               ),
               navigationRailTheme: const NavigationRailThemeData(
-                backgroundColor: Color(0xFF1D1B20),
+                backgroundColor: Color(0xFF1F1F1F),
                 elevation: 0,
                 selectedIconTheme: IconThemeData(
                   size: 24,
@@ -130,8 +129,7 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              scaffoldBackgroundColor: const Color(0xFF1D1B20),
-              dividerColor: const Color(0xFF49454F),
+              scaffoldBackgroundColor: const Color(0xFF1F1F1F),
             ),
             themeMode: appState.themeMode,
             locale: appState.locale,
@@ -158,6 +156,7 @@ class MainNavigationView extends StatefulWidget {
 
 class _MainNavigationViewState extends State<MainNavigationView> {
   int _selectedIndex = 0;
+  bool _isExtended = false;
 
   final List<Widget> _pages = [
     const LibraryPage(),
@@ -168,93 +167,117 @@ class _MainNavigationViewState extends State<MainNavigationView> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final bool isSmallScreen = width < 600;
+
+    if (isSmallScreen) {
+      return _buildMobileLayout(context);
+    } else {
+      return _buildDesktopLayout(context);
+    }
+  }
+
+  Widget _buildMobileLayout(BuildContext context) {
+    return Scaffold(
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.library_books_outlined),
+            selectedIcon: const Icon(Icons.library_books),
+            label: S.of(context).library,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.book_outlined),
+            selectedIcon: const Icon(Icons.book),
+            label: S.of(context).dictionary,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: S.of(context).settings,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.info_outlined),
+            selectedIcon: const Icon(Icons.info),
+            label: S.of(context).about,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDesktopLayout(BuildContext context) {
+    final navRailTheme = Theme.of(context).navigationRailTheme;
+
+    Widget buildTrailingItem(
+        int index, IconData icon, IconData selectedIcon, String label) {
+      final isSelected = _selectedIndex == index;
+      final iconColor = isSelected
+          ? navRailTheme.selectedIconTheme?.color
+          : navRailTheme.unselectedIconTheme?.color;
+      final labelStyle = isSelected
+          ? navRailTheme.selectedLabelTextStyle
+          : navRailTheme.unselectedLabelTextStyle;
+
+      if (!_isExtended) {
+        return IconButton(
+          icon: Icon(isSelected ? selectedIcon : icon, color: iconColor),
+          tooltip: label,
+          onPressed: () {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+        );
+      } else {
+        return InkWell(
+          onTap: () {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+          borderRadius: const BorderRadius.all(Radius.circular(50)),
+          child: Container(
+            height: 56,
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                Icon(isSelected ? selectedIcon : icon, color: iconColor),
+                const SizedBox(width: 12),
+                Text(label, style: labelStyle),
+              ],
+            ),
+          ),
+        );
+      }
+    }
+
     return Scaffold(
       body: Row(
         children: [
           NavigationRail(
-            selectedIndex: _selectedIndex >= 2 ? null : _selectedIndex,
+            extended: _isExtended,
+            selectedIndex: _selectedIndex < 2 ? _selectedIndex : null,
             onDestinationSelected: (int index) {
               setState(() {
                 _selectedIndex = index;
               });
             },
-            labelType: NavigationRailLabelType.all,
-            leading: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: FloatingActionButton(
-                elevation: 0,
-                onPressed: () {
-                  // Quick action - open file picker
-                  // TODO: Implement quick file picker
-                },
-                child: const Icon(Icons.add),
-              ),
-            ),
-            trailing: Expanded(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 32,
-                        height: 1,
-                        color: Theme.of(context).colorScheme.outline,
-                        margin: const EdgeInsets.symmetric(vertical: 8),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            _selectedIndex = 2;
-                          });
-                        },
-                        customBorder: const CircleBorder(),
-                        child: Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _selectedIndex == 2
-                                ? Theme.of(context).colorScheme.secondaryContainer
-                                : null,
-                          ),
-                          child: Icon(
-                            _selectedIndex == 2 ? Icons.settings : Icons.settings_outlined,
-                            color: _selectedIndex == 2
-                                ? Theme.of(context).colorScheme.onSecondaryContainer
-                                : Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            _selectedIndex = 3;
-                          });
-                        },
-                        customBorder: const CircleBorder(),
-                        child: Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _selectedIndex == 3
-                                ? Theme.of(context).colorScheme.secondaryContainer
-                                : null,
-                          ),
-                          child: Icon(
-                            _selectedIndex == 3 ? Icons.info : Icons.info_outlined,
-                            color: _selectedIndex == 3
-                                ? Theme.of(context).colorScheme.onSecondaryContainer
-                                : Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            labelType: NavigationRailLabelType.none,
+            leading: IconButton(
+              icon: Icon(_isExtended ? Icons.menu_open : Icons.menu),
+              onPressed: () {
+                setState(() {
+                  _isExtended = !_isExtended;
+                });
+              },
             ),
             destinations: [
               NavigationRailDestination(
@@ -267,9 +290,18 @@ class _MainNavigationViewState extends State<MainNavigationView> {
                 selectedIcon: const Icon(Icons.book),
                 label: Text(S.of(context).dictionary),
               ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.settings_outlined),
+                selectedIcon: const Icon(Icons.settings),
+                label: Text(S.of(context).settings),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.info_outlined),
+                selectedIcon: const Icon(Icons.info),
+                label: Text(S.of(context).about),
+              ),
             ],
           ),
-          const VerticalDivider(thickness: 1, width: 1),
           Expanded(
             child: _pages[_selectedIndex],
           ),

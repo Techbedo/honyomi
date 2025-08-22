@@ -20,6 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(word, translation) =>
+      "Word \'${word}\' - \'${translation}\' added to dictionary";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("About"),
@@ -113,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "previousPage": MessageLookupByLibrary.simpleMessage("Previous Page"),
     "recentFiles": MessageLookupByLibrary.simpleMessage("Recent Files"),
     "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+    "savedWords": MessageLookupByLibrary.simpleMessage("Saved Words"),
     "selectAll": MessageLookupByLibrary.simpleMessage("Select All"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "system": MessageLookupByLibrary.simpleMessage("System"),
@@ -125,6 +129,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "wordAdded": MessageLookupByLibrary.simpleMessage(
       "Word added to dictionary",
     ),
+    "wordAddedMessage": m0,
     "zoomIn": MessageLookupByLibrary.simpleMessage("Zoom In"),
     "zoomOut": MessageLookupByLibrary.simpleMessage("Zoom Out"),
   };

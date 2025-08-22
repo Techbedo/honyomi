@@ -251,5 +251,21 @@
   "material3DesignDescription": "Сучасний та адаптивний користувацький інтерфейс",
   "@material3DesignDescription": {
     "description": "Опис функції Material 3"
+  },
+  "wordAddedMessage": "Слово '{word}' - '{translation}' додано до словника",
+  "@wordAddedMessage": {
+    "description": "Повідомлення про успішне додавання слова зі словом та перекладом",
+    "placeholders": {
+      "word": {
+        "type": "String"
+      },
+      "translation": {
+        "type": "String"
+      }
+    }
+  },
+  "savedWords": "Збережені слова",
+  "@savedWords": {
+    "description": "Заголовок для списку збережених слів у словнику"
   }
 }

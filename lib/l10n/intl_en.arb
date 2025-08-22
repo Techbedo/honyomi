@@ -251,5 +251,21 @@
   "material3DesignDescription": "Modern and adaptive user interface",
   "@material3DesignDescription": {
     "description": "Material 3 design feature description"
+  },
+  "wordAddedMessage": "Word '{word}' - '{translation}' added to dictionary",
+  "@wordAddedMessage": {
+    "description": "Success message when word is added with word and translation",
+    "placeholders": {
+      "word": {
+        "type": "String"
+      },
+      "translation": {
+        "type": "String"
+      }
+    }
+  },
+  "savedWords": "Saved Words",
+  "@savedWords": {
+    "description": "Title for the list of saved words in the dictionary"
   }
 }

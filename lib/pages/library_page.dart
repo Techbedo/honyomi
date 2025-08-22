@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
+import 'package:path/path.dart' as p;
 import '../generated/l10n.dart';
 import '../providers/app_state.dart';
 
@@ -87,147 +88,123 @@ class _LibraryPageState extends State<LibraryPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context);
-
     if (isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  const Icon(Icons.library_books, size: 32),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          S.of(context).library,
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        Text(
-                          S.of(context).libraryDescription,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                  ),
-                  FilledButton.icon(
-                    onPressed: _openPdfFile,
-                    icon: const Icon(Icons.add),
-                    label: Text(S.of(context).openFile),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            S.of(context).recentFiles,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: 8),
-          Expanded(
-            child: recentFiles.isEmpty
-                ? Card(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(32.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.folder_open,
-                              size: 64,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
-                            ),
-                            const SizedBox(height: 16),
-                            Text(
-                              S.of(context).noRecentFiles,
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              S.of(context).noRecentFilesDescription,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                : ListView.builder(
-                    itemCount: recentFiles.length,
-                    itemBuilder: (context, index) {
-                      final filePath = recentFiles[index];
-                      final fileName = filePath.split(Platform.pathSeparator).last;
-                      final fileExists = File(filePath).existsSync();
-
-                      return Card(
-                        margin: const EdgeInsets.only(bottom: 8),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.picture_as_pdf,
-                            color: fileExists 
-                                ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).colorScheme.onSurfaceVariant,
-                          ),
-                          title: Text(
-                            fileName,
-                            style: TextStyle(
-                              color: fileExists 
-                                  ? null
-                                  : Theme.of(context).colorScheme.onSurfaceVariant,
-                              decoration: fileExists 
-                                  ? null 
-                                  : TextDecoration.lineThrough,
-                            ),
-                          ),
-                          subtitle: Text(
-                            filePath,
-                            style: TextStyle(
-                              color: fileExists 
-                                  ? Theme.of(context).colorScheme.onSurfaceVariant
-                                  : Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.6),
-                            ),
-                          ),
-                          trailing: PopupMenuButton<String>(
-                            onSelected: (value) {
-                              if (value == 'remove') {
-                                _removeFromRecentFiles(filePath);
-                              }
-                            },
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                value: 'remove',
-                                child: Row(
-                                  children: [
-                                    const Icon(Icons.delete),
-                                    const SizedBox(width: 8),
-                                    Text(S.of(context).remove),
-                                  ],
-                                ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(S.of(context).library),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  S.of(context).recentFiles,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(height: 8),
+                Expanded(
+                  child: recentFiles.isEmpty
+                      ? Center(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.folder_open,
+                                size: 64,
+                                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                S.of(context).noRecentFiles,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                S.of(context).noRecentFilesDescription,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                textAlign: TextAlign.center,
                               ),
                             ],
                           ),
-                          onTap: fileExists 
-                              ? () => _openRecentFile(filePath)
-                              : null,
+                        )
+                      : ListView.builder(
+                          itemCount: recentFiles.length,
+                          itemBuilder: (context, index) {
+                            final filePath = recentFiles[index];
+                            final fileName = p.basename(filePath);
+                            final fileExists = File(filePath).existsSync();
+
+                            return ListTile(
+                              leading: Icon(
+                                Icons.picture_as_pdf,
+                                color: fileExists
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Theme.of(context).colorScheme.onSurfaceVariant,
+                              ),
+                              title: Text(
+                                fileName,
+                                style: TextStyle(
+                                  color: fileExists
+                                      ? null
+                                      : Theme.of(context).colorScheme.onSurfaceVariant,
+                                  decoration: fileExists
+                                      ? null
+                                      : TextDecoration.lineThrough,
+                                ),
+                              ),
+                              subtitle: Text(
+                                filePath,
+                                style: TextStyle(
+                                  color: fileExists
+                                      ? Theme.of(context).colorScheme.onSurfaceVariant
+                                      : Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.6),
+                                ),
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.more_vert),
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return Wrap(
+                                        children: [
+                                          ListTile(
+                                            leading: const Icon(Icons.delete),
+                                            title: Text(S.of(context).remove),
+                                            onTap: () {
+                                              _removeFromRecentFiles(filePath);
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                              onTap: fileExists
+                                  ? () => _openRecentFile(filePath)
+                                  : null,
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
+                ),
+              ],
+            ),
           ),
-        ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _openPdfFile,
+        label: Text(S.of(context).openFile),
+        icon: const Icon(Icons.add),
       ),
     );
   }
