@@ -154,9 +154,12 @@ class MainNavigationView extends StatefulWidget {
   State<MainNavigationView> createState() => _MainNavigationViewState();
 }
 
-class _MainNavigationViewState extends State<MainNavigationView> {
+class _MainNavigationViewState extends State<MainNavigationView>
+    with TickerProviderStateMixin {
   int _selectedIndex = 0;
   bool _isExtended = false;
+  late AnimationController _animationController;
+  late Animation<double> _widthAnimation;
 
   final List<Widget> _pages = [
     const LibraryPage(),
@@ -164,6 +167,28 @@ class _MainNavigationViewState extends State<MainNavigationView> {
     const SettingsPage(),
     const AboutPage(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+    _widthAnimation = Tween<double>(
+      begin: 80.0,
+      end: 256.0,
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -226,81 +251,165 @@ class _MainNavigationViewState extends State<MainNavigationView> {
           ? navRailTheme.selectedLabelTextStyle
           : navRailTheme.unselectedLabelTextStyle;
 
-      if (!_isExtended) {
-        return IconButton(
-          icon: Icon(isSelected ? selectedIcon : icon, color: iconColor),
-          tooltip: label,
-          onPressed: () {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-        );
-      } else {
-        return InkWell(
-          onTap: () {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          borderRadius: const BorderRadius.all(Radius.circular(50)),
-          child: Container(
-            height: 56,
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              children: [
-                Icon(isSelected ? selectedIcon : icon, color: iconColor),
-                const SizedBox(width: 12),
-                Text(label, style: labelStyle),
-              ],
-            ),
-          ),
-        );
-      }
+      return AnimatedBuilder(
+        animation: _widthAnimation,
+        builder: (context, child) {
+          final isExtended = _widthAnimation.value > 120;
+          
+          if (!isExtended) {
+            return Container(
+              width: 72,
+              height: 72,
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(36),
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    child: Icon(
+                      isSelected ? selectedIcon : icon, 
+                      color: iconColor,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ),
+            );
+          } else {
+            return Container(
+              width: _widthAnimation.value - 24,
+              height: 56,
+              margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              child: Material(
+                color: isSelected 
+                    ? Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.3)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(28),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(28),
+                  onTap: () {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(isSelected ? selectedIcon : icon, color: iconColor),
+                        if (_widthAnimation.value > 140) ...[
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Opacity(
+                              opacity: ((_widthAnimation.value - 140) / 116).clamp(0.0, 1.0),
+                              child: Text(
+                                label, 
+                                style: labelStyle,
+                                textAlign: TextAlign.start,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }
+        },
+      );
     }
 
     return Scaffold(
       body: Row(
         children: [
-          NavigationRail(
-            extended: _isExtended,
-            selectedIndex: _selectedIndex < 2 ? _selectedIndex : null,
-            onDestinationSelected: (int index) {
-              setState(() {
-                _selectedIndex = index;
-              });
+          AnimatedBuilder(
+            animation: _widthAnimation,
+            builder: (context, child) {
+              return Container(
+                width: _widthAnimation.value,
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  color: navRailTheme.backgroundColor,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Кнопка меню (завжди зліва)
+                    Container(
+                      width: 72,
+                      height: 72,
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(36),
+                          onTap: () {
+                            setState(() {
+                              _isExtended = !_isExtended;
+                              if (_isExtended) {
+                                _animationController.forward();
+                              } else {
+                                _animationController.reverse();
+                              }
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            child: AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 200),
+                              child: Icon(
+                                _isExtended ? Icons.menu_open : Icons.menu,
+                                key: ValueKey(_isExtended),
+                                size: 24,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    // Основні розділи
+                    buildTrailingItem(
+                      0,
+                      Icons.library_books_outlined,
+                      Icons.library_books,
+                      S.of(context).library,
+                    ),
+                    buildTrailingItem(
+                      1,
+                      Icons.book_outlined,
+                      Icons.book,
+                      S.of(context).dictionary,
+                    ),
+                    // Spacer для розташування елементів внизу
+                    const Spacer(),
+                    // Нижні елементи (Налаштування та Про програму)
+                    buildTrailingItem(
+                      2,
+                      Icons.settings_outlined,
+                      Icons.settings,
+                      S.of(context).settings,
+                    ),
+                    buildTrailingItem(
+                      3,
+                      Icons.info_outlined,
+                      Icons.info,
+                      S.of(context).about,
+                    ),
+                    const SizedBox(height: 16), // Відступ знизу
+                  ],
+                ),
+              );
             },
-            labelType: NavigationRailLabelType.none,
-            leading: IconButton(
-              icon: Icon(_isExtended ? Icons.menu_open : Icons.menu),
-              onPressed: () {
-                setState(() {
-                  _isExtended = !_isExtended;
-                });
-              },
-            ),
-            destinations: [
-              NavigationRailDestination(
-                icon: const Icon(Icons.library_books_outlined),
-                selectedIcon: const Icon(Icons.library_books),
-                label: Text(S.of(context).library),
-              ),
-              NavigationRailDestination(
-                icon: const Icon(Icons.book_outlined),
-                selectedIcon: const Icon(Icons.book),
-                label: Text(S.of(context).dictionary),
-              ),
-              NavigationRailDestination(
-                icon: const Icon(Icons.settings_outlined),
-                selectedIcon: const Icon(Icons.settings),
-                label: Text(S.of(context).settings),
-              ),
-              NavigationRailDestination(
-                icon: const Icon(Icons.info_outlined),
-                selectedIcon: const Icon(Icons.info),
-                label: Text(S.of(context).about),
-              ),
-            ],
           ),
           Expanded(
             child: _pages[_selectedIndex],

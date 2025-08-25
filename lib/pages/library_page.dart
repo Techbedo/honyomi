@@ -1,11 +1,9 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:io';
 import 'package:path/path.dart' as p;
 import '../generated/l10n.dart';
-import '../providers/app_state.dart';
 
 class LibraryPage extends StatefulWidget {
   const LibraryPage({super.key});
