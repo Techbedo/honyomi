@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'generated/l10n.dart';
 import 'providers/app_state.dart';
 import 'pages/library_page.dart';
@@ -39,17 +38,16 @@ class MyApp extends StatelessWidget {
                 brightness: Brightness.light,
               ),
               useMaterial3: true,
-              textTheme: GoogleFonts.robotoTextTheme(),
               visualDensity: VisualDensity.adaptivePlatformDensity,
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
                 centerTitle: false,
                 elevation: 0,
                 backgroundColor: Colors.transparent,
-                foregroundColor: const Color(0xFF1D1B20),
-                titleTextStyle: GoogleFonts.roboto(
+                foregroundColor: Color(0xFF1D1B20),
+                titleTextStyle: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w500,
-                  color: const Color(0xFF1D1B20),
+                  color: Color(0xFF1D1B20),
                 ),
               ),
               cardTheme: CardThemeData(
@@ -88,17 +86,16 @@ class MyApp extends StatelessWidget {
                 brightness: Brightness.dark,
               ),
               useMaterial3: true,
-              textTheme: GoogleFonts.robotoTextTheme(ThemeData.dark().textTheme),
               visualDensity: VisualDensity.adaptivePlatformDensity,
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
                 centerTitle: false,
                 elevation: 0,
                 backgroundColor: Colors.transparent,
-                foregroundColor: const Color(0xFFE6E0E9),
-                titleTextStyle: GoogleFonts.roboto(
+                foregroundColor: Color(0xFFE6E0E9),
+                titleTextStyle: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w500,
-                  color: const Color(0xFFE6E0E9),
+                  color: Color(0xFFE6E0E9),
                 ),
               ),
               cardTheme: CardThemeData(
@@ -256,75 +253,52 @@ class _MainNavigationViewState extends State<MainNavigationView>
         builder: (context, child) {
           final isExtended = _widthAnimation.value > 120;
           
-          if (!isExtended) {
-            return Container(
-              width: 72,
-              height: 72,
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(36),
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    child: Icon(
-                      isSelected ? selectedIcon : icon, 
-                      color: iconColor,
-                      size: 24,
-                    ),
-                  ),
-                ),
-              ),
-            );
-          } else {
-            return Container(
-              width: _widthAnimation.value - 24,
-              height: 56,
-              margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              child: Material(
-                color: isSelected 
-                    ? Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.3)
-                    : Colors.transparent,
+          return Container(
+            width: isExtended ? _widthAnimation.value - 24 : 72,
+            height: 56, // Фіксована висота для всіх станів
+            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            child: Material(
+              color: isSelected 
+                  ? Theme.of(context).colorScheme.secondaryContainer.withValues(alpha: 0.3)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(28),
+              child: InkWell(
                 borderRadius: BorderRadius.circular(28),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(28),
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = index;
-                    });
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(isSelected ? selectedIcon : icon, color: iconColor),
-                        if (_widthAnimation.value > 140) ...[
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Opacity(
-                              opacity: ((_widthAnimation.value - 140) / 116).clamp(0.0, 1.0),
-                              child: Text(
-                                label, 
-                                style: labelStyle,
-                                textAlign: TextAlign.start,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = index;
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(
+                        isSelected ? selectedIcon : icon, 
+                        color: iconColor,
+                        size: 24, // Фіксований розмір іконки
+                      ),
+                      if (isExtended && _widthAnimation.value > 140) ...[
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Opacity(
+                            opacity: ((_widthAnimation.value - 140) / 116).clamp(0.0, 1.0),
+                            child: Text(
+                              label, 
+                              style: labelStyle,
+                              textAlign: TextAlign.start,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ],
+                        ),
                       ],
-                    ),
+                    ],
                   ),
                 ),
               ),
-            );
-          }
+            ),
+          );
         },
       );
     }
@@ -347,12 +321,13 @@ class _MainNavigationViewState extends State<MainNavigationView>
                     // Кнопка меню (завжди зліва)
                     Container(
                       width: 72,
-                      height: 72,
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      height: 56, // Така ж висота як у інших елементів
+                      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                       child: Material(
                         color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(28),
                         child: InkWell(
-                          borderRadius: BorderRadius.circular(36),
+                          borderRadius: BorderRadius.circular(28),
                           onTap: () {
                             setState(() {
                               _isExtended = !_isExtended;
@@ -370,7 +345,7 @@ class _MainNavigationViewState extends State<MainNavigationView>
                               child: Icon(
                                 _isExtended ? Icons.menu_open : Icons.menu,
                                 key: ValueKey(_isExtended),
-                                size: 24,
+                                size: 24, // Фіксований розмір іконки
                               ),
                             ),
                           ),
