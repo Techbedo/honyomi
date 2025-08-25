@@ -38,7 +38,6 @@ dependencies:
   
   # UI Components
   awesome_snackbar_content: ^0.1.8
-  google_fonts: ^6.2.1
   
   # Internationalization
   intl: ^0.20.2
@@ -55,7 +54,7 @@ dependencies:
   file_picker: ^10.3.2
   
   # PDF viewing
-  syncfusion_flutter_pdfviewer: ^30.2.6
+  pdfrx: ^2.1.5
   
   # Local storage
   shared_preferences: ^2.3.3

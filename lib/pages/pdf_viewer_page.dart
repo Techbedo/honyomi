@@ -1,6 +1,5 @@
 ﻿import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'dart:io';
+import 'package:pdfrx/pdfrx.dart';
 import '../generated/l10n.dart';
 
 class PdfViewerPage extends StatefulWidget {
@@ -13,13 +12,7 @@ class PdfViewerPage extends StatefulWidget {
 }
 
 class _PdfViewerPageState extends State<PdfViewerPage> {
-  late PdfViewerController _pdfViewerController;
-
-  @override
-  void initState() {
-    super.initState();
-    _pdfViewerController = PdfViewerController();
-  }
+  final PdfViewerController _pdfViewerController = PdfViewerController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,37 +22,57 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         actions: [
           IconButton(
             onPressed: () {
-              _pdfViewerController.previousPage();
+              if (_pdfViewerController.isReady) {
+                final currentPage = _pdfViewerController.pageNumber;
+                if (currentPage != null && currentPage > 1) {
+                  _pdfViewerController.goToPage(pageNumber: currentPage - 1);
+                }
+              }
             },
             icon: const Icon(Icons.arrow_back_ios),
             tooltip: S.of(context).previousPage,
           ),
           IconButton(
             onPressed: () {
-              _pdfViewerController.nextPage();
+              if (_pdfViewerController.isReady) {
+                final currentPage = _pdfViewerController.pageNumber;
+                final pageCount = _pdfViewerController.pageCount;
+                if (currentPage != null && currentPage < pageCount) {
+                  _pdfViewerController.goToPage(pageNumber: currentPage + 1);
+                }
+              }
             },
             icon: const Icon(Icons.arrow_forward_ios),
             tooltip: S.of(context).nextPage,
           ),
           IconButton(
             onPressed: () {
-              _pdfViewerController.zoomLevel = _pdfViewerController.zoomLevel + 0.25;
+              if (_pdfViewerController.isReady) {
+                _pdfViewerController.zoomUp();
+              }
             },
             icon: const Icon(Icons.zoom_in),
             tooltip: S.of(context).zoomIn,
           ),
           IconButton(
             onPressed: () {
-              _pdfViewerController.zoomLevel = _pdfViewerController.zoomLevel - 0.25;
+              if (_pdfViewerController.isReady) {
+                _pdfViewerController.zoomDown();
+              }
             },
             icon: const Icon(Icons.zoom_out),
             tooltip: S.of(context).zoomOut,
           ),
         ],
       ),
-      body: SfPdfViewer.file(
-        File(widget.filePath),
+      body: PdfViewer.file(
+        widget.filePath,
         controller: _pdfViewerController,
+        params: const PdfViewerParams(
+          boundaryMargin: EdgeInsets.all(16.0),
+          minScale: 1.0,
+          maxScale: 5.0,
+        ),
       ),
     );
   }
