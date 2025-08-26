@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
@@ -15,8 +15,7 @@ class LibraryPage extends StatefulWidget {
 
 class _LibraryPageState extends State<LibraryPage> {
   List<String> recentFiles = [];
-  bool isLoading = true;
-
+  
   @override
   void initState() {
     super.initState();
@@ -27,7 +26,6 @@ class _LibraryPageState extends State<LibraryPage> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       recentFiles = prefs.getStringList('recent_files') ?? [];
-      isLoading = false;
     });
   }
 
@@ -49,7 +47,7 @@ class _LibraryPageState extends State<LibraryPage> {
         // For web, use the file name since we can't get actual path
         if (result.files.single.name.isNotEmpty) {
           filePath = result.files.single.name;
-          _addToRecentFiles(filePath);
+          // Не додаємо веб-файли до недавніх, оскільки їх неможливо повторно відкрити
           
           if (mounted) {
             // For web, pass the file bytes instead of path
@@ -93,21 +91,18 @@ class _LibraryPageState extends State<LibraryPage> {
   }
 
   void _openRecentFile(String filePath) {
-    if (PlatformFileUtils.fileExists(filePath)) {
+    if (kIsWeb) {
+      // Для веб-версії показуємо повідомлення, що файл потрібно перевибрати
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('У веб-версії необхідно перевибрати файл. Використовуйте кнопку "Відкрити файл".'),
+          backgroundColor: Colors.orange,
+          duration: const Duration(seconds: 4),
+        ),
+      );
+    } else if (PlatformFileUtils.fileExists(filePath)) {
       _addToRecentFiles(filePath);
-      
-      if (kIsWeb) {
-        // For web, show message that file needs to be re-selected
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(S.of(context).fileNotFound),
-            backgroundColor: Colors.orange,
-          ),
-        );
-        _removeFromRecentFiles(filePath);
-      } else {
-        Navigator.pushNamed(context, '/pdf_viewer', arguments: filePath);
-      }
+      Navigator.pushNamed(context, '/pdf_viewer', arguments: filePath);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -121,10 +116,6 @@ class _LibraryPageState extends State<LibraryPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).library),
@@ -141,9 +132,9 @@ class _LibraryPageState extends State<LibraryPage> {
                   S.of(context).recentFiles,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
                 Expanded(
-                  child: recentFiles.isEmpty
+                  child: (recentFiles.isEmpty || kIsWeb)
                       ? Center(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -155,12 +146,16 @@ class _LibraryPageState extends State<LibraryPage> {
                               ),
                               const SizedBox(height: 16),
                               Text(
-                                S.of(context).noRecentFiles,
+                                kIsWeb 
+                                    ? 'Натисніть кнопку нижче, щоб відкрити PDF файл'
+                                    : S.of(context).noRecentFiles,
                                 style: Theme.of(context).textTheme.titleMedium,
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                S.of(context).noRecentFilesDescription,
+                                kIsWeb
+                                    ? 'У веб-версії файли не зберігаються у списку недавніх'
+                                    : S.of(context).noRecentFilesDescription,
                                 style: Theme.of(context).textTheme.bodyMedium,
                                 textAlign: TextAlign.center,
                               ),
@@ -186,10 +181,7 @@ class _LibraryPageState extends State<LibraryPage> {
                                 style: TextStyle(
                                   color: fileExists
                                       ? null
-                                      : Theme.of(context).colorScheme.onSurfaceVariant,
-                                  decoration: fileExists
-                                      ? null
-                                      : TextDecoration.lineThrough,
+                                      : Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.7),
                                 ),
                               ),
                               subtitle: Text(
@@ -197,30 +189,27 @@ class _LibraryPageState extends State<LibraryPage> {
                                 style: TextStyle(
                                   color: fileExists
                                       ? Theme.of(context).colorScheme.onSurfaceVariant
-                                      : Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.6),
+                                      : Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.5),
                                 ),
                               ),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.more_vert),
-                                onPressed: () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return Wrap(
-                                        children: [
-                                          ListTile(
-                                            leading: const Icon(Icons.delete),
-                                            title: Text(S.of(context).remove),
-                                            onTap: () {
-                                              _removeFromRecentFiles(filePath);
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
+                              trailing: PopupMenuButton(
+                                onSelected: (value) {
+                                  if (value == 'remove') {
+                                    _removeFromRecentFiles(filePath);
+                                  }
                                 },
+                                itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                    value: 'remove',
+                                    child: Row(
+                                      children: [
+                                        const Icon(Icons.delete_outline),
+                                        const SizedBox(width: 8),
+                                        Text(S.of(context).remove),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                               onTap: fileExists
                                   ? () => _openRecentFile(filePath)
