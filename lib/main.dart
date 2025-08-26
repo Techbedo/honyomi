@@ -23,6 +23,15 @@ class MyApp extends StatelessWidget {
       create: (context) => AppState()..loadSettings(),
       child: Consumer<AppState>(
         builder: (context, appState, child) {
+          final lightColorScheme = ColorScheme.fromSeed(
+            seedColor: Colors.blue,
+            brightness: Brightness.light,
+          );
+          final darkColorScheme = ColorScheme.fromSeed(
+            seedColor: Colors.blue,
+            brightness: Brightness.dark,
+          );
+          
           return MaterialApp(
             title: 'Honyomi',
             localizationsDelegates: const [
@@ -33,10 +42,7 @@ class MyApp extends StatelessWidget {
             ],
             supportedLocales: S.delegate.supportedLocales,
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.blue,
-                brightness: Brightness.light,
-              ),
+              colorScheme: lightColorScheme,
               useMaterial3: true,
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: const AppBarTheme(
@@ -63,14 +69,14 @@ class MyApp extends StatelessWidget {
                 elevation: 0,
                 selectedIconTheme: IconThemeData(
                   size: 24,
-                  color: Colors.blue[800],
+                  color: lightColorScheme.primary, // Використовуємо primary колір теми
                 ),
                 unselectedIconTheme: const IconThemeData(
                   size: 24,
                   color: Color(0xFF49454F),
                 ),
                 selectedLabelTextStyle: TextStyle(
-                  color: Colors.blue[800],
+                  color: lightColorScheme.primary, // Використовуємо primary колір теми
                   fontWeight: FontWeight.w500,
                 ),
                 unselectedLabelTextStyle: const TextStyle(
@@ -81,10 +87,7 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: const Color(0xFFF7F9FC),
             ),
             darkTheme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.blue,
-                brightness: Brightness.dark,
-              ),
+              colorScheme: darkColorScheme,
               useMaterial3: true,
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: const AppBarTheme(
@@ -106,22 +109,22 @@ class MyApp extends StatelessWidget {
                 color: const Color(0xFF2D2E31),
                 surfaceTintColor: Colors.transparent,
               ),
-              navigationRailTheme: const NavigationRailThemeData(
-                backgroundColor: Color(0xFF1F1F1F),
+              navigationRailTheme: NavigationRailThemeData(
+                backgroundColor: const Color(0xFF1F1F1F),
                 elevation: 0,
                 selectedIconTheme: IconThemeData(
                   size: 24,
-                  color: Color(0xFFD0BCFF),
+                  color: darkColorScheme.primary, // Використовуємо primary колір теми
                 ),
-                unselectedIconTheme: IconThemeData(
+                unselectedIconTheme: const IconThemeData(
                   size: 24,
                   color: Color(0xFFCAC4D0),
                 ),
                 selectedLabelTextStyle: TextStyle(
-                  color: Color(0xFFD0BCFF),
+                  color: darkColorScheme.primary, // Використовуємо primary колір теми
                   fontWeight: FontWeight.w500,
                 ),
-                unselectedLabelTextStyle: TextStyle(
+                unselectedLabelTextStyle: const TextStyle(
                   color: Color(0xFFCAC4D0),
                   fontWeight: FontWeight.w400,
                 ),
@@ -259,7 +262,7 @@ class _MainNavigationViewState extends State<MainNavigationView>
             margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             child: Material(
               color: isSelected 
-                  ? Theme.of(context).colorScheme.secondaryContainer.withValues(alpha: 0.3)
+                  ? Colors.blue.withValues(alpha: 0.1) // Синій фон з прозорістю для виділених елементів
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(28),
               child: InkWell(
