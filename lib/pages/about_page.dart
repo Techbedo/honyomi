@@ -1,24 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import '../generated/l10n.dart';
 import '../providers/app_state.dart';
 
-class AboutPage extends StatelessWidget {
+class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
+
+  @override
+  State<AboutPage> createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
+  PackageInfo? _packageInfo;
+
+  @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<AppState>(
       builder: (context, appState, child) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(S.of(context).about),
-          ),
-          body: ListView(
-            padding: const EdgeInsets.all(16.0),
-            children: [
-              _buildInfoCard(
-                context,
+        appBar: AppBar(
+          title: Text(S.of(context).about),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(16.0),
+          children: [
+            _buildInfoCard(
+              context,
                 title: S.of(context).appTitle,
                 children: [
                   ListTile(
@@ -29,7 +50,9 @@ class AboutPage extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.tag),
                     title: Text(S.of(context).version),
-                    subtitle: const Text('1.0.0'), // Replace with dynamic version
+                    subtitle: Text(_packageInfo != null 
+                        ? '${_packageInfo!.version} (${_packageInfo!.buildNumber})'
+                        : '...'),
                   ),
                   ListTile(
                     leading: const Icon(Icons.gavel),

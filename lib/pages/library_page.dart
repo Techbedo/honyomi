@@ -1,9 +1,10 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as p;
 import '../generated/l10n.dart';
+import '../utils/platform_file_utils.dart';
 
 class LibraryPage extends StatefulWidget {
   const LibraryPage({super.key});
@@ -41,12 +42,34 @@ class _LibraryPageState extends State<LibraryPage> {
       allowedExtensions: ['pdf'],
     );
 
-    if (result != null && result.files.single.path != null) {
-      String filePath = result.files.single.path!;
-      _addToRecentFiles(filePath);
+    if (result != null) {
+      String? filePath;
       
-      if (mounted) {
-        Navigator.pushNamed(context, '/pdf_viewer', arguments: filePath);
+      if (kIsWeb) {
+        // For web, use the file name since we can't get actual path
+        if (result.files.single.name.isNotEmpty) {
+          filePath = result.files.single.name;
+          _addToRecentFiles(filePath);
+          
+          if (mounted) {
+            // For web, pass the file bytes instead of path
+            Navigator.pushNamed(context, '/pdf_viewer', arguments: {
+              'isWeb': true,
+              'fileName': result.files.single.name,
+              'fileBytes': result.files.single.bytes,
+            });
+          }
+        }
+      } else {
+        // For desktop/mobile platforms
+        if (result.files.single.path != null) {
+          filePath = result.files.single.path!;
+          _addToRecentFiles(filePath);
+          
+          if (mounted) {
+            Navigator.pushNamed(context, '/pdf_viewer', arguments: filePath);
+          }
+        }
       }
     }
   }
@@ -70,9 +93,21 @@ class _LibraryPageState extends State<LibraryPage> {
   }
 
   void _openRecentFile(String filePath) {
-    if (File(filePath).existsSync()) {
+    if (PlatformFileUtils.fileExists(filePath)) {
       _addToRecentFiles(filePath);
-      Navigator.pushNamed(context, '/pdf_viewer', arguments: filePath);
+      
+      if (kIsWeb) {
+        // For web, show message that file needs to be re-selected
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(S.of(context).fileNotFound),
+            backgroundColor: Colors.orange,
+          ),
+        );
+        _removeFromRecentFiles(filePath);
+      } else {
+        Navigator.pushNamed(context, '/pdf_viewer', arguments: filePath);
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -137,7 +172,7 @@ class _LibraryPageState extends State<LibraryPage> {
                           itemBuilder: (context, index) {
                             final filePath = recentFiles[index];
                             final fileName = p.basename(filePath);
-                            final fileExists = File(filePath).existsSync();
+                            final fileExists = PlatformFileUtils.fileExists(filePath);
 
                             return ListTile(
                               leading: Icon(

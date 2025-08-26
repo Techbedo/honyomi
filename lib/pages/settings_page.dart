@@ -11,15 +11,15 @@ class SettingsPage extends StatelessWidget {
     return Consumer<AppState>(
       builder: (context, appState, child) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(S.of(context).settings),
-          ),
-          body: ListView(
-            padding: const EdgeInsets.all(16.0),
-            children: [
-              _buildSettingsCard(
-                context,
-                title: S.of(context).theme,
+        appBar: AppBar(
+          title: Text(S.of(context).settings),
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(16.0),
+          children: [
+            _buildSettingsCard(
+              context,
+              title: S.of(context).theme,
                 children: [
                   ListTile(
                     leading: const Icon(Icons.palette_outlined),

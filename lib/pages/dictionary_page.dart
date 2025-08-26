@@ -54,7 +54,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.pop(context),
             child: Text(S.of(context).cancel),
           ),
           FilledButton(
@@ -67,24 +67,27 @@ class _DictionaryPageState extends State<DictionaryPage> {
                   _translationController.text.trim(),
                 );
                 
-                Navigator.of(context).pop();
+                Navigator.pop(context);
                 
-                final snackBar = SnackBar(
-                  elevation: 0,
-                  behavior: SnackBarBehavior.floating,
-                  backgroundColor: Colors.transparent,
-                  content: AwesomeSnackbarContent(
-                    title: S.of(context).wordAdded,
-                    message: S.of(context).wordAddedMessage(
-                        _wordController.text.trim(),
-                        _translationController.text.trim()),
-                    contentType: ContentType.success,
-                  ),
-                );
-                
-                if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                }
+                // Показуємо snackbar після закриття діалогу
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (mounted) {
+                    final snackBar = SnackBar(
+                      elevation: 0,
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.transparent,
+                      content: AwesomeSnackbarContent(
+                        title: S.of(context).wordAdded,
+                        message: S.of(context).wordAddedMessage(
+                            _wordController.text.trim(),
+                            _translationController.text.trim()),
+                        contentType: ContentType.success,
+                      ),
+                    );
+                    
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                });
               }
             },
             child: Text(S.of(context).add),
@@ -99,14 +102,14 @@ class _DictionaryPageState extends State<DictionaryPage> {
     return Consumer<AppState>(
       builder: (context, appState, child) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(S.of(context).dictionary),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
+        appBar: AppBar(
+          title: Text(S.of(context).dictionary),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -168,8 +171,8 @@ class _DictionaryPageState extends State<DictionaryPage> {
                                                 leading: const Icon(Icons.delete),
                                                 title: Text(S.of(context).delete),
                                                 onTap: () {
+                                                  Navigator.pop(context);
                                                   appState.removeDictionaryWord(index);
-                                                  Navigator.of(context).pop();
                                                 },
                                               ),
                                             ],

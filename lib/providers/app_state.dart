@@ -71,7 +71,7 @@ class AppState extends ChangeNotifier {
   Future<void> _saveDictionary() async {
     final prefs = await SharedPreferences.getInstance();
     final dictionary = _dictionaryWords
-        .map((entry) => '|')
+        .map((entry) => '${entry['word']}|${entry['translation']}')
         .toList();
     await prefs.setStringList('dictionary', dictionary);
   }

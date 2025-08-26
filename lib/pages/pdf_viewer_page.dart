@@ -3,9 +3,9 @@ import 'package:pdfrx/pdfrx.dart';
 import '../generated/l10n.dart';
 
 class PdfViewerPage extends StatefulWidget {
-  final String filePath;
+  final dynamic arguments;
 
-  const PdfViewerPage({super.key, required this.filePath});
+  const PdfViewerPage({super.key, required this.arguments});
 
   @override
   State<PdfViewerPage> createState() => _PdfViewerPageState();
@@ -13,12 +13,23 @@ class PdfViewerPage extends StatefulWidget {
 
 class _PdfViewerPageState extends State<PdfViewerPage> {
   final PdfViewerController _pdfViewerController = PdfViewerController();
+  
+  String get fileName {
+    if (widget.arguments is Map) {
+      return widget.arguments['fileName'] ?? 'Document';
+    }
+    return (widget.arguments as String).split('/').last;
+  }
+  
+  bool get isWebFile {
+    return widget.arguments is Map && widget.arguments['isWeb'] == true;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.filePath.split('/').last),
+        title: Text(fileName),
         actions: [
           IconButton(
             onPressed: () {
@@ -65,15 +76,26 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
           ),
         ],
       ),
-      body: PdfViewer.file(
-        widget.filePath,
-        controller: _pdfViewerController,
-        params: const PdfViewerParams(
-          boundaryMargin: EdgeInsets.all(16.0),
-          minScale: 1.0,
-          maxScale: 5.0,
-        ),
-      ),
+      body: isWebFile 
+          ? PdfViewer.data(
+              widget.arguments['fileBytes'],
+              sourceName: fileName,
+              controller: _pdfViewerController,
+              params: const PdfViewerParams(
+                boundaryMargin: EdgeInsets.all(16.0),
+                minScale: 1.0,
+                maxScale: 10.0,
+              ),
+            )
+          : PdfViewer.file(
+              widget.arguments as String,
+              controller: _pdfViewerController,
+              params: const PdfViewerParams(
+                boundaryMargin: EdgeInsets.all(16.0),
+                minScale: 1.0,
+                maxScale: 10.0,
+              ),
+            ),
     );
   }
 }
