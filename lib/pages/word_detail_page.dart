@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import '../models/dictionary_word.dart';
 import '../models/word_definition.dart';
+import '../providers/app_state.dart';
 import '../generated/l10n.dart';
+import 'package:provider/provider.dart';
 import 'add_edit_word_page.dart';
 
 class WordDetailPage extends StatefulWidget {
@@ -449,34 +451,40 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
   }
 
   void _toggleLearned() {
-    setState(() {
-      _word = _word.copyWith(isLearned: !_word.isLearned, learnedAt: _word.isLearned ? null : DateTime.now());
+    final appState = Provider.of<AppState>(context, listen: false);
+    appState.toggleWordLearned(_word.id!).then((_) async {
+      // Оновлюємо локальний _word з бази
+      final updatedWord = await appState.getDictionaryWordById(_word.id!);
+      if (updatedWord != null) {
+        setState(() {
+          _word = updatedWord;
+        });
+        widget.onWordUpdated?.call(_word);
+      }
+
+      // Тактильний відгук
+      if (_word.isLearned) {
+        Navigator.of(context).maybePop().then((_) {
+          // Можна додати вібрацію пізніше
+        });
+      }
+
+      // Показуємо повідомлення
+      final snackBar = SnackBar(
+        elevation: 0,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: _word.isLearned ? S.of(context).success : S.of(context).info,
+          message: _word.isLearned ? S.of(context).wordLearned : S.of(context).wordUnlearned,
+          contentType: _word.isLearned ? ContentType.success : ContentType.help,
+        ),
+      );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
     });
-    widget.onWordUpdated?.call(_word);
-    
-    // Тактильний відгук
-    if (_word.isLearned) {
-      // Віброспрацьовування для позначення як вивчене
-      Navigator.of(context).maybePop().then((_) {
-        // Можна додати вібрацію пізніше
-      });
-    }
-    
-    // Показуємо повідомлення
-    final snackBar = SnackBar(
-      elevation: 0,
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: Colors.transparent,
-      content: AwesomeSnackbarContent(
-        title: _word.isLearned ? S.of(context).success : S.of(context).info,
-        message: _word.isLearned ? S.of(context).wordLearned : S.of(context).wordUnlearned,
-        contentType: _word.isLearned ? ContentType.success : ContentType.help,
-      ),
-    );
-    
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(snackBar);
   }
 
   void _editWord() async {
