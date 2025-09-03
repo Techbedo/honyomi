@@ -7,7 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import '../generated/l10n.dart';
 import '../providers/app_state.dart';
-import 'word_details_page.dart';
+import 'word_detail_page.dart';
 
 class DictionaryPage extends StatefulWidget {
   const DictionaryPage({super.key});
@@ -375,7 +375,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            WordDetailsPage(word: word),
+                                            WordDetailPage(word: word),
                                       ),
                                     );
                                   },
@@ -400,7 +400,7 @@ class _DictionaryPageState extends State<DictionaryPage> {
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          WordDetailsPage(
+                                                          WordDetailPage(
                                                             word: word,
                                                           ),
                                                     ),

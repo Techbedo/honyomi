@@ -336,6 +336,7 @@ class _AddEditWordPageState extends State<AddEditWordPage> {
       DropdownMenuItem(value: 'conjunction', child: Text(S.of(context).partOfSpeechConjunction)),
       DropdownMenuItem(value: 'interjection', child: Text(S.of(context).partOfSpeechInterjection)),
       DropdownMenuItem(value: 'pronoun', child: Text(S.of(context).partOfSpeechPronoun)),
+      DropdownMenuItem(value: 'other', child: Text(S.of(context).other)),
     ];
   }
 
@@ -347,23 +348,39 @@ class _AddEditWordPageState extends State<AddEditWordPage> {
     final word = _wordController.text.trim();
     final pronunciation = _pronunciationController.text.trim();
     
-    // Створюємо список визначень
+    // Створюємо список визначень та групуємо за частинами мови для правильної нумерації
     final definitions = <WordDefinition>[];
+    final partOfSpeechGroups = <String, List<WordDefinitionForm>>{};
+    
+    // Групуємо визначення за частинами мови
     for (int i = 0; i < _definitions.length; i++) {
       final def = _definitions[i];
       final translation = def.translationController.text.trim();
       
       if (translation.isNotEmpty) {
+        if (!partOfSpeechGroups.containsKey(def.partOfSpeech)) {
+          partOfSpeechGroups[def.partOfSpeech] = [];
+        }
+        partOfSpeechGroups[def.partOfSpeech]!.add(def);
+      }
+    }
+
+    // Створюємо WordDefinition з правильною нумерацією в межах кожної частини мови
+    for (final partOfSpeech in partOfSpeechGroups.keys) {
+      final groupDefinitions = partOfSpeechGroups[partOfSpeech]!;
+      for (int i = 0; i < groupDefinitions.length; i++) {
+        final def = groupDefinitions[i];
+        
         definitions.add(WordDefinition(
           wordId: widget.word?.id ?? 0,
           partOfSpeech: def.partOfSpeech,
           definition: def.definitionController.text.trim(),
-          translation: translation,
+          translation: def.translationController.text.trim(),
           example: def.exampleController.text.trim().isNotEmpty 
               ? def.exampleController.text.trim() : null,
           exampleTranslation: def.exampleTranslationController.text.trim().isNotEmpty 
               ? def.exampleTranslationController.text.trim() : null,
-          order: i,
+          order: i, // Нумерація в межах частини мови
         ));
       }
     }
@@ -381,6 +398,8 @@ class _AddEditWordPageState extends State<AddEditWordPage> {
     final appState = Provider.of<AppState>(context, listen: false);
     
     try {
+      DictionaryWord resultWord;
+      
       if (widget.word == null) {
         // Додавання нового слова
         final newWord = DictionaryWord(
@@ -392,6 +411,7 @@ class _AddEditWordPageState extends State<AddEditWordPage> {
         );
         
         await appState.addDictionaryWordWithDefinitions(newWord);
+        resultWord = newWord;
       } else {
         // Редагування існуючого слова
         final updatedWord = widget.word!.copyWith(
@@ -403,10 +423,11 @@ class _AddEditWordPageState extends State<AddEditWordPage> {
         );
         
         await appState.updateDictionaryWord(updatedWord);
+        resultWord = updatedWord;
       }
 
       if (mounted) {
-        Navigator.of(context).pop();
+        Navigator.of(context).pop(resultWord);
       }
     } catch (e) {
       if (mounted) {
@@ -440,7 +461,7 @@ class WordDefinitionForm {
         exampleTranslationController = TextEditingController(text: exampleTranslation);
 
   WordDefinitionForm.fromDefinition(WordDefinition definition)
-      : partOfSpeech = definition.partOfSpeech,
+      : partOfSpeech = definition.partOfSpeech == 'unknown' ? 'other' : definition.partOfSpeech,
         translationController = TextEditingController(text: definition.translation),
         definitionController = TextEditingController(text: definition.definition),
         exampleController = TextEditingController(text: definition.example),

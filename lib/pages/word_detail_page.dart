@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import '../models/dictionary_word.dart';
 import '../models/word_definition.dart';
 import '../generated/l10n.dart';
+import 'add_edit_word_page.dart';
 
 class WordDetailPage extends StatefulWidget {
   final DictionaryWord word;
@@ -54,6 +55,10 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
               color: _word.isFavorite ? Colors.amber : null,
             ),
             onPressed: _toggleFavorite,
+          ),
+          IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: _editWord,
           ),
           IconButton(
             icon: const Icon(Icons.volume_up),
@@ -183,6 +188,11 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
       groupedDefinitions[definition.partOfSpeech]!.add(definition);
     }
 
+    // Сортуємо визначення в межах кожної частини мови за order
+    for (final key in groupedDefinitions.keys) {
+      groupedDefinitions[key]!.sort((a, b) => a.order.compareTo(b.order));
+    }
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -197,7 +207,26 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
             ),
           ),
           
+          // Транскрипція (якщо є)
+          if (_word.pronunciation != null && _word.pronunciation!.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Text(
+              _word.pronunciation!,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
+          
           const SizedBox(height: 24),
+          
+          // Лінія-розділювач
+          Container(
+            height: 1,
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
+            margin: const EdgeInsets.only(bottom: 24),
+          ),
           
           // Групи за частинами мови
           ...groupedDefinitions.entries.map((entry) {
@@ -226,7 +255,7 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
                     final definition = defEntry.value;
                     
                     return Container(
-                      margin: const EdgeInsets.only(bottom: 16),
+                      margin: const EdgeInsets.only(bottom: 24),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -252,6 +281,20 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
                             ),
                           ),
                           
+                          // Визначення (якщо є)
+                          if (definition.definition.isNotEmpty) ...[
+                            const SizedBox(height: 8),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Text(
+                                definition.definition,
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+                                ),
+                              ),
+                            ),
+                          ],
+                          
                           // Приклад використання (якщо є)
                           if (definition.example != null && definition.example!.isNotEmpty) ...[
                             const SizedBox(height: 8),
@@ -262,6 +305,21 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
                                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   fontStyle: FontStyle.italic,
                                   color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.8),
+                                ),
+                              ),
+                            ),
+                          ],
+                          
+                          // Переклад прикладу (якщо є)
+                          if (definition.exampleTranslation != null && definition.exampleTranslation!.isNotEmpty) ...[
+                            const SizedBox(height: 4),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Text(
+                                definition.exampleTranslation!,
+                                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  fontStyle: FontStyle.italic,
+                                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
                                 ),
                               ),
                             ),
@@ -280,7 +338,7 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
   }
 
   Widget _buildTranslationsTab() {
-    // Альтернативна вкладка з фокусом на переклади
+    // Альтернативна вкладка з фокусом на переклади (компактний вигляд)
     if (_word.definitions.isEmpty) {
       return Center(
         child: Column(
@@ -309,6 +367,11 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
         groupedDefinitions[definition.partOfSpeech] = [];
       }
       groupedDefinitions[definition.partOfSpeech]!.add(definition);
+    }
+
+    // Сортуємо визначення в межах кожної частини мови за order
+    for (final key in groupedDefinitions.keys) {
+      groupedDefinitions[key]!.sort((a, b) => a.order.compareTo(b.order));
     }
 
     return ListView.builder(
@@ -393,8 +456,11 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
         return S.of(context).partOfSpeechInterjection;
       case 'pronoun':
         return S.of(context).partOfSpeechPronoun;
+      case 'other':
+      case 'unknown':
+        return S.of(context).other;
       default:
-        return partOfSpeech;
+        return S.of(context).other;
     }
   }
 
@@ -403,6 +469,22 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
       _word = _word.copyWith(isFavorite: !_word.isFavorite);
     });
     widget.onFavoriteToggle?.call();
+  }
+
+  void _editWord() async {
+    final result = await Navigator.push<DictionaryWord>(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddEditWordPage(word: _word),
+      ),
+    );
+    
+    if (result != null) {
+      setState(() {
+        _word = result;
+      });
+      widget.onWordUpdated?.call(result);
+    }
   }
 
   void _playPronunciation() {

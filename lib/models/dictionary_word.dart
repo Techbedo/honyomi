@@ -60,9 +60,15 @@ class DictionaryWord {
   factory DictionaryWord.fromMapLegacy(Map<String, dynamic> map) {
     final definitions = <WordDefinition>[];
     if (map['translation'] != null && map['translation'].toString().isNotEmpty) {
+      String partOfSpeech = map['word_type'] ?? 'other';
+      // Конвертуємо старе значення 'unknown' в 'other'
+      if (partOfSpeech == 'unknown') {
+        partOfSpeech = 'other';
+      }
+      
       definitions.add(WordDefinition(
         wordId: map['id'] ?? 0,
-        partOfSpeech: map['word_type'] ?? 'unknown',
+        partOfSpeech: partOfSpeech,
         definition: '',
         translation: map['translation'],
         order: 0,

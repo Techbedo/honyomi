@@ -57,7 +57,7 @@ class AppState extends ChangeNotifier {
     // Створюємо визначення слова
     final definition = WordDefinition(
       wordId: 0, // Буде оновлено після збереження
-      partOfSpeech: wordType ?? 'unknown',
+      partOfSpeech: wordType ?? 'other',
       definition: '',
       translation: translation,
       order: 0,

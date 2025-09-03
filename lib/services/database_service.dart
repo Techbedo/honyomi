@@ -29,7 +29,7 @@ class DatabaseService {
     final documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, 'honyomi.db');
 
-    return await openDatabase(path, version: 2, onCreate: _onCreate, onUpgrade: _onUpgrade);
+    return await openDatabase(path, version: 3, onCreate: _onCreate, onUpgrade: _onUpgrade);
   }
 
   Future<void> _onCreate(Database db, int version) async {
@@ -116,7 +116,7 @@ class DatabaseService {
         if (word['translation'] != null && word['translation'].toString().isNotEmpty) {
           await db.insert('word_definitions', {
             'word_id': word['id'],
-            'part_of_speech': word['word_type'] ?? 'unknown',
+            'part_of_speech': word['word_type'] ?? 'other', // Оновлено з 'unknown' на 'other'
             'definition': '',
             'translation': word['translation'],
             'example': null,
@@ -129,6 +129,15 @@ class DatabaseService {
       // Створюємо індекс
       await db.execute('''
         CREATE INDEX idx_word_id ON word_definitions(word_id)
+      ''');
+    }
+    
+    if (oldVersion < 3) {
+      // Міграція з версії 2 до версії 3: оновлюємо 'unknown' на 'other'
+      await db.execute('''
+        UPDATE word_definitions 
+        SET part_of_speech = 'other' 
+        WHERE part_of_speech = 'unknown'
       ''');
     }
   }
