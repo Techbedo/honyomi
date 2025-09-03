@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Mobile optimization
 - Enhanced PDF annotation features
 
+## [0.1.2] - 2025-09-03
+### Patch
+- Fixed: Marking a word as learned now correctly updates its state in the database and UI. Words move to the 'Learned' section and disappear from the main screen as expected.
+
 ## [0.1.1] - 2025-09-03
 
 ### Added
