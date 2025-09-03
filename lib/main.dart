@@ -6,20 +6,19 @@ import 'providers/app_state.dart';
 import 'pages/library_page.dart';
 import 'pages/dictionary_page.dart';
 import 'pages/settings_page.dart';
-import 'pages/about_page.dart';
 import 'pages/pdf_viewer_page.dart';
 import 'widgets/navigation_layout.dart';
 
 // Custom route without animation
 class NoAnimationPageRoute<T> extends PageRouteBuilder<T> {
   final Widget child;
-  
+
   NoAnimationPageRoute({required this.child})
-      : super(
-          pageBuilder: (context, animation, secondaryAnimation) => child,
-          transitionDuration: Duration.zero,
-          reverseTransitionDuration: Duration.zero,
-        );
+    : super(
+        pageBuilder: (context, animation, secondaryAnimation) => child,
+        transitionDuration: Duration.zero,
+        reverseTransitionDuration: Duration.zero,
+      );
 }
 
 void main() async {
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
             seedColor: Colors.blue,
             brightness: Brightness.dark,
           );
-          
+
           return MaterialApp(
             title: 'Honyomi',
             localizationsDelegates: const [
@@ -82,14 +81,16 @@ class MyApp extends StatelessWidget {
                 elevation: 0,
                 selectedIconTheme: IconThemeData(
                   size: 24,
-                  color: lightColorScheme.primary, // Використовуємо primary колір теми
+                  color: lightColorScheme
+                      .primary, // Використовуємо primary колір теми
                 ),
                 unselectedIconTheme: const IconThemeData(
                   size: 24,
                   color: Color(0xFF49454F),
                 ),
                 selectedLabelTextStyle: TextStyle(
-                  color: lightColorScheme.primary, // Використовуємо primary колір теми
+                  color: lightColorScheme
+                      .primary, // Використовуємо primary колір теми
                   fontWeight: FontWeight.w500,
                 ),
                 unselectedLabelTextStyle: const TextStyle(
@@ -127,14 +128,16 @@ class MyApp extends StatelessWidget {
                 elevation: 0,
                 selectedIconTheme: IconThemeData(
                   size: 24,
-                  color: darkColorScheme.primary, // Використовуємо primary колір теми
+                  color: darkColorScheme
+                      .primary, // Використовуємо primary колір теми
                 ),
                 unselectedIconTheme: const IconThemeData(
                   size: 24,
                   color: Color(0xFFCAC4D0),
                 ),
                 selectedLabelTextStyle: TextStyle(
-                  color: darkColorScheme.primary, // Використовуємо primary колір теми
+                  color: darkColorScheme
+                      .primary, // Використовуємо primary колір теми
                   fontWeight: FontWeight.w500,
                 ),
                 unselectedLabelTextStyle: const TextStyle(
@@ -152,11 +155,17 @@ class MyApp extends StatelessWidget {
                 case '/pdf_viewer':
                   final arguments = settings.arguments;
                   if (arguments != null) {
-                    return NoAnimationPageRoute(child: PdfViewerPage(arguments: arguments));
+                    return NoAnimationPageRoute(
+                      child: PdfViewerPage(arguments: arguments),
+                    );
                   }
-                  return NoAnimationPageRoute(child: const MainNavigationView());
+                  return NoAnimationPageRoute(
+                    child: const MainNavigationView(),
+                  );
                 default:
-                  return NoAnimationPageRoute(child: const MainNavigationView());
+                  return NoAnimationPageRoute(
+                    child: const MainNavigationView(),
+                  );
               }
             },
           );
@@ -177,9 +186,12 @@ class _MainNavigationViewState extends State<MainNavigationView> {
   int _selectedIndex = 0;
 
   void _onDestinationSelected(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    // Захист від некоректних індексів
+    if (index >= 0 && index <= 2) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   Widget _getCurrentPage() {
@@ -190,8 +202,6 @@ class _MainNavigationViewState extends State<MainNavigationView> {
         return const DictionaryPage();
       case 2:
         return const SettingsPage();
-      case 3:
-        return const AboutPage();
       default:
         return const LibraryPage();
     }

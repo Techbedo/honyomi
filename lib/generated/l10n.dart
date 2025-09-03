@@ -264,6 +264,21 @@ class S {
     );
   }
 
+  /// `Edit Word`
+  String get editWord {
+    return Intl.message(
+      'Edit Word',
+      name: 'editWord',
+      desc: 'Edit word page title',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message('Save', name: 'save', desc: 'Save button', args: []);
+  }
+
   /// `Copy`
   String get copy {
     return Intl.message('Copy', name: 'copy', desc: 'Copy button', args: []);
@@ -410,6 +425,46 @@ class S {
       'Enter translation',
       name: 'enterTranslation',
       desc: 'Placeholder for translation input',
+      args: [],
+    );
+  }
+
+  /// `Please enter a word`
+  String get pleaseEnterWord {
+    return Intl.message(
+      'Please enter a word',
+      name: 'pleaseEnterWord',
+      desc: 'Validation message for empty word field',
+      args: [],
+    );
+  }
+
+  /// `Pronunciation`
+  String get pronunciation {
+    return Intl.message(
+      'Pronunciation',
+      name: 'pronunciation',
+      desc: 'Pronunciation field label',
+      args: [],
+    );
+  }
+
+  /// `Add to favorites`
+  String get addToFavorites {
+    return Intl.message(
+      'Add to favorites',
+      name: 'addToFavorites',
+      desc: 'Add to favorites label',
+      args: [],
+    );
+  }
+
+  /// `Word Information`
+  String get wordInformation {
+    return Intl.message(
+      'Word Information',
+      name: 'wordInformation',
+      desc: 'Word information section title',
       args: [],
     );
   }
@@ -685,6 +740,501 @@ class S {
       'Saved Words',
       name: 'savedWords',
       desc: 'Title for the list of saved words in the dictionary',
+      args: [],
+    );
+  }
+
+  /// `Word Details`
+  String get wordDetails {
+    return Intl.message(
+      'Word Details',
+      name: 'wordDetails',
+      desc: 'Word details page title',
+      args: [],
+    );
+  }
+
+  /// `Word Type`
+  String get wordType {
+    return Intl.message(
+      'Word Type',
+      name: 'wordType',
+      desc: 'Word type field label',
+      args: [],
+    );
+  }
+
+  /// `Select word type`
+  String get selectWordType {
+    return Intl.message(
+      'Select word type',
+      name: 'selectWordType',
+      desc: 'Word type field hint',
+      args: [],
+    );
+  }
+
+  /// `Noun`
+  String get noun {
+    return Intl.message('Noun', name: 'noun', desc: 'Noun word type', args: []);
+  }
+
+  /// `Verb`
+  String get verb {
+    return Intl.message('Verb', name: 'verb', desc: 'Verb word type', args: []);
+  }
+
+  /// `Adjective`
+  String get adjective {
+    return Intl.message(
+      'Adjective',
+      name: 'adjective',
+      desc: 'Adjective word type',
+      args: [],
+    );
+  }
+
+  /// `Adverb`
+  String get adverb {
+    return Intl.message(
+      'Adverb',
+      name: 'adverb',
+      desc: 'Adverb word type',
+      args: [],
+    );
+  }
+
+  /// `Preposition`
+  String get preposition {
+    return Intl.message(
+      'Preposition',
+      name: 'preposition',
+      desc: 'Preposition word type',
+      args: [],
+    );
+  }
+
+  /// `Conjunction`
+  String get conjunction {
+    return Intl.message(
+      'Conjunction',
+      name: 'conjunction',
+      desc: 'Conjunction word type',
+      args: [],
+    );
+  }
+
+  /// `Interjection`
+  String get interjection {
+    return Intl.message(
+      'Interjection',
+      name: 'interjection',
+      desc: 'Interjection word type',
+      args: [],
+    );
+  }
+
+  /// `Other`
+  String get other {
+    return Intl.message(
+      'Other',
+      name: 'other',
+      desc: 'Other word type',
+      args: [],
+    );
+  }
+
+  /// `Created at`
+  String get createdAt {
+    return Intl.message(
+      'Created at',
+      name: 'createdAt',
+      desc: 'Created at field label',
+      args: [],
+    );
+  }
+
+  /// `Updated at`
+  String get updatedAt {
+    return Intl.message(
+      'Updated at',
+      name: 'updatedAt',
+      desc: 'Updated at field label',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message('Edit', name: 'edit', desc: 'Edit button', args: []);
+  }
+
+  /// `Export Dictionary`
+  String get exportDictionary {
+    return Intl.message(
+      'Export Dictionary',
+      name: 'exportDictionary',
+      desc: 'Export dictionary button',
+      args: [],
+    );
+  }
+
+  /// `Import Dictionary`
+  String get importDictionary {
+    return Intl.message(
+      'Import Dictionary',
+      name: 'importDictionary',
+      desc: 'Import dictionary button',
+      args: [],
+    );
+  }
+
+  /// `Check for Updates`
+  String get checkForUpdates {
+    return Intl.message(
+      'Check for Updates',
+      name: 'checkForUpdates',
+      desc: 'Check for updates button',
+      args: [],
+    );
+  }
+
+  /// `About App`
+  String get aboutApp {
+    return Intl.message(
+      'About App',
+      name: 'aboutApp',
+      desc: 'About app button',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message(
+      'General',
+      name: 'general',
+      desc: 'General settings section',
+      args: [],
+    );
+  }
+
+  /// `Dictionary Management`
+  String get dictionaryManagement {
+    return Intl.message(
+      'Dictionary Management',
+      name: 'dictionaryManagement',
+      desc: 'Dictionary management settings section',
+      args: [],
+    );
+  }
+
+  /// `Bookmark saved`
+  String get bookmarkSaved {
+    return Intl.message(
+      'Bookmark saved',
+      name: 'bookmarkSaved',
+      desc: 'Bookmark saved message',
+      args: [],
+    );
+  }
+
+  /// `Resumed from page {page}`
+  String bookmarkResumed(int page) {
+    return Intl.message(
+      'Resumed from page $page',
+      name: 'bookmarkResumed',
+      desc: 'Bookmark resumed message',
+      args: [page],
+    );
+  }
+
+  /// `Word copied to clipboard`
+  String get wordCopied {
+    return Intl.message(
+      'Word copied to clipboard',
+      name: 'wordCopied',
+      desc: 'Word copied to clipboard message',
+      args: [],
+    );
+  }
+
+  /// `Text selected`
+  String get textSelected {
+    return Intl.message(
+      'Text selected',
+      name: 'textSelected',
+      desc: 'Text selected message',
+      args: [],
+    );
+  }
+
+  /// `Definitions`
+  String get wordDefinitions {
+    return Intl.message(
+      'Definitions',
+      name: 'wordDefinitions',
+      desc: 'Word definitions tab',
+      args: [],
+    );
+  }
+
+  /// `Translations`
+  String get wordTranslations {
+    return Intl.message(
+      'Translations',
+      name: 'wordTranslations',
+      desc: 'Word translations tab',
+      args: [],
+    );
+  }
+
+  /// `No definitions available`
+  String get noDefinitionsAvailable {
+    return Intl.message(
+      'No definitions available',
+      name: 'noDefinitionsAvailable',
+      desc: 'No definitions available message',
+      args: [],
+    );
+  }
+
+  /// `No translations available`
+  String get noTranslationsAvailable {
+    return Intl.message(
+      'No translations available',
+      name: 'noTranslationsAvailable',
+      desc: 'No translations available message',
+      args: [],
+    );
+  }
+
+  /// `Noun`
+  String get partOfSpeechNoun {
+    return Intl.message(
+      'Noun',
+      name: 'partOfSpeechNoun',
+      desc: 'Noun part of speech',
+      args: [],
+    );
+  }
+
+  /// `Verb`
+  String get partOfSpeechVerb {
+    return Intl.message(
+      'Verb',
+      name: 'partOfSpeechVerb',
+      desc: 'Verb part of speech',
+      args: [],
+    );
+  }
+
+  /// `Adjective`
+  String get partOfSpeechAdjective {
+    return Intl.message(
+      'Adjective',
+      name: 'partOfSpeechAdjective',
+      desc: 'Adjective part of speech',
+      args: [],
+    );
+  }
+
+  /// `Adverb`
+  String get partOfSpeechAdverb {
+    return Intl.message(
+      'Adverb',
+      name: 'partOfSpeechAdverb',
+      desc: 'Adverb part of speech',
+      args: [],
+    );
+  }
+
+  /// `Preposition`
+  String get partOfSpeechPreposition {
+    return Intl.message(
+      'Preposition',
+      name: 'partOfSpeechPreposition',
+      desc: 'Preposition part of speech',
+      args: [],
+    );
+  }
+
+  /// `Conjunction`
+  String get partOfSpeechConjunction {
+    return Intl.message(
+      'Conjunction',
+      name: 'partOfSpeechConjunction',
+      desc: 'Conjunction part of speech',
+      args: [],
+    );
+  }
+
+  /// `Interjection`
+  String get partOfSpeechInterjection {
+    return Intl.message(
+      'Interjection',
+      name: 'partOfSpeechInterjection',
+      desc: 'Interjection part of speech',
+      args: [],
+    );
+  }
+
+  /// `Pronoun`
+  String get partOfSpeechPronoun {
+    return Intl.message(
+      'Pronoun',
+      name: 'partOfSpeechPronoun',
+      desc: 'Pronoun part of speech',
+      args: [],
+    );
+  }
+
+  /// `Pronunciation not available`
+  String get pronunciationNotAvailable {
+    return Intl.message(
+      'Pronunciation not available',
+      name: 'pronunciationNotAvailable',
+      desc: 'Pronunciation not available message',
+      args: [],
+    );
+  }
+
+  /// `Add Definition`
+  String get addDefinition {
+    return Intl.message(
+      'Add Definition',
+      name: 'addDefinition',
+      desc: 'Button to add a new definition',
+      args: [],
+    );
+  }
+
+  /// `Delete Definition`
+  String get deleteDefinition {
+    return Intl.message(
+      'Delete Definition',
+      name: 'deleteDefinition',
+      desc: 'Button to delete a definition',
+      args: [],
+    );
+  }
+
+  /// `Please add at least one definition`
+  String get pleaseAddAtLeastOneDefinition {
+    return Intl.message(
+      'Please add at least one definition',
+      name: 'pleaseAddAtLeastOneDefinition',
+      desc: 'Error message when no definitions are provided',
+      args: [],
+    );
+  }
+
+  /// `Enter definition in English`
+  String get enterDefinitionInEnglish {
+    return Intl.message(
+      'Enter definition in English',
+      name: 'enterDefinitionInEnglish',
+      desc: 'Hint text for definition field',
+      args: [],
+    );
+  }
+
+  /// `Enter example sentence`
+  String get enterExampleSentence {
+    return Intl.message(
+      'Enter example sentence',
+      name: 'enterExampleSentence',
+      desc: 'Hint text for example field',
+      args: [],
+    );
+  }
+
+  /// `Enter example translation`
+  String get enterExampleTranslation {
+    return Intl.message(
+      'Enter example translation',
+      name: 'enterExampleTranslation',
+      desc: 'Hint text for example translation field',
+      args: [],
+    );
+  }
+
+  /// `optional`
+  String get optional {
+    return Intl.message(
+      'optional',
+      name: 'optional',
+      desc: 'Label for optional fields',
+      args: [],
+    );
+  }
+
+  /// `Error saving word`
+  String get errorSavingWord {
+    return Intl.message(
+      'Error saving word',
+      name: 'errorSavingWord',
+      desc: 'Error message when saving word fails',
+      args: [],
+    );
+  }
+
+  /// `Definition`
+  String get definition {
+    return Intl.message(
+      'Definition',
+      name: 'definition',
+      desc: 'Definition label',
+      args: [],
+    );
+  }
+
+  /// `Example`
+  String get example {
+    return Intl.message(
+      'Example',
+      name: 'example',
+      desc: 'Example label',
+      args: [],
+    );
+  }
+
+  /// `Example Translation`
+  String get exampleTranslation {
+    return Intl.message(
+      'Example Translation',
+      name: 'exampleTranslation',
+      desc: 'Example translation label',
+      args: [],
+    );
+  }
+
+  /// `Part of Speech`
+  String get partOfSpeech {
+    return Intl.message(
+      'Part of Speech',
+      name: 'partOfSpeech',
+      desc: 'Part of speech label',
+      args: [],
+    );
+  }
+
+  /// `Please select part of speech`
+  String get pleaseSelectPartOfSpeech {
+    return Intl.message(
+      'Please select part of speech',
+      name: 'pleaseSelectPartOfSpeech',
+      desc: 'Error message when part of speech is not selected',
+      args: [],
+    );
+  }
+
+  /// `Please enter translation`
+  String get pleaseEnterTranslation {
+    return Intl.message(
+      'Please enter translation',
+      name: 'pleaseEnterTranslation',
+      desc: 'Error message when translation is not provided',
       args: [],
     );
   }

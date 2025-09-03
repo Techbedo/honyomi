@@ -1,7 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../generated/l10n.dart';
 import '../providers/app_state.dart';
+import 'about_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -11,26 +12,28 @@ class SettingsPage extends StatelessWidget {
     return Consumer<AppState>(
       builder: (context, appState, child) {
         return Scaffold(
-        appBar: AppBar(
-          title: Text(S.of(context).settings),
-        ),
-        body: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: [
-            _buildSettingsCard(
-              context,
-              title: S.of(context).theme,
+          appBar: AppBar(title: Text(S.of(context).settings)),
+          body: ListView(
+            padding: const EdgeInsets.all(16.0),
+            children: [
+              _buildSettingsCard(
+                context,
+                title: S.of(context).general,
                 children: [
                   ListTile(
                     leading: const Icon(Icons.palette_outlined),
                     title: Text(S.of(context).theme),
-                    subtitle: Text(_getThemeModeName(context, appState.themeMode)),
+                    subtitle: Text(
+                      _getThemeModeName(context, appState.themeMode),
+                    ),
                     onTap: () => _showThemeDialog(context, appState),
                   ),
                   ListTile(
                     leading: const Icon(Icons.language_outlined),
                     title: Text(S.of(context).language),
-                    subtitle: Text(_getLanguageName(appState.locale.languageCode)),
+                    subtitle: Text(
+                      _getLanguageName(appState.locale.languageCode),
+                    ),
                     onTap: () => _showLanguageDialog(context, appState),
                   ),
                 ],
@@ -52,10 +55,81 @@ class SettingsPage extends StatelessWidget {
                   SwitchListTile(
                     secondary: const Icon(Icons.bookmark_outline),
                     title: Text(S.of(context).autoSaveBookmarks),
-                    subtitle: Text(S.of(context).automaticallySaveReadingPosition),
+                    subtitle: Text(
+                      S.of(context).automaticallySaveReadingPosition,
+                    ),
                     value: true, // Replace with actual setting value
                     onChanged: (value) {
                       // TODO: Implement bookmark setting
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              _buildSettingsCard(
+                context,
+                title: S.of(context).dictionaryManagement,
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.upload_outlined),
+                    title: Text(S.of(context).exportDictionary),
+                    subtitle: Text('Export your dictionary to a file'),
+                    onTap: () async {
+                      final data = await appState.exportDictionary();
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Dictionary exported: ${data.length} words',
+                            ),
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.primary,
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.download_outlined),
+                    title: Text(S.of(context).importDictionary),
+                    subtitle: Text('Import dictionary from a file'),
+                    onTap: () {
+                      // TODO: Implement import functionality
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Import feature coming soon'),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              _buildSettingsCard(
+                context,
+                title: 'App Information',
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.info_outlined),
+                    title: Text(S.of(context).aboutApp),
+                    subtitle: Text('Learn more about Honyomi'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AboutPage(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.system_update_outlined),
+                    title: Text(S.of(context).checkForUpdates),
+                    subtitle: Text('Check for app updates'),
+                    enabled: false, // Поки неактивна
+                    onTap: () {
+                      // TODO: Implement update check
                     },
                   ),
                 ],
@@ -67,7 +141,11 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSettingsCard(BuildContext context, {required String title, required List<Widget> children}) {
+  Widget _buildSettingsCard(
+    BuildContext context, {
+    required String title,
+    required List<Widget> children,
+  }) {
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

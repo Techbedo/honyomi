@@ -72,6 +72,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addWord => 'Add Word';
 
   @override
+  String get editWord => 'Edit Word';
+
+  @override
+  String get save => 'Save';
+
+  @override
   String get copy => 'Copy';
 
   @override
@@ -119,6 +125,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterTranslation => 'Enter translation';
+
+  @override
+  String get pleaseEnterWord => 'Please enter a word';
+
+  @override
+  String get pronunciation => 'Pronunciation';
+
+  @override
+  String get addToFavorites => 'Add to favorites';
+
+  @override
+  String get wordInformation => 'Word Information';
 
   @override
   String get cancel => 'Cancel';
@@ -210,4 +228,160 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get savedWords => 'Saved Words';
+
+  @override
+  String get wordDetails => 'Word Details';
+
+  @override
+  String get wordType => 'Word Type';
+
+  @override
+  String get selectWordType => 'Select word type';
+
+  @override
+  String get noun => 'Noun';
+
+  @override
+  String get verb => 'Verb';
+
+  @override
+  String get adjective => 'Adjective';
+
+  @override
+  String get adverb => 'Adverb';
+
+  @override
+  String get preposition => 'Preposition';
+
+  @override
+  String get conjunction => 'Conjunction';
+
+  @override
+  String get interjection => 'Interjection';
+
+  @override
+  String get other => 'Other';
+
+  @override
+  String get createdAt => 'Created at';
+
+  @override
+  String get updatedAt => 'Updated at';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get exportDictionary => 'Export Dictionary';
+
+  @override
+  String get importDictionary => 'Import Dictionary';
+
+  @override
+  String get checkForUpdates => 'Check for Updates';
+
+  @override
+  String get aboutApp => 'About App';
+
+  @override
+  String get general => 'General';
+
+  @override
+  String get dictionaryManagement => 'Dictionary Management';
+
+  @override
+  String get bookmarkSaved => 'Bookmark saved';
+
+  @override
+  String bookmarkResumed(int page) {
+    return 'Resumed from page $page';
+  }
+
+  @override
+  String get wordCopied => 'Word copied to clipboard';
+
+  @override
+  String get textSelected => 'Text selected';
+
+  @override
+  String get wordDefinitions => 'Definitions';
+
+  @override
+  String get wordTranslations => 'Translations';
+
+  @override
+  String get noDefinitionsAvailable => 'No definitions available';
+
+  @override
+  String get noTranslationsAvailable => 'No translations available';
+
+  @override
+  String get partOfSpeechNoun => 'Noun';
+
+  @override
+  String get partOfSpeechVerb => 'Verb';
+
+  @override
+  String get partOfSpeechAdjective => 'Adjective';
+
+  @override
+  String get partOfSpeechAdverb => 'Adverb';
+
+  @override
+  String get partOfSpeechPreposition => 'Preposition';
+
+  @override
+  String get partOfSpeechConjunction => 'Conjunction';
+
+  @override
+  String get partOfSpeechInterjection => 'Interjection';
+
+  @override
+  String get partOfSpeechPronoun => 'Pronoun';
+
+  @override
+  String get pronunciationNotAvailable => 'Pronunciation not available';
+
+  @override
+  String get addDefinition => 'Add Definition';
+
+  @override
+  String get deleteDefinition => 'Delete Definition';
+
+  @override
+  String get pleaseAddAtLeastOneDefinition =>
+      'Please add at least one definition';
+
+  @override
+  String get enterDefinitionInEnglish => 'Enter definition in English';
+
+  @override
+  String get enterExampleSentence => 'Enter example sentence';
+
+  @override
+  String get enterExampleTranslation => 'Enter example translation';
+
+  @override
+  String get optional => 'optional';
+
+  @override
+  String get errorSavingWord => 'Error saving word';
+
+  @override
+  String get definition => 'Definition';
+
+  @override
+  String get example => 'Example';
+
+  @override
+  String get exampleTranslation => 'Example Translation';
+
+  @override
+  String get partOfSpeech => 'Part of Speech';
+
+  @override
+  String get pleaseSelectPartOfSpeech => 'Please select part of speech';
+
+  @override
+  String get pleaseEnterTranslation => 'Please enter translation';
 }

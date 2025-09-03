@@ -84,6 +84,14 @@
   "@addWord": {
     "description": "Button to add word to dictionary"
   },
+  "editWord": "Edit Word",
+  "@editWord": {
+    "description": "Edit word page title"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button"
+  },
   "copy": "Copy",
   "@copy": {
     "description": "Copy button"
@@ -147,6 +155,22 @@
   "enterTranslation": "Enter translation",
   "@enterTranslation": {
     "description": "Placeholder for translation input"
+  },
+  "pleaseEnterWord": "Please enter a word",
+  "@pleaseEnterWord": {
+    "description": "Validation message for empty word field"
+  },
+  "pronunciation": "Pronunciation",
+  "@pronunciation": {
+    "description": "Pronunciation field label"
+  },
+  "addToFavorites": "Add to favorites",
+  "@addToFavorites": {
+    "description": "Add to favorites label"
+  },
+  "wordInformation": "Word Information",
+  "@wordInformation": {
+    "description": "Word information section title"
   },
   "cancel": "Cancel",
   "@cancel": {
@@ -267,5 +291,214 @@
   "savedWords": "Saved Words",
   "@savedWords": {
     "description": "Title for the list of saved words in the dictionary"
+  },
+  "wordDetails": "Word Details",
+  "@wordDetails": {
+    "description": "Word details page title"
+  },
+  "wordType": "Word Type",
+  "@wordType": {
+    "description": "Word type field label"
+  },
+  "selectWordType": "Select word type",
+  "@selectWordType": {
+    "description": "Word type field hint"
+  },
+  "noun": "Noun",
+  "@noun": {
+    "description": "Noun word type"
+  },
+  "verb": "Verb",
+  "@verb": {
+    "description": "Verb word type"
+  },
+  "adjective": "Adjective",
+  "@adjective": {
+    "description": "Adjective word type"
+  },
+  "adverb": "Adverb",
+  "@adverb": {
+    "description": "Adverb word type"
+  },
+  "preposition": "Preposition",
+  "@preposition": {
+    "description": "Preposition word type"
+  },
+  "conjunction": "Conjunction",
+  "@conjunction": {
+    "description": "Conjunction word type"
+  },
+  "interjection": "Interjection",
+  "@interjection": {
+    "description": "Interjection word type"
+  },
+  "other": "Other",
+  "@other": {
+    "description": "Other word type"
+  },
+  "createdAt": "Created at",
+  "@createdAt": {
+    "description": "Created at field label"
+  },
+  "updatedAt": "Updated at",
+  "@updatedAt": {
+    "description": "Updated at field label"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button"
+  },
+  "exportDictionary": "Export Dictionary",
+  "@exportDictionary": {
+    "description": "Export dictionary button"
+  },
+  "importDictionary": "Import Dictionary",
+  "@importDictionary": {
+    "description": "Import dictionary button"
+  },
+  "checkForUpdates": "Check for Updates",
+  "@checkForUpdates": {
+    "description": "Check for updates button"
+  },
+  "aboutApp": "About App",
+  "@aboutApp": {
+    "description": "About app button"
+  },
+  "general": "General",
+  "@general": {
+    "description": "General settings section"
+  },
+  "dictionaryManagement": "Dictionary Management",
+  "@dictionaryManagement": {
+    "description": "Dictionary management settings section"
+  },
+  "bookmarkSaved": "Bookmark saved",
+  "@bookmarkSaved": {
+    "description": "Bookmark saved message"
+  },
+  "bookmarkResumed": "Resumed from page {page}",
+  "@bookmarkResumed": {
+    "description": "Bookmark resumed message",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "wordCopied": "Word copied to clipboard",
+  "@wordCopied": {
+    "description": "Word copied to clipboard message"
+  },
+  "textSelected": "Text selected",
+  "@textSelected": {
+    "description": "Text selected message"
+  },
+  "wordDefinitions": "Definitions",
+  "@wordDefinitions": {
+    "description": "Word definitions tab"
+  },
+  "wordTranslations": "Translations",
+  "@wordTranslations": {
+    "description": "Word translations tab"
+  },
+  "noDefinitionsAvailable": "No definitions available",
+  "@noDefinitionsAvailable": {
+    "description": "No definitions available message"
+  },
+  "noTranslationsAvailable": "No translations available",
+  "@noTranslationsAvailable": {
+    "description": "No translations available message"
+  },
+  "partOfSpeechNoun": "Noun",
+  "@partOfSpeechNoun": {
+    "description": "Noun part of speech"
+  },
+  "partOfSpeechVerb": "Verb",
+  "@partOfSpeechVerb": {
+    "description": "Verb part of speech"
+  },
+  "partOfSpeechAdjective": "Adjective",
+  "@partOfSpeechAdjective": {
+    "description": "Adjective part of speech"
+  },
+  "partOfSpeechAdverb": "Adverb",
+  "@partOfSpeechAdverb": {
+    "description": "Adverb part of speech"
+  },
+  "partOfSpeechPreposition": "Preposition",
+  "@partOfSpeechPreposition": {
+    "description": "Preposition part of speech"
+  },
+  "partOfSpeechConjunction": "Conjunction",
+  "@partOfSpeechConjunction": {
+    "description": "Conjunction part of speech"
+  },
+  "partOfSpeechInterjection": "Interjection",
+  "@partOfSpeechInterjection": {
+    "description": "Interjection part of speech"
+  },
+  "partOfSpeechPronoun": "Pronoun",
+  "@partOfSpeechPronoun": {
+    "description": "Pronoun part of speech"
+  },
+  "pronunciationNotAvailable": "Pronunciation not available",
+  "@pronunciationNotAvailable": {
+    "description": "Pronunciation not available message"
+  },
+  "addDefinition": "Add Definition",
+  "@addDefinition": {
+    "description": "Button to add a new definition"
+  },
+  "deleteDefinition": "Delete Definition",
+  "@deleteDefinition": {
+    "description": "Button to delete a definition"
+  },
+  "pleaseAddAtLeastOneDefinition": "Please add at least one definition",
+  "@pleaseAddAtLeastOneDefinition": {
+    "description": "Error message when no definitions are provided"
+  },
+  "enterDefinitionInEnglish": "Enter definition in English",
+  "@enterDefinitionInEnglish": {
+    "description": "Hint text for definition field"
+  },
+  "enterExampleSentence": "Enter example sentence",
+  "@enterExampleSentence": {
+    "description": "Hint text for example field"
+  },
+  "enterExampleTranslation": "Enter example translation",
+  "@enterExampleTranslation": {
+    "description": "Hint text for example translation field"
+  },
+  "optional": "optional",
+  "@optional": {
+    "description": "Label for optional fields"
+  },
+  "errorSavingWord": "Error saving word",
+  "@errorSavingWord": {
+    "description": "Error message when saving word fails"
+  },
+  "definition": "Definition",
+  "@definition": {
+    "description": "Definition label"
+  },
+  "example": "Example",
+  "@example": {
+    "description": "Example label"
+  },
+  "exampleTranslation": "Example Translation",
+  "@exampleTranslation": {
+    "description": "Example translation label"
+  },
+  "partOfSpeech": "Part of Speech",
+  "@partOfSpeech": {
+    "description": "Part of speech label"
+  },
+  "pleaseSelectPartOfSpeech": "Please select part of speech",
+  "@pleaseSelectPartOfSpeech": {
+    "description": "Error message when part of speech is not selected"
+  },
+  "pleaseEnterTranslation": "Please enter translation",
+  "@pleaseEnterTranslation": {
+    "description": "Error message when translation is not provided"
   }
 }

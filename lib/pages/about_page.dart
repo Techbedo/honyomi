@@ -32,14 +32,12 @@ class _AboutPageState extends State<AboutPage> {
     return Consumer<AppState>(
       builder: (context, appState, child) {
         return Scaffold(
-        appBar: AppBar(
-          title: Text(S.of(context).about),
-        ),
-        body: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: [
-            _buildInfoCard(
-              context,
+          appBar: AppBar(title: Text(S.of(context).about)),
+          body: ListView(
+            padding: const EdgeInsets.all(16.0),
+            children: [
+              _buildInfoCard(
+                context,
                 title: S.of(context).appTitle,
                 children: [
                   ListTile(
@@ -50,9 +48,11 @@ class _AboutPageState extends State<AboutPage> {
                   ListTile(
                     leading: const Icon(Icons.tag),
                     title: Text(S.of(context).version),
-                    subtitle: Text(_packageInfo != null 
-                        ? '${_packageInfo!.version} (${_packageInfo!.buildNumber})'
-                        : '...'),
+                    subtitle: Text(
+                      _packageInfo != null
+                          ? '${_packageInfo!.version} (${_packageInfo!.buildNumber})'
+                          : '...',
+                    ),
                   ),
                   ListTile(
                     leading: const Icon(Icons.gavel),
@@ -79,7 +79,9 @@ class _AboutPageState extends State<AboutPage> {
                   ListTile(
                     leading: const Icon(Icons.language),
                     title: Text(S.of(context).multiLanguageSupport),
-                    subtitle: Text(S.of(context).multiLanguageSupportDescription),
+                    subtitle: Text(
+                      S.of(context).multiLanguageSupportDescription,
+                    ),
                   ),
                   ListTile(
                     leading: const Icon(Icons.design_services_outlined),
@@ -95,7 +97,11 @@ class _AboutPageState extends State<AboutPage> {
     );
   }
 
-  Widget _buildInfoCard(BuildContext context, {required String title, required List<Widget> children}) {
+  Widget _buildInfoCard(
+    BuildContext context, {
+    required String title,
+    required List<Widget> children,
+  }) {
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

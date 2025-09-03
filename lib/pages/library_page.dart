@@ -15,7 +15,7 @@ class LibraryPage extends StatefulWidget {
 
 class _LibraryPageState extends State<LibraryPage> {
   List<String> recentFiles = [];
-  
+
   @override
   void initState() {
     super.initState();
@@ -42,20 +42,24 @@ class _LibraryPageState extends State<LibraryPage> {
 
     if (result != null) {
       String? filePath;
-      
+
       if (kIsWeb) {
         // For web, use the file name since we can't get actual path
         if (result.files.single.name.isNotEmpty) {
           filePath = result.files.single.name;
           // Не додаємо веб-файли до недавніх, оскільки їх неможливо повторно відкрити
-          
+
           if (mounted) {
             // For web, pass the file bytes instead of path
-            Navigator.pushNamed(context, '/pdf_viewer', arguments: {
-              'isWeb': true,
-              'fileName': result.files.single.name,
-              'fileBytes': result.files.single.bytes,
-            });
+            Navigator.pushNamed(
+              context,
+              '/pdf_viewer',
+              arguments: {
+                'isWeb': true,
+                'fileName': result.files.single.name,
+                'fileBytes': result.files.single.bytes,
+              },
+            );
           }
         }
       } else {
@@ -63,7 +67,7 @@ class _LibraryPageState extends State<LibraryPage> {
         if (result.files.single.path != null) {
           filePath = result.files.single.path!;
           _addToRecentFiles(filePath);
-          
+
           if (mounted) {
             Navigator.pushNamed(context, '/pdf_viewer', arguments: filePath);
           }
@@ -95,7 +99,9 @@ class _LibraryPageState extends State<LibraryPage> {
       // Для веб-версії показуємо повідомлення, що файл потрібно перевибрати
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('У веб-версії необхідно перевибрати файл. Використовуйте кнопку "Відкрити файл".'),
+          content: Text(
+            'У веб-версії необхідно перевибрати файл. Використовуйте кнопку "Відкрити файл".',
+          ),
           backgroundColor: Colors.orange,
           duration: const Duration(seconds: 4),
         ),
@@ -117,9 +123,7 @@ class _LibraryPageState extends State<LibraryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S.of(context).library),
-      ),
+      appBar: AppBar(title: Text(S.of(context).library)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(
@@ -142,11 +146,13 @@ class _LibraryPageState extends State<LibraryPage> {
                               Icon(
                                 Icons.folder_open,
                                 size: 64,
-                                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurfaceVariant,
                               ),
                               const SizedBox(height: 16),
                               Text(
-                                kIsWeb 
+                                kIsWeb
                                     ? 'Натисніть кнопку нижче, щоб відкрити PDF файл'
                                     : S.of(context).noRecentFiles,
                                 style: Theme.of(context).textTheme.titleMedium,
@@ -167,29 +173,41 @@ class _LibraryPageState extends State<LibraryPage> {
                           itemBuilder: (context, index) {
                             final filePath = recentFiles[index];
                             final fileName = p.basename(filePath);
-                            final fileExists = PlatformFileUtils.fileExists(filePath);
+                            final fileExists = PlatformFileUtils.fileExists(
+                              filePath,
+                            );
 
                             return ListTile(
                               leading: Icon(
                                 Icons.picture_as_pdf,
                                 color: fileExists
                                     ? Theme.of(context).colorScheme.primary
-                                    : Theme.of(context).colorScheme.onSurfaceVariant,
+                                    : Theme.of(
+                                        context,
+                                      ).colorScheme.onSurfaceVariant,
                               ),
                               title: Text(
                                 fileName,
                                 style: TextStyle(
                                   color: fileExists
                                       ? null
-                                      : Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.7),
+                                      : Theme.of(context)
+                                            .colorScheme
+                                            .onSurfaceVariant
+                                            .withValues(alpha: 0.7),
                                 ),
                               ),
                               subtitle: Text(
                                 filePath,
                                 style: TextStyle(
                                   color: fileExists
-                                      ? Theme.of(context).colorScheme.onSurfaceVariant
-                                      : Theme.of(context).colorScheme.onSurfaceVariant.withOpacity(0.5),
+                                      ? Theme.of(
+                                          context,
+                                        ).colorScheme.onSurfaceVariant
+                                      : Theme.of(context)
+                                            .colorScheme
+                                            .onSurfaceVariant
+                                            .withValues(alpha: 0.5),
                                 ),
                               ),
                               trailing: PopupMenuButton(

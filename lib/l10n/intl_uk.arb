@@ -84,6 +84,14 @@
   "@addWord": {
     "description": "Кнопка додавання слова до словника"
   },
+  "editWord": "Редагувати слово",
+  "@editWord": {
+    "description": "Заголовок сторінки редагування слова"
+  },
+  "save": "Зберегти",
+  "@save": {
+    "description": "Кнопка збереження"
+  },
   "copy": "Копіювати",
   "@copy": {
     "description": "Кнопка копіювання"
@@ -147,6 +155,22 @@
   "enterTranslation": "Введіть переклад",
   "@enterTranslation": {
     "description": "Підказка для введення перекладу"
+  },
+  "pleaseEnterWord": "Будь ласка, введіть слово",
+  "@pleaseEnterWord": {
+    "description": "Повідомлення валідації для порожнього поля слова"
+  },
+  "pronunciation": "Вимова",
+  "@pronunciation": {
+    "description": "Мітка поля вимови"
+  },
+  "addToFavorites": "Додати до улюблених",
+  "@addToFavorites": {
+    "description": "Мітка додавання до улюблених"
+  },
+  "wordInformation": "Інформація про слово",
+  "@wordInformation": {
+    "description": "Заголовок розділу інформації про слово"
   },
   "cancel": "Скасувати",
   "@cancel": {
@@ -267,5 +291,214 @@
   "savedWords": "Збережені слова",
   "@savedWords": {
     "description": "Заголовок для списку збережених слів у словнику"
+  },
+  "wordDetails": "Деталі слова",
+  "@wordDetails": {
+    "description": "Заголовок сторінки деталей слова"
+  },
+  "wordType": "Тип слова",
+  "@wordType": {
+    "description": "Мітка поля типу слова"
+  },
+  "selectWordType": "Оберіть тип слова",
+  "@selectWordType": {
+    "description": "Підказка поля типу слова"
+  },
+  "noun": "Іменник",
+  "@noun": {
+    "description": "Тип слова іменник"
+  },
+  "verb": "Дієслово",
+  "@verb": {
+    "description": "Тип слова дієслово"
+  },
+  "adjective": "Прикметник",
+  "@adjective": {
+    "description": "Тип слова прикметник"
+  },
+  "adverb": "Прислівник",
+  "@adverb": {
+    "description": "Тип слова прислівник"
+  },
+  "preposition": "Прийменник",
+  "@preposition": {
+    "description": "Тип слова прийменник"
+  },
+  "conjunction": "Сполучник",
+  "@conjunction": {
+    "description": "Тип слова сполучник"
+  },
+  "interjection": "Вигук",
+  "@interjection": {
+    "description": "Тип слова вигук"
+  },
+  "other": "Інше",
+  "@other": {
+    "description": "Інший тип слова"
+  },
+  "createdAt": "Створено",
+  "@createdAt": {
+    "description": "Мітка поля створення"
+  },
+  "updatedAt": "Оновлено",
+  "@updatedAt": {
+    "description": "Мітка поля оновлення"
+  },
+  "edit": "Редагувати",
+  "@edit": {
+    "description": "Кнопка редагування"
+  },
+  "exportDictionary": "Експорт словника",
+  "@exportDictionary": {
+    "description": "Кнопка експорту словника"
+  },
+  "importDictionary": "Імпорт словника",
+  "@importDictionary": {
+    "description": "Кнопка імпорту словника"
+  },
+  "checkForUpdates": "Перевірити оновлення",
+  "@checkForUpdates": {
+    "description": "Кнопка перевірки оновлень"
+  },
+  "aboutApp": "Про програму",
+  "@aboutApp": {
+    "description": "Кнопка про програму"
+  },
+  "general": "Загальні",
+  "@general": {
+    "description": "Секція загальних налаштувань"
+  },
+  "dictionaryManagement": "Керування словником",
+  "@dictionaryManagement": {
+    "description": "Секція керування словником"
+  },
+  "bookmarkSaved": "Закладку збережено",
+  "@bookmarkSaved": {
+    "description": "Повідомлення про збереження закладки"
+  },
+  "bookmarkResumed": "Відновлено з сторінки {page}",
+  "@bookmarkResumed": {
+    "description": "Повідомлення про відновлення закладки",
+    "placeholders": {
+      "page": {
+        "type": "int"
+      }
+    }
+  },
+  "wordCopied": "Слово скопійовано в буфер обміну",
+  "@wordCopied": {
+    "description": "Повідомлення про копіювання слова"
+  },
+  "textSelected": "Текст виділено",
+  "@textSelected": {
+    "description": "Повідомлення про виділення тексту"
+  },
+  "wordDefinitions": "Визначення",
+  "@wordDefinitions": {
+    "description": "Вкладка визначень слова"
+  },
+  "wordTranslations": "Переклади",
+  "@wordTranslations": {
+    "description": "Вкладка перекладів слова"
+  },
+  "noDefinitionsAvailable": "Визначення недоступні",
+  "@noDefinitionsAvailable": {
+    "description": "Повідомлення про відсутність визначень"
+  },
+  "noTranslationsAvailable": "Переклади недоступні",
+  "@noTranslationsAvailable": {
+    "description": "Повідомлення про відсутність перекладів"
+  },
+  "partOfSpeechNoun": "Іменник",
+  "@partOfSpeechNoun": {
+    "description": "Частина мови - іменник"
+  },
+  "partOfSpeechVerb": "Дієслово",
+  "@partOfSpeechVerb": {
+    "description": "Частина мови - дієслово"
+  },
+  "partOfSpeechAdjective": "Прикметник",
+  "@partOfSpeechAdjective": {
+    "description": "Частина мови - прикметник"
+  },
+  "partOfSpeechAdverb": "Прислівник",
+  "@partOfSpeechAdverb": {
+    "description": "Частина мови - прислівник"
+  },
+  "partOfSpeechPreposition": "Прийменник",
+  "@partOfSpeechPreposition": {
+    "description": "Частина мови - прийменник"
+  },
+  "partOfSpeechConjunction": "Сполучник",
+  "@partOfSpeechConjunction": {
+    "description": "Частина мови - сполучник"
+  },
+  "partOfSpeechInterjection": "Вигук",
+  "@partOfSpeechInterjection": {
+    "description": "Частина мови - вигук"
+  },
+  "partOfSpeechPronoun": "Займенник",
+  "@partOfSpeechPronoun": {
+    "description": "Частина мови - займенник"
+  },
+  "pronunciationNotAvailable": "Вимова недоступна",
+  "@pronunciationNotAvailable": {
+    "description": "Повідомлення про недоступність вимови"
+  },
+  "addDefinition": "Додати визначення",
+  "@addDefinition": {
+    "description": "Кнопка для додавання нового визначення"
+  },
+  "deleteDefinition": "Видалити визначення",
+  "@deleteDefinition": {
+    "description": "Кнопка для видалення визначення"
+  },
+  "pleaseAddAtLeastOneDefinition": "Будь ласка, додайте принаймні одне визначення",
+  "@pleaseAddAtLeastOneDefinition": {
+    "description": "Повідомлення про помилку, коли не надано жодного визначення"
+  },
+  "enterDefinitionInEnglish": "Введіть визначення англійською",
+  "@enterDefinitionInEnglish": {
+    "description": "Підказка для поля визначення"
+  },
+  "enterExampleSentence": "Введіть приклад речення",
+  "@enterExampleSentence": {
+    "description": "Підказка для поля прикладу"
+  },
+  "enterExampleTranslation": "Введіть переклад прикладу",
+  "@enterExampleTranslation": {
+    "description": "Підказка для поля перекладу прикладу"
+  },
+  "optional": "необов'язково",
+  "@optional": {
+    "description": "Мітка для необов'язкових полів"
+  },
+  "errorSavingWord": "Помилка збереження слова",
+  "@errorSavingWord": {
+    "description": "Повідомлення про помилку при збереженні слова"
+  },
+  "definition": "Визначення",
+  "@definition": {
+    "description": "Мітка визначення"
+  },
+  "example": "Приклад",
+  "@example": {
+    "description": "Мітка прикладу"
+  },
+  "exampleTranslation": "Переклад прикладу",
+  "@exampleTranslation": {
+    "description": "Мітка перекладу прикладу"
+  },
+  "partOfSpeech": "Частина мови",
+  "@partOfSpeech": {
+    "description": "Мітка частини мови"
+  },
+  "pleaseSelectPartOfSpeech": "Будь ласка, оберіть частину мови",
+  "@pleaseSelectPartOfSpeech": {
+    "description": "Повідомлення про помилку, коли не обрано частину мови"
+  },
+  "pleaseEnterTranslation": "Будь ласка, введіть переклад",
+  "@pleaseEnterTranslation": {
+    "description": "Повідомлення про помилку, коли не надано переклад"
   }
 }

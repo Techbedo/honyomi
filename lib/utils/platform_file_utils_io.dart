@@ -9,7 +9,7 @@ class PlatformFileUtilsImpl {
       return false;
     }
   }
-  
+
   static String? getWebFileName(String filePath) {
     return null; // Not needed for IO platforms
   }

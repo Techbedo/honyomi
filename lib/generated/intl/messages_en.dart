@@ -20,21 +20,28 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(word, translation) =>
+  static String m0(page) => "Resumed from page ${page}";
+
+  static String m1(word, translation) =>
       "Word \'${word}\' - \'${translation}\' added to dictionary";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "about": MessageLookupByLibrary.simpleMessage("About"),
+    "aboutApp": MessageLookupByLibrary.simpleMessage("About App"),
     "add": MessageLookupByLibrary.simpleMessage("Add"),
     "addBookmark": MessageLookupByLibrary.simpleMessage("Add Bookmark"),
+    "addDefinition": MessageLookupByLibrary.simpleMessage("Add Definition"),
     "addFirstWord": MessageLookupByLibrary.simpleMessage(
       "Add your first word to start building your vocabulary",
     ),
     "addToDictionary": MessageLookupByLibrary.simpleMessage(
       "Add to Dictionary",
     ),
+    "addToFavorites": MessageLookupByLibrary.simpleMessage("Add to favorites"),
     "addWord": MessageLookupByLibrary.simpleMessage("Add Word"),
+    "adjective": MessageLookupByLibrary.simpleMessage("Adjective"),
+    "adverb": MessageLookupByLibrary.simpleMessage("Adverb"),
     "allowZoomingInPdfViewer": MessageLookupByLibrary.simpleMessage(
       "Allow zooming in PDF viewer",
     ),
@@ -48,29 +55,69 @@ class MessageLookup extends MessageLookupByLibrary {
     "automaticallySaveReadingPosition": MessageLookupByLibrary.simpleMessage(
       "Automatically save reading position",
     ),
+    "bookmarkResumed": m0,
+    "bookmarkSaved": MessageLookupByLibrary.simpleMessage("Bookmark saved"),
     "builtWith": MessageLookupByLibrary.simpleMessage("Built with"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "checkForUpdates": MessageLookupByLibrary.simpleMessage(
+      "Check for Updates",
+    ),
     "closePdf": MessageLookupByLibrary.simpleMessage("Close PDF"),
     "configurePdfPreferences": MessageLookupByLibrary.simpleMessage(
       "Configure PDF viewing preferences",
     ),
+    "conjunction": MessageLookupByLibrary.simpleMessage("Conjunction"),
     "copy": MessageLookupByLibrary.simpleMessage("Copy"),
+    "createdAt": MessageLookupByLibrary.simpleMessage("Created at"),
     "dark": MessageLookupByLibrary.simpleMessage("Dark"),
     "darkMode": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+    "definition": MessageLookupByLibrary.simpleMessage("Definition"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "deleteDefinition": MessageLookupByLibrary.simpleMessage(
+      "Delete Definition",
+    ),
     "description": MessageLookupByLibrary.simpleMessage("Description"),
     "dictionary": MessageLookupByLibrary.simpleMessage("Dictionary"),
+    "dictionaryManagement": MessageLookupByLibrary.simpleMessage(
+      "Dictionary Management",
+    ),
+    "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+    "editWord": MessageLookupByLibrary.simpleMessage("Edit Word"),
     "emptyDictionary": MessageLookupByLibrary.simpleMessage(
       "Your dictionary is empty",
     ),
     "enableZoom": MessageLookupByLibrary.simpleMessage("Enable Zoom"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
+    "enterDefinitionInEnglish": MessageLookupByLibrary.simpleMessage(
+      "Enter definition in English",
+    ),
+    "enterExampleSentence": MessageLookupByLibrary.simpleMessage(
+      "Enter example sentence",
+    ),
+    "enterExampleTranslation": MessageLookupByLibrary.simpleMessage(
+      "Enter example translation",
+    ),
     "enterTranslation": MessageLookupByLibrary.simpleMessage(
       "Enter translation",
     ),
     "enterWord": MessageLookupByLibrary.simpleMessage("Enter word"),
+    "errorSavingWord": MessageLookupByLibrary.simpleMessage(
+      "Error saving word",
+    ),
+    "example": MessageLookupByLibrary.simpleMessage("Example"),
+    "exampleTranslation": MessageLookupByLibrary.simpleMessage(
+      "Example Translation",
+    ),
+    "exportDictionary": MessageLookupByLibrary.simpleMessage(
+      "Export Dictionary",
+    ),
     "features": MessageLookupByLibrary.simpleMessage("Features"),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("File not found"),
+    "general": MessageLookupByLibrary.simpleMessage("General"),
+    "importDictionary": MessageLookupByLibrary.simpleMessage(
+      "Import Dictionary",
+    ),
+    "interjection": MessageLookupByLibrary.simpleMessage("Interjection"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lastOpenedFiles": MessageLookupByLibrary.simpleMessage(
       "Recently opened files",
@@ -94,12 +141,36 @@ class MessageLookup extends MessageLookupByLibrary {
       "Available in English and Ukrainian",
     ),
     "nextPage": MessageLookupByLibrary.simpleMessage("Next Page"),
+    "noDefinitionsAvailable": MessageLookupByLibrary.simpleMessage(
+      "No definitions available",
+    ),
     "noRecentFiles": MessageLookupByLibrary.simpleMessage("No recent files"),
     "noRecentFilesDescription": MessageLookupByLibrary.simpleMessage(
       "Open a PDF file to get started",
     ),
+    "noTranslationsAvailable": MessageLookupByLibrary.simpleMessage(
+      "No translations available",
+    ),
+    "noun": MessageLookupByLibrary.simpleMessage("Noun"),
     "openFile": MessageLookupByLibrary.simpleMessage("Open File"),
     "openPdf": MessageLookupByLibrary.simpleMessage("Open PDF"),
+    "optional": MessageLookupByLibrary.simpleMessage("optional"),
+    "other": MessageLookupByLibrary.simpleMessage("Other"),
+    "partOfSpeech": MessageLookupByLibrary.simpleMessage("Part of Speech"),
+    "partOfSpeechAdjective": MessageLookupByLibrary.simpleMessage("Adjective"),
+    "partOfSpeechAdverb": MessageLookupByLibrary.simpleMessage("Adverb"),
+    "partOfSpeechConjunction": MessageLookupByLibrary.simpleMessage(
+      "Conjunction",
+    ),
+    "partOfSpeechInterjection": MessageLookupByLibrary.simpleMessage(
+      "Interjection",
+    ),
+    "partOfSpeechNoun": MessageLookupByLibrary.simpleMessage("Noun"),
+    "partOfSpeechPreposition": MessageLookupByLibrary.simpleMessage(
+      "Preposition",
+    ),
+    "partOfSpeechPronoun": MessageLookupByLibrary.simpleMessage("Pronoun"),
+    "partOfSpeechVerb": MessageLookupByLibrary.simpleMessage("Verb"),
     "pdfReading": MessageLookupByLibrary.simpleMessage("PDF Reading"),
     "pdfReadingDescription": MessageLookupByLibrary.simpleMessage(
       "Open and read PDF documents with smooth navigation",
@@ -113,23 +184,53 @@ class MessageLookup extends MessageLookupByLibrary {
     "personalDictionaryDescription": MessageLookupByLibrary.simpleMessage(
       "Build your vocabulary with custom word translations",
     ),
+    "pleaseAddAtLeastOneDefinition": MessageLookupByLibrary.simpleMessage(
+      "Please add at least one definition",
+    ),
+    "pleaseEnterTranslation": MessageLookupByLibrary.simpleMessage(
+      "Please enter translation",
+    ),
+    "pleaseEnterWord": MessageLookupByLibrary.simpleMessage(
+      "Please enter a word",
+    ),
+    "pleaseSelectPartOfSpeech": MessageLookupByLibrary.simpleMessage(
+      "Please select part of speech",
+    ),
+    "preposition": MessageLookupByLibrary.simpleMessage("Preposition"),
     "previousPage": MessageLookupByLibrary.simpleMessage("Previous Page"),
+    "pronunciation": MessageLookupByLibrary.simpleMessage("Pronunciation"),
+    "pronunciationNotAvailable": MessageLookupByLibrary.simpleMessage(
+      "Pronunciation not available",
+    ),
     "recentFiles": MessageLookupByLibrary.simpleMessage("Recent Files"),
     "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+    "save": MessageLookupByLibrary.simpleMessage("Save"),
     "savedWords": MessageLookupByLibrary.simpleMessage("Saved Words"),
     "selectAll": MessageLookupByLibrary.simpleMessage("Select All"),
+    "selectWordType": MessageLookupByLibrary.simpleMessage("Select word type"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "system": MessageLookupByLibrary.simpleMessage("System"),
+    "textSelected": MessageLookupByLibrary.simpleMessage("Text selected"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
     "translate": MessageLookupByLibrary.simpleMessage("Translate"),
     "translation": MessageLookupByLibrary.simpleMessage("Translation"),
     "ukrainian": MessageLookupByLibrary.simpleMessage("Ukrainian"),
+    "updatedAt": MessageLookupByLibrary.simpleMessage("Updated at"),
+    "verb": MessageLookupByLibrary.simpleMessage("Verb"),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
     "word": MessageLookupByLibrary.simpleMessage("Word"),
     "wordAdded": MessageLookupByLibrary.simpleMessage(
       "Word added to dictionary",
     ),
-    "wordAddedMessage": m0,
+    "wordAddedMessage": m1,
+    "wordCopied": MessageLookupByLibrary.simpleMessage(
+      "Word copied to clipboard",
+    ),
+    "wordDefinitions": MessageLookupByLibrary.simpleMessage("Definitions"),
+    "wordDetails": MessageLookupByLibrary.simpleMessage("Word Details"),
+    "wordInformation": MessageLookupByLibrary.simpleMessage("Word Information"),
+    "wordTranslations": MessageLookupByLibrary.simpleMessage("Translations"),
+    "wordType": MessageLookupByLibrary.simpleMessage("Word Type"),
     "zoomIn": MessageLookupByLibrary.simpleMessage("Zoom In"),
     "zoomOut": MessageLookupByLibrary.simpleMessage("Zoom Out"),
   };

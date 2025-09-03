@@ -5,7 +5,7 @@ class PlatformFileUtilsImpl {
     // Return true for web files since we'll handle errors differently
     return filePath.isNotEmpty;
   }
-  
+
   static String? getWebFileName(String filePath) {
     // For web, we might need to extract filename differently
     // since we don't have actual file paths

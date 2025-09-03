@@ -9,10 +9,10 @@ abstract class PlatformFileUtils {
   static bool fileExists(String filePath) {
     return PlatformFileUtilsImpl.fileExists(filePath);
   }
-  
+
   static String? getWebFileName(String filePath) {
     return PlatformFileUtilsImpl.getWebFileName(filePath);
   }
-  
+
   static bool get isWeb => kIsWeb;
 }

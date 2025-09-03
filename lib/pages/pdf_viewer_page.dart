@@ -1,6 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:pdfrx/pdfrx.dart';
 import '../generated/l10n.dart';
+import '../providers/app_state.dart';
 
 class PdfViewerPage extends StatefulWidget {
   final dynamic arguments;
@@ -13,16 +15,87 @@ class PdfViewerPage extends StatefulWidget {
 
 class _PdfViewerPageState extends State<PdfViewerPage> {
   final PdfViewerController _pdfViewerController = PdfViewerController();
-  
+  int? _lastPage;
+  bool _bookmarkLoaded = false;
+
   String get fileName {
     if (widget.arguments is Map) {
       return widget.arguments['fileName'] ?? 'Document';
     }
     return (widget.arguments as String).split('/').last;
   }
-  
+
+  String get filePath {
+    if (widget.arguments is Map) {
+      return widget.arguments['filePath'] ??
+          widget.arguments['fileName'] ??
+          'unknown';
+    }
+    return widget.arguments as String;
+  }
+
   bool get isWebFile {
     return widget.arguments is Map && widget.arguments['isWeb'] == true;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadBookmark();
+
+    // Відстежуємо зміни сторінки для автозбереження закладок
+    _pdfViewerController.addListener(_onPageChanged);
+  }
+
+  @override
+  void dispose() {
+    _saveCurrentBookmark();
+    _pdfViewerController.removeListener(_onPageChanged);
+    super.dispose();
+  }
+
+  Future<void> _loadBookmark() async {
+    if (_bookmarkLoaded) return;
+
+    final appState = Provider.of<AppState>(context, listen: false);
+    final bookmark = await appState.getBookmark(filePath);
+
+    if (bookmark != null && bookmark > 1) {
+      // Очікуємо поки PDF завантажиться
+      await Future.delayed(const Duration(milliseconds: 500));
+
+      if (_pdfViewerController.isReady && mounted) {
+        _pdfViewerController.goToPage(pageNumber: bookmark);
+
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(S.of(context).bookmarkResumed(bookmark)),
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        }
+      }
+    }
+
+    _bookmarkLoaded = true;
+  }
+
+  void _onPageChanged() {
+    if (_pdfViewerController.isReady) {
+      final currentPage = _pdfViewerController.pageNumber;
+      if (currentPage != null && currentPage != _lastPage) {
+        _lastPage = currentPage;
+        _saveCurrentBookmark();
+      }
+    }
+  }
+
+  Future<void> _saveCurrentBookmark() async {
+    if (_pdfViewerController.isReady && _lastPage != null) {
+      final appState = Provider.of<AppState>(context, listen: false);
+      await appState.saveBookmark(filePath, _lastPage!);
+    }
   }
 
   @override
@@ -76,7 +149,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
           ),
         ],
       ),
-      body: isWebFile 
+      body: isWebFile
           ? PdfViewer.data(
               widget.arguments['fileBytes'],
               sourceName: fileName,

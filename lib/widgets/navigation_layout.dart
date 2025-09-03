@@ -5,7 +5,7 @@ class NavigationLayout extends StatefulWidget {
   final Widget child;
   final int selectedIndex;
   final Function(int)? onDestinationSelected;
-  
+
   const NavigationLayout({
     super.key,
     required this.child,
@@ -42,12 +42,6 @@ class _NavigationLayoutState extends State<NavigationLayout>
       selectedIcon: Icons.settings,
       labelKey: 'settings',
     ),
-    NavigationItem(
-      route: '/about',
-      icon: Icons.info_outlined,
-      selectedIcon: Icons.info,
-      labelKey: 'about',
-    ),
   ];
 
   @override
@@ -57,13 +51,9 @@ class _NavigationLayoutState extends State<NavigationLayout>
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-    _widthAnimation = Tween<double>(
-      begin: 80.0,
-      end: 256.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    _widthAnimation = Tween<double>(begin: 80.0, end: 256.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeInOut),
+    );
   }
 
   @override
@@ -73,7 +63,9 @@ class _NavigationLayoutState extends State<NavigationLayout>
   }
 
   void _navigateToPage(int index) {
-    if (index != widget.selectedIndex && widget.onDestinationSelected != null) {
+    if (index >= 0 && index < _navigationItems.length && 
+        index != widget.selectedIndex && 
+        widget.onDestinationSelected != null) {
       widget.onDestinationSelected!(index);
     }
   }
@@ -125,13 +117,13 @@ class _NavigationLayoutState extends State<NavigationLayout>
         animation: _widthAnimation,
         builder: (context, child) {
           final isExtended = _widthAnimation.value > 120;
-          
+
           return Container(
             width: isExtended ? _widthAnimation.value - 24 : 72,
             height: 56,
             margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             child: Material(
-              color: isSelected 
+              color: isSelected
                   ? Colors.blue.withValues(alpha: 0.1)
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(28),
@@ -144,7 +136,7 @@ class _NavigationLayoutState extends State<NavigationLayout>
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Icon(
-                        isSelected ? item.selectedIcon : item.icon, 
+                        isSelected ? item.selectedIcon : item.icon,
                         color: iconColor,
                         size: 24,
                       ),
@@ -152,9 +144,10 @@ class _NavigationLayoutState extends State<NavigationLayout>
                         const SizedBox(width: 12),
                         Expanded(
                           child: Opacity(
-                            opacity: ((_widthAnimation.value - 140) / 116).clamp(0.0, 1.0),
+                            opacity: ((_widthAnimation.value - 140) / 116)
+                                .clamp(0.0, 1.0),
                             child: Text(
-                              label, 
+                              label,
                               style: labelStyle,
                               textAlign: TextAlign.start,
                               overflow: TextOverflow.ellipsis,
@@ -181,9 +174,7 @@ class _NavigationLayoutState extends State<NavigationLayout>
               return Container(
                 width: _widthAnimation.value,
                 height: double.infinity,
-                decoration: BoxDecoration(
-                  color: navRailTheme.backgroundColor,
-                ),
+                decoration: BoxDecoration(color: navRailTheme.backgroundColor),
                 child: Stack(
                   children: [
                     // Основний вміст NavigationRail
@@ -202,7 +193,6 @@ class _NavigationLayoutState extends State<NavigationLayout>
                           const Spacer(),
                           // Нижні елементи
                           buildTrailingItem(_navigationItems[2], 2),
-                          buildTrailingItem(_navigationItems[3], 3),
                           const SizedBox(height: 16),
                         ],
                       ),
@@ -211,7 +201,7 @@ class _NavigationLayoutState extends State<NavigationLayout>
                     Positioned(
                       top: 4,
                       left: 12,
-                      child: Container(
+                      child: SizedBox(
                         width: 56,
                         height: 56,
                         child: Material(
@@ -249,9 +239,7 @@ class _NavigationLayoutState extends State<NavigationLayout>
               );
             },
           ),
-          Expanded(
-            child: widget.child,
-          ),
+          Expanded(child: widget.child),
         ],
       ),
     );

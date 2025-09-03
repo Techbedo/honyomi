@@ -224,6 +224,18 @@ abstract class AppLocalizations {
   /// **'Add Word'**
   String get addWord;
 
+  /// Edit word page title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Word'**
+  String get editWord;
+
+  /// Save button
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
   /// Copy button
   ///
   /// In en, this message translates to:
@@ -319,6 +331,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter translation'**
   String get enterTranslation;
+
+  /// Validation message for empty word field
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a word'**
+  String get pleaseEnterWord;
+
+  /// Pronunciation field label
+  ///
+  /// In en, this message translates to:
+  /// **'Pronunciation'**
+  String get pronunciation;
+
+  /// Add to favorites label
+  ///
+  /// In en, this message translates to:
+  /// **'Add to favorites'**
+  String get addToFavorites;
+
+  /// Word information section title
+  ///
+  /// In en, this message translates to:
+  /// **'Word Information'**
+  String get wordInformation;
 
   /// Cancel button
   ///
@@ -487,6 +523,312 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Saved Words'**
   String get savedWords;
+
+  /// Word details page title
+  ///
+  /// In en, this message translates to:
+  /// **'Word Details'**
+  String get wordDetails;
+
+  /// Word type field label
+  ///
+  /// In en, this message translates to:
+  /// **'Word Type'**
+  String get wordType;
+
+  /// Word type field hint
+  ///
+  /// In en, this message translates to:
+  /// **'Select word type'**
+  String get selectWordType;
+
+  /// Noun word type
+  ///
+  /// In en, this message translates to:
+  /// **'Noun'**
+  String get noun;
+
+  /// Verb word type
+  ///
+  /// In en, this message translates to:
+  /// **'Verb'**
+  String get verb;
+
+  /// Adjective word type
+  ///
+  /// In en, this message translates to:
+  /// **'Adjective'**
+  String get adjective;
+
+  /// Adverb word type
+  ///
+  /// In en, this message translates to:
+  /// **'Adverb'**
+  String get adverb;
+
+  /// Preposition word type
+  ///
+  /// In en, this message translates to:
+  /// **'Preposition'**
+  String get preposition;
+
+  /// Conjunction word type
+  ///
+  /// In en, this message translates to:
+  /// **'Conjunction'**
+  String get conjunction;
+
+  /// Interjection word type
+  ///
+  /// In en, this message translates to:
+  /// **'Interjection'**
+  String get interjection;
+
+  /// Other word type
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get other;
+
+  /// Created at field label
+  ///
+  /// In en, this message translates to:
+  /// **'Created at'**
+  String get createdAt;
+
+  /// Updated at field label
+  ///
+  /// In en, this message translates to:
+  /// **'Updated at'**
+  String get updatedAt;
+
+  /// Edit button
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// Export dictionary button
+  ///
+  /// In en, this message translates to:
+  /// **'Export Dictionary'**
+  String get exportDictionary;
+
+  /// Import dictionary button
+  ///
+  /// In en, this message translates to:
+  /// **'Import Dictionary'**
+  String get importDictionary;
+
+  /// Check for updates button
+  ///
+  /// In en, this message translates to:
+  /// **'Check for Updates'**
+  String get checkForUpdates;
+
+  /// About app button
+  ///
+  /// In en, this message translates to:
+  /// **'About App'**
+  String get aboutApp;
+
+  /// General settings section
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get general;
+
+  /// Dictionary management settings section
+  ///
+  /// In en, this message translates to:
+  /// **'Dictionary Management'**
+  String get dictionaryManagement;
+
+  /// Bookmark saved message
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark saved'**
+  String get bookmarkSaved;
+
+  /// Bookmark resumed message
+  ///
+  /// In en, this message translates to:
+  /// **'Resumed from page {page}'**
+  String bookmarkResumed(int page);
+
+  /// Word copied to clipboard message
+  ///
+  /// In en, this message translates to:
+  /// **'Word copied to clipboard'**
+  String get wordCopied;
+
+  /// Text selected message
+  ///
+  /// In en, this message translates to:
+  /// **'Text selected'**
+  String get textSelected;
+
+  /// Word definitions tab
+  ///
+  /// In en, this message translates to:
+  /// **'Definitions'**
+  String get wordDefinitions;
+
+  /// Word translations tab
+  ///
+  /// In en, this message translates to:
+  /// **'Translations'**
+  String get wordTranslations;
+
+  /// No definitions available message
+  ///
+  /// In en, this message translates to:
+  /// **'No definitions available'**
+  String get noDefinitionsAvailable;
+
+  /// No translations available message
+  ///
+  /// In en, this message translates to:
+  /// **'No translations available'**
+  String get noTranslationsAvailable;
+
+  /// Noun part of speech
+  ///
+  /// In en, this message translates to:
+  /// **'Noun'**
+  String get partOfSpeechNoun;
+
+  /// Verb part of speech
+  ///
+  /// In en, this message translates to:
+  /// **'Verb'**
+  String get partOfSpeechVerb;
+
+  /// Adjective part of speech
+  ///
+  /// In en, this message translates to:
+  /// **'Adjective'**
+  String get partOfSpeechAdjective;
+
+  /// Adverb part of speech
+  ///
+  /// In en, this message translates to:
+  /// **'Adverb'**
+  String get partOfSpeechAdverb;
+
+  /// Preposition part of speech
+  ///
+  /// In en, this message translates to:
+  /// **'Preposition'**
+  String get partOfSpeechPreposition;
+
+  /// Conjunction part of speech
+  ///
+  /// In en, this message translates to:
+  /// **'Conjunction'**
+  String get partOfSpeechConjunction;
+
+  /// Interjection part of speech
+  ///
+  /// In en, this message translates to:
+  /// **'Interjection'**
+  String get partOfSpeechInterjection;
+
+  /// Pronoun part of speech
+  ///
+  /// In en, this message translates to:
+  /// **'Pronoun'**
+  String get partOfSpeechPronoun;
+
+  /// Pronunciation not available message
+  ///
+  /// In en, this message translates to:
+  /// **'Pronunciation not available'**
+  String get pronunciationNotAvailable;
+
+  /// Button to add a new definition
+  ///
+  /// In en, this message translates to:
+  /// **'Add Definition'**
+  String get addDefinition;
+
+  /// Button to delete a definition
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Definition'**
+  String get deleteDefinition;
+
+  /// Error message when no definitions are provided
+  ///
+  /// In en, this message translates to:
+  /// **'Please add at least one definition'**
+  String get pleaseAddAtLeastOneDefinition;
+
+  /// Hint text for definition field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter definition in English'**
+  String get enterDefinitionInEnglish;
+
+  /// Hint text for example field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter example sentence'**
+  String get enterExampleSentence;
+
+  /// Hint text for example translation field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter example translation'**
+  String get enterExampleTranslation;
+
+  /// Label for optional fields
+  ///
+  /// In en, this message translates to:
+  /// **'optional'**
+  String get optional;
+
+  /// Error message when saving word fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error saving word'**
+  String get errorSavingWord;
+
+  /// Definition label
+  ///
+  /// In en, this message translates to:
+  /// **'Definition'**
+  String get definition;
+
+  /// Example label
+  ///
+  /// In en, this message translates to:
+  /// **'Example'**
+  String get example;
+
+  /// Example translation label
+  ///
+  /// In en, this message translates to:
+  /// **'Example Translation'**
+  String get exampleTranslation;
+
+  /// Part of speech label
+  ///
+  /// In en, this message translates to:
+  /// **'Part of Speech'**
+  String get partOfSpeech;
+
+  /// Error message when part of speech is not selected
+  ///
+  /// In en, this message translates to:
+  /// **'Please select part of speech'**
+  String get pleaseSelectPartOfSpeech;
+
+  /// Error message when translation is not provided
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter translation'**
+  String get pleaseEnterTranslation;
 }
 
 class _AppLocalizationsDelegate

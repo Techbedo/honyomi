@@ -73,6 +73,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get addWord => 'Додати слово';
 
   @override
+  String get editWord => 'Редагувати слово';
+
+  @override
+  String get save => 'Зберегти';
+
+  @override
   String get copy => 'Копіювати';
 
   @override
@@ -120,6 +126,18 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get enterTranslation => 'Введіть переклад';
+
+  @override
+  String get pleaseEnterWord => 'Будь ласка, введіть слово';
+
+  @override
+  String get pronunciation => 'Вимова';
+
+  @override
+  String get addToFavorites => 'Додати до улюблених';
+
+  @override
+  String get wordInformation => 'Інформація про слово';
 
   @override
   String get cancel => 'Скасувати';
@@ -213,4 +231,160 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get savedWords => 'Збережені слова';
+
+  @override
+  String get wordDetails => 'Деталі слова';
+
+  @override
+  String get wordType => 'Тип слова';
+
+  @override
+  String get selectWordType => 'Оберіть тип слова';
+
+  @override
+  String get noun => 'Іменник';
+
+  @override
+  String get verb => 'Дієслово';
+
+  @override
+  String get adjective => 'Прикметник';
+
+  @override
+  String get adverb => 'Прислівник';
+
+  @override
+  String get preposition => 'Прийменник';
+
+  @override
+  String get conjunction => 'Сполучник';
+
+  @override
+  String get interjection => 'Вигук';
+
+  @override
+  String get other => 'Інше';
+
+  @override
+  String get createdAt => 'Створено';
+
+  @override
+  String get updatedAt => 'Оновлено';
+
+  @override
+  String get edit => 'Редагувати';
+
+  @override
+  String get exportDictionary => 'Експорт словника';
+
+  @override
+  String get importDictionary => 'Імпорт словника';
+
+  @override
+  String get checkForUpdates => 'Перевірити оновлення';
+
+  @override
+  String get aboutApp => 'Про програму';
+
+  @override
+  String get general => 'Загальні';
+
+  @override
+  String get dictionaryManagement => 'Керування словником';
+
+  @override
+  String get bookmarkSaved => 'Закладку збережено';
+
+  @override
+  String bookmarkResumed(int page) {
+    return 'Відновлено з сторінки $page';
+  }
+
+  @override
+  String get wordCopied => 'Слово скопійовано в буфер обміну';
+
+  @override
+  String get textSelected => 'Текст виділено';
+
+  @override
+  String get wordDefinitions => 'Визначення';
+
+  @override
+  String get wordTranslations => 'Переклади';
+
+  @override
+  String get noDefinitionsAvailable => 'Визначення недоступні';
+
+  @override
+  String get noTranslationsAvailable => 'Переклади недоступні';
+
+  @override
+  String get partOfSpeechNoun => 'Іменник';
+
+  @override
+  String get partOfSpeechVerb => 'Дієслово';
+
+  @override
+  String get partOfSpeechAdjective => 'Прикметник';
+
+  @override
+  String get partOfSpeechAdverb => 'Прислівник';
+
+  @override
+  String get partOfSpeechPreposition => 'Прийменник';
+
+  @override
+  String get partOfSpeechConjunction => 'Сполучник';
+
+  @override
+  String get partOfSpeechInterjection => 'Вигук';
+
+  @override
+  String get partOfSpeechPronoun => 'Займенник';
+
+  @override
+  String get pronunciationNotAvailable => 'Вимова недоступна';
+
+  @override
+  String get addDefinition => 'Додати визначення';
+
+  @override
+  String get deleteDefinition => 'Видалити визначення';
+
+  @override
+  String get pleaseAddAtLeastOneDefinition =>
+      'Будь ласка, додайте принаймні одне визначення';
+
+  @override
+  String get enterDefinitionInEnglish => 'Введіть визначення англійською';
+
+  @override
+  String get enterExampleSentence => 'Введіть приклад речення';
+
+  @override
+  String get enterExampleTranslation => 'Введіть переклад прикладу';
+
+  @override
+  String get optional => 'необов\'язково';
+
+  @override
+  String get errorSavingWord => 'Помилка збереження слова';
+
+  @override
+  String get definition => 'Визначення';
+
+  @override
+  String get example => 'Приклад';
+
+  @override
+  String get exampleTranslation => 'Переклад прикладу';
+
+  @override
+  String get partOfSpeech => 'Частина мови';
+
+  @override
+  String get pleaseSelectPartOfSpeech => 'Будь ласка, оберіть частину мови';
+
+  @override
+  String get pleaseEnterTranslation => 'Будь ласка, введіть переклад';
 }
