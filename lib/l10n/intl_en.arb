@@ -500,5 +500,48 @@
   "pleaseEnterTranslation": "Please enter translation",
   "@pleaseEnterTranslation": {
     "description": "Error message when translation is not provided"
+  },
+  "dictionaryExportedWeb": "Dictionary exported! Check your downloads folder.",
+  "@dictionaryExportedWeb": {
+    "description": "Message shown when dictionary is exported on web"
+  },
+  "dictionaryExportedDesktop": "Dictionary exported to Documents folder.",
+  "@dictionaryExportedDesktop": {
+    "description": "Message shown when dictionary is exported on desktop"
+  },
+  "dictionaryImportedSuccess": "Dictionary imported successfully ({wordsCount} words)",
+  "@dictionaryImportedSuccess": {
+    "description": "Message shown when dictionary is successfully imported",
+    "placeholders": {
+      "wordsCount": {
+        "type": "int"
+      }
+    }
+  },
+  "dictionaryEmpty": "Dictionary is empty",
+  "@dictionaryEmpty": {
+    "description": "Message when trying to export empty dictionary"
+  },
+  "importFailed": "Import failed: {error}",
+  "@importFailed": {
+    "description": "Error message when import fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportFailed": "Export failed: {error}",
+  "@exportFailed": {
+    "description": "Error message when export fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidFileFormat": "Invalid file format: expected object with \"words\" property",
+  "@invalidFileFormat": {
+    "description": "Error message for invalid file format"
   }
 }

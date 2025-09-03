@@ -387,4 +387,34 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get pleaseEnterTranslation => 'Будь ласка, введіть переклад';
+
+  @override
+  String get dictionaryExportedWeb =>
+      'Словник експортовано! Перевірте папку завантажень.';
+
+  @override
+  String get dictionaryExportedDesktop =>
+      'Словник експортовано до папки Документи.';
+
+  @override
+  String dictionaryImportedSuccess(int wordsCount) {
+    return 'Словник успішно імпортовано ($wordsCount слів)';
+  }
+
+  @override
+  String get dictionaryEmpty => 'Словник пустий';
+
+  @override
+  String importFailed(String error) {
+    return 'Імпорт не вдався: $error';
+  }
+
+  @override
+  String exportFailed(String error) {
+    return 'Експорт не вдався: $error';
+  }
+
+  @override
+  String get invalidFileFormat =>
+      'Неправильний формат файлу: очікується об\'єкт з властивістю \"words\"';
 }

@@ -1238,6 +1238,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Dictionary exported! Check your downloads folder.`
+  String get dictionaryExportedWeb {
+    return Intl.message(
+      'Dictionary exported! Check your downloads folder.',
+      name: 'dictionaryExportedWeb',
+      desc: 'Message shown when dictionary is exported on web',
+      args: [],
+    );
+  }
+
+  /// `Dictionary exported to Documents folder.`
+  String get dictionaryExportedDesktop {
+    return Intl.message(
+      'Dictionary exported to Documents folder.',
+      name: 'dictionaryExportedDesktop',
+      desc: 'Message shown when dictionary is exported on desktop',
+      args: [],
+    );
+  }
+
+  /// `Dictionary imported successfully ({wordsCount} words)`
+  String dictionaryImportedSuccess(int wordsCount) {
+    return Intl.message(
+      'Dictionary imported successfully ($wordsCount words)',
+      name: 'dictionaryImportedSuccess',
+      desc: 'Message shown when dictionary is successfully imported',
+      args: [wordsCount],
+    );
+  }
+
+  /// `Dictionary is empty`
+  String get dictionaryEmpty {
+    return Intl.message(
+      'Dictionary is empty',
+      name: 'dictionaryEmpty',
+      desc: 'Message when trying to export empty dictionary',
+      args: [],
+    );
+  }
+
+  /// `Import failed: {error}`
+  String importFailed(String error) {
+    return Intl.message(
+      'Import failed: $error',
+      name: 'importFailed',
+      desc: 'Error message when import fails',
+      args: [error],
+    );
+  }
+
+  /// `Export failed: {error}`
+  String exportFailed(String error) {
+    return Intl.message(
+      'Export failed: $error',
+      name: 'exportFailed',
+      desc: 'Error message when export fails',
+      args: [error],
+    );
+  }
+
+  /// `Invalid file format: expected object with "words" property`
+  String get invalidFileFormat {
+    return Intl.message(
+      'Invalid file format: expected object with "words" property',
+      name: 'invalidFileFormat',
+      desc: 'Error message for invalid file format',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

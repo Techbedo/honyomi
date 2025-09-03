@@ -500,5 +500,48 @@
   "pleaseEnterTranslation": "Будь ласка, введіть переклад",
   "@pleaseEnterTranslation": {
     "description": "Повідомлення про помилку, коли не надано переклад"
+  },
+  "dictionaryExportedWeb": "Словник експортовано! Перевірте папку завантажень.",
+  "@dictionaryExportedWeb": {
+    "description": "Повідомлення при експорті словника у веб"
+  },
+  "dictionaryExportedDesktop": "Словник експортовано до папки Документи.",
+  "@dictionaryExportedDesktop": {
+    "description": "Повідомлення при експорті словника на десктопі"
+  },
+  "dictionaryImportedSuccess": "Словник успішно імпортовано ({wordsCount} слів)",
+  "@dictionaryImportedSuccess": {
+    "description": "Повідомлення при успішному імпорті словника",
+    "placeholders": {
+      "wordsCount": {
+        "type": "int"
+      }
+    }
+  },
+  "dictionaryEmpty": "Словник пустий",
+  "@dictionaryEmpty": {
+    "description": "Повідомлення при спробі експорту пустого словника"
+  },
+  "importFailed": "Імпорт не вдався: {error}",
+  "@importFailed": {
+    "description": "Повідомлення про помилку при імпорті",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "exportFailed": "Експорт не вдався: {error}",
+  "@exportFailed": {
+    "description": "Повідомлення про помилку при експорті",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "invalidFileFormat": "Неправильний формат файлу: очікується об'єкт з властивістю \"words\"",
+  "@invalidFileFormat": {
+    "description": "Повідомлення про помилку неправильного формату файлу"
   }
 }

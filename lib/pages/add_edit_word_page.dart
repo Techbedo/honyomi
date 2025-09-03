@@ -233,7 +233,7 @@ class _AddEditWordPageState extends State<AddEditWordPage> {
                               
                               // Частина мови
                               DropdownButtonFormField<String>(
-                                value: definition.partOfSpeech,
+                                initialValue: definition.partOfSpeech,
                                 decoration: InputDecoration(
                                   labelText: S.of(context).partOfSpeech,
                                   border: const OutlineInputBorder(),

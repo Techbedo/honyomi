@@ -22,7 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(page) => "Resumed from page ${page}";
 
-  static String m1(word, translation) =>
+  static String m1(wordsCount) =>
+      "Dictionary imported successfully (${wordsCount} words)";
+
+  static String m2(error) => "Export failed: ${error}";
+
+  static String m3(error) => "Import failed: ${error}";
+
+  static String m4(word, translation) =>
       "Word \'${word}\' - \'${translation}\' added to dictionary";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -78,6 +85,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "description": MessageLookupByLibrary.simpleMessage("Description"),
     "dictionary": MessageLookupByLibrary.simpleMessage("Dictionary"),
+    "dictionaryEmpty": MessageLookupByLibrary.simpleMessage(
+      "Dictionary is empty",
+    ),
+    "dictionaryExportedDesktop": MessageLookupByLibrary.simpleMessage(
+      "Dictionary exported to Documents folder.",
+    ),
+    "dictionaryExportedWeb": MessageLookupByLibrary.simpleMessage(
+      "Dictionary exported! Check your downloads folder.",
+    ),
+    "dictionaryImportedSuccess": m1,
     "dictionaryManagement": MessageLookupByLibrary.simpleMessage(
       "Dictionary Management",
     ),
@@ -111,13 +128,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "exportDictionary": MessageLookupByLibrary.simpleMessage(
       "Export Dictionary",
     ),
+    "exportFailed": m2,
     "features": MessageLookupByLibrary.simpleMessage("Features"),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("File not found"),
     "general": MessageLookupByLibrary.simpleMessage("General"),
     "importDictionary": MessageLookupByLibrary.simpleMessage(
       "Import Dictionary",
     ),
+    "importFailed": m3,
     "interjection": MessageLookupByLibrary.simpleMessage("Interjection"),
+    "invalidFileFormat": MessageLookupByLibrary.simpleMessage(
+      "Invalid file format: expected object with \"words\" property",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "lastOpenedFiles": MessageLookupByLibrary.simpleMessage(
       "Recently opened files",
@@ -222,7 +244,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "wordAdded": MessageLookupByLibrary.simpleMessage(
       "Word added to dictionary",
     ),
-    "wordAddedMessage": m1,
+    "wordAddedMessage": m4,
     "wordCopied": MessageLookupByLibrary.simpleMessage(
       "Word copied to clipboard",
     ),

@@ -1,11 +1,10 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import '../models/dictionary_word.dart';
 import '../models/word_definition.dart';
+
+// Умовні імпорти для кроссплатформної сумісності  
+import 'database_service_io.dart' if (dart.library.html) 'database_service_web.dart';
 
 class DatabaseService {
   static final DatabaseService _instance = DatabaseService._internal();
@@ -20,16 +19,8 @@ class DatabaseService {
   }
 
   Future<Database> _initDatabase() async {
-    // Ініціалізація для Windows
-    if (Platform.isWindows || Platform.isLinux) {
-      sqfliteFfiInit();
-      databaseFactory = databaseFactoryFfi;
-    }
-    
-    final documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, 'honyomi.db');
-
-    return await openDatabase(path, version: 3, onCreate: _onCreate, onUpgrade: _onUpgrade);
+    // Використовуємо умовний імпорт для ініціалізації бази даних
+    return await initDatabase(3, _onCreate, _onUpgrade);
   }
 
   Future<void> _onCreate(Database db, int version) async {

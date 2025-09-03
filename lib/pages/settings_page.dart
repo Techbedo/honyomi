@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../generated/l10n.dart';
 import '../providers/app_state.dart';
+import '../services/file_export_service.dart';
 import 'about_page.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -75,18 +76,50 @@ class SettingsPage extends StatelessWidget {
                     title: Text(S.of(context).exportDictionary),
                     subtitle: Text('Export your dictionary to a file'),
                     onTap: () async {
-                      final data = await appState.exportDictionary();
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Dictionary exported: ${data.length} words',
+                      try {
+                        final data = await appState.exportDictionary();
+                        
+                        if (data.isEmpty) {
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Dictionary is empty')),
+                            );
+                          }
+                          return;
+                        }
+
+                        // Створюємо структуру даних для експорту
+                        final exportData = {
+                          'version': '1.0',
+                          'exported_at': DateTime.now().toIso8601String(),
+                          'words_count': data.length,
+                          'words': data,
+                        };
+
+                        final fileName = 'honyomi_dictionary_${DateTime.now().millisecondsSinceEpoch}.json';
+                        
+                        // Використовуємо новий сервіс файлів
+                        await FileExportService.exportToFile(exportData, fileName);
+
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(FileExportService.isWeb 
+                                ? 'Dictionary exported! Check your downloads folder.'
+                                : 'Dictionary exported to Documents folder.'),
+                              backgroundColor: Theme.of(context).colorScheme.primary,
                             ),
-                            backgroundColor: Theme.of(
-                              context,
-                            ).colorScheme.primary,
-                          ),
-                        );
+                          );
+                        }
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Export failed: $e'),
+                              backgroundColor: Theme.of(context).colorScheme.error,
+                            ),
+                          );
+                        }
                       }
                     },
                   ),
@@ -94,13 +127,44 @@ class SettingsPage extends StatelessWidget {
                     leading: const Icon(Icons.download_outlined),
                     title: Text(S.of(context).importDictionary),
                     subtitle: Text('Import dictionary from a file'),
-                    onTap: () {
-                      // TODO: Implement import functionality
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Import feature coming soon'),
-                        ),
-                      );
+                    onTap: () async {
+                      try {
+                        // Використовуємо новий сервіс файлів
+                        final importedData = await FileExportService.importFromFile();
+                        
+                        if (importedData != null) {
+                          List<Map<String, dynamic>> wordsData;
+                          
+                          // Перевіряємо формат даних
+                          if (importedData.containsKey('words') && importedData.containsKey('version')) {
+                            // Новий формат з версією
+                            wordsData = (importedData['words'] as List).cast<Map<String, dynamic>>();
+                          } else {
+                            // Старий формат - весь файл є масивом слів
+                            throw Exception('Invalid file format: expected object with "words" property');
+                          }
+
+                          await appState.importDictionary(wordsData);
+
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Dictionary imported successfully (${wordsData.length} words)'),
+                                backgroundColor: Theme.of(context).colorScheme.primary,
+                              ),
+                            );
+                          }
+                        }
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Import failed: $e'),
+                              backgroundColor: Theme.of(context).colorScheme.error,
+                            ),
+                          );
+                        }
+                      }
                     },
                   ),
                 ],

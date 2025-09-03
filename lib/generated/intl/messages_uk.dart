@@ -22,7 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(page) => "Відновлено з сторінки ${page}";
 
-  static String m1(word, translation) =>
+  static String m1(wordsCount) =>
+      "Словник успішно імпортовано (${wordsCount} слів)";
+
+  static String m2(error) => "Експорт не вдався: ${error}";
+
+  static String m3(error) => "Імпорт не вдався: ${error}";
+
+  static String m4(word, translation) =>
       "Слово \'${word}\' - \'${translation}\' додано до словника";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -80,6 +87,14 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "description": MessageLookupByLibrary.simpleMessage("Опис"),
     "dictionary": MessageLookupByLibrary.simpleMessage("Словник"),
+    "dictionaryEmpty": MessageLookupByLibrary.simpleMessage("Словник пустий"),
+    "dictionaryExportedDesktop": MessageLookupByLibrary.simpleMessage(
+      "Словник експортовано до папки Документи.",
+    ),
+    "dictionaryExportedWeb": MessageLookupByLibrary.simpleMessage(
+      "Словник експортовано! Перевірте папку завантажень.",
+    ),
+    "dictionaryImportedSuccess": m1,
     "dictionaryManagement": MessageLookupByLibrary.simpleMessage(
       "Керування словником",
     ),
@@ -115,11 +130,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "exportDictionary": MessageLookupByLibrary.simpleMessage(
       "Експорт словника",
     ),
+    "exportFailed": m2,
     "features": MessageLookupByLibrary.simpleMessage("Функції"),
     "fileNotFound": MessageLookupByLibrary.simpleMessage("Файл не знайдено"),
     "general": MessageLookupByLibrary.simpleMessage("Загальні"),
     "importDictionary": MessageLookupByLibrary.simpleMessage("Імпорт словника"),
+    "importFailed": m3,
     "interjection": MessageLookupByLibrary.simpleMessage("Вигук"),
+    "invalidFileFormat": MessageLookupByLibrary.simpleMessage(
+      "Неправильний формат файлу: очікується об\'єкт з властивістю \"words\"",
+    ),
     "language": MessageLookupByLibrary.simpleMessage("Мова"),
     "lastOpenedFiles": MessageLookupByLibrary.simpleMessage(
       "Нещодавно відкриті файли",
@@ -224,7 +244,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "wordAdded": MessageLookupByLibrary.simpleMessage(
       "Слово додано до словника",
     ),
-    "wordAddedMessage": m1,
+    "wordAddedMessage": m4,
     "wordCopied": MessageLookupByLibrary.simpleMessage(
       "Слово скопійовано в буфер обміну",
     ),

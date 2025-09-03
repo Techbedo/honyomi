@@ -384,4 +384,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseEnterTranslation => 'Please enter translation';
+
+  @override
+  String get dictionaryExportedWeb =>
+      'Dictionary exported! Check your downloads folder.';
+
+  @override
+  String get dictionaryExportedDesktop =>
+      'Dictionary exported to Documents folder.';
+
+  @override
+  String dictionaryImportedSuccess(int wordsCount) {
+    return 'Dictionary imported successfully ($wordsCount words)';
+  }
+
+  @override
+  String get dictionaryEmpty => 'Dictionary is empty';
+
+  @override
+  String importFailed(String error) {
+    return 'Import failed: $error';
+  }
+
+  @override
+  String exportFailed(String error) {
+    return 'Export failed: $error';
+  }
+
+  @override
+  String get invalidFileFormat =>
+      'Invalid file format: expected object with \"words\" property';
 }

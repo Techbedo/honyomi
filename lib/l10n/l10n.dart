@@ -829,6 +829,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter translation'**
   String get pleaseEnterTranslation;
+
+  /// Message shown when dictionary is exported on web
+  ///
+  /// In en, this message translates to:
+  /// **'Dictionary exported! Check your downloads folder.'**
+  String get dictionaryExportedWeb;
+
+  /// Message shown when dictionary is exported on desktop
+  ///
+  /// In en, this message translates to:
+  /// **'Dictionary exported to Documents folder.'**
+  String get dictionaryExportedDesktop;
+
+  /// Message shown when dictionary is successfully imported
+  ///
+  /// In en, this message translates to:
+  /// **'Dictionary imported successfully ({wordsCount} words)'**
+  String dictionaryImportedSuccess(int wordsCount);
+
+  /// Message when trying to export empty dictionary
+  ///
+  /// In en, this message translates to:
+  /// **'Dictionary is empty'**
+  String get dictionaryEmpty;
+
+  /// Error message when import fails
+  ///
+  /// In en, this message translates to:
+  /// **'Import failed: {error}'**
+  String importFailed(String error);
+
+  /// Error message when export fails
+  ///
+  /// In en, this message translates to:
+  /// **'Export failed: {error}'**
+  String exportFailed(String error);
+
+  /// Error message for invalid file format
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid file format: expected object with \"words\" property'**
+  String get invalidFileFormat;
 }
 
 class _AppLocalizationsDelegate

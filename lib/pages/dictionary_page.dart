@@ -1,12 +1,9 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'dart:convert';
-import 'dart:io';
-import 'package:file_picker/file_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import '../generated/l10n.dart';
 import '../providers/app_state.dart';
+import '../services/file_export_service.dart';
 import 'word_detail_page.dart';
 
 class DictionaryPage extends StatefulWidget {
@@ -174,24 +171,32 @@ class _DictionaryPageState extends State<DictionaryPage> {
 
       if (data.isEmpty) {
         if (mounted) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text('Dictionary is empty')));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Dictionary is empty'))
+          );
         }
         return;
       }
 
-      final jsonString = const JsonEncoder.withIndent('  ').convert(data);
+      // Створюємо структуру даних для експорту
+      final exportData = {
+        'version': '1.0',
+        'exported_at': DateTime.now().toIso8601String(),
+        'words_count': data.length,
+        'words': data,
+      };
 
-      // Зберігаємо у Downloads папку
-      final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/honyomi_dictionary_export.json');
-      await file.writeAsString(jsonString);
+      final fileName = 'honyomi_dictionary_${DateTime.now().millisecondsSinceEpoch}.json';
+      
+      // Використовуємо новий сервіс файлів
+      await FileExportService.exportToFile(exportData, fileName);
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Dictionary exported to ${file.path}'),
+            content: Text(FileExportService.isWeb 
+              ? 'Dictionary exported! Check your downloads folder.'
+              : 'Dictionary exported to Documents folder.'),
             backgroundColor: Theme.of(context).colorScheme.primary,
           ),
         );
@@ -211,22 +216,28 @@ class _DictionaryPageState extends State<DictionaryPage> {
   Future<void> _importDictionary() async {
     try {
       final appState = Provider.of<AppState>(context, listen: false);
-      final result = await FilePicker.platform.pickFiles(
-        type: FileType.custom,
-        allowedExtensions: ['json'],
-      );
+      
+      // Використовуємо новий сервіс файлів
+      final importedData = await FileExportService.importFromFile();
+      
+      if (importedData != null) {
+        List<Map<String, dynamic>> wordsData;
+        
+        // Перевіряємо формат даних
+        if (importedData.containsKey('words') && importedData.containsKey('version')) {
+          // Новий формат з версією
+          wordsData = (importedData['words'] as List).cast<Map<String, dynamic>>();
+        } else {
+          // Старий формат - весь файл є масивом слів
+          throw Exception('Invalid file format: expected object with "words" property');
+        }
 
-      if (result != null && result.files.single.path != null) {
-        final file = File(result.files.single.path!);
-        final jsonString = await file.readAsString();
-        final data = jsonDecode(jsonString) as List;
-
-        await appState.importDictionary(data.cast<Map<String, dynamic>>());
+        await appState.importDictionary(wordsData);
 
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Dictionary imported successfully'),
+              content: Text('Dictionary imported successfully (${wordsData.length} words)'),
               backgroundColor: Theme.of(context).colorScheme.primary,
             ),
           );
