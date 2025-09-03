@@ -414,4 +414,228 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get invalidFileFormat =>
       'Invalid file format: expected object with \"words\" property';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get goodMorning => 'Good morning';
+
+  @override
+  String get goodAfternoon => 'Good afternoon';
+
+  @override
+  String get goodEvening => 'Good evening';
+
+  @override
+  String get goodNight => 'Good night';
+
+  @override
+  String get wordsToStudy => 'Words to study';
+
+  @override
+  String get recentPdfFiles => 'Recent PDF files';
+
+  @override
+  String get newWords => 'New words';
+
+  @override
+  String get learnedWords => 'Learned words';
+
+  @override
+  String get searchWords => 'Search words...';
+
+  @override
+  String get allWords => 'All Words';
+
+  @override
+  String get noWordsFound => 'No words found';
+
+  @override
+  String get noWordsFoundMessage => 'Try adjusting your search query';
+
+  @override
+  String get toggleLearned => 'Toggle learned status';
+
+  @override
+  String get wordLearned => 'Word learned';
+
+  @override
+  String get wordUnlearned => 'Word marked as new';
+
+  @override
+  String get searchFiles => 'Search files...';
+
+  @override
+  String get isLearned => 'Learned';
+
+  @override
+  String get markAsLearned => 'Mark as learned';
+
+  @override
+  String get markAsNotLearned => 'Mark as not learned';
+
+  @override
+  String learnedAt(String date) {
+    return 'Learned at $date';
+  }
+
+  @override
+  String get wordAlreadyExists => 'Word already exists';
+
+  @override
+  String wordAlreadyExistsMessage(String word) {
+    return 'The word \'$word\' is already in your dictionary';
+  }
+
+  @override
+  String get updateChannel => 'Update channel';
+
+  @override
+  String get stable => 'Stable';
+
+  @override
+  String get beta => 'Beta';
+
+  @override
+  String get noWordsToStudy => 'No words to study';
+
+  @override
+  String get noPdfFiles => 'No PDF files';
+
+  @override
+  String get rename => 'Rename';
+
+  @override
+  String get pin => 'Pin';
+
+  @override
+  String get unpin => 'Unpin';
+
+  @override
+  String get pinnedFiles => 'Pinned files';
+
+  @override
+  String get webVersionMessage =>
+      'In web version you need to reselect the file. Use the \"Open file\" button.';
+
+  @override
+  String get webVersionLibraryInfo =>
+      'In web version files are not saved in recent list';
+
+  @override
+  String get openPdfFilePrompt => 'Click the button below to open a PDF file';
+
+  @override
+  String get readyToStudy => 'Ready to study?';
+
+  @override
+  String get totalWords => 'Total words';
+
+  @override
+  String get morningMessage => 'Good morning! Ready to learn something new?';
+
+  @override
+  String get afternoonMessage => 'Good afternoon! Let\'s continue learning!';
+
+  @override
+  String get eveningMessage => 'Good evening! Time for some study!';
+
+  @override
+  String get nightMessage => 'Good night! Maybe some light reading?';
+
+  @override
+  String get appInformation => 'App Information';
+
+  @override
+  String get learnMoreAboutHonyomi => 'Learn more about Honyomi';
+
+  @override
+  String get exportDictionaryToFile => 'Export your dictionary to a file';
+
+  @override
+  String get importDictionaryFromFile => 'Import dictionary from a file';
+
+  @override
+  String get checkForAppUpdates => 'Check for app updates';
+
+  @override
+  String get updateAvailable => 'Update available';
+
+  @override
+  String get noUpdatesAvailable => 'No updates available';
+
+  @override
+  String get youAreUsingLatestVersion => 'You are using the latest version';
+
+  @override
+  String get downloadUpdate => 'Download Update';
+
+  @override
+  String get checkingForUpdates => 'Checking for updates...';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get darkTheme => 'Dark theme';
+
+  @override
+  String get darkThemeDesc => 'Use dark theme for the app';
+
+  @override
+  String get updates => 'Updates';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get error => 'Error';
+
+  @override
+  String get updateCheckError =>
+      'Failed to check for updates. Please try again later.';
+
+  @override
+  String get updateAvailableMessage =>
+      'A new version is available for download.';
+
+  @override
+  String get appUpToDate => 'You are using the latest version of the app.';
+
+  @override
+  String get importExport => 'Import & Export';
+
+  @override
+  String get exportWords => 'Export Words';
+
+  @override
+  String get importWords => 'Import Words';
+
+  @override
+  String get success => 'Success';
+
+  @override
+  String get warning => 'Warning';
+
+  @override
+  String get info => 'Info';
+
+  @override
+  String get bookmark => 'Bookmark';
+
+  @override
+  String get importSuccessful => 'Import successful';
+
+  @override
+  String get exportSuccessful => 'Export successful';
+
+  @override
+  String get themeMode => 'Theme mode';
+
+  @override
+  String get lightTheme => 'Light theme';
+
+  @override
+  String get systemTheme => 'System theme';
 }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'providers/app_state.dart';
+import 'pages/home_page.dart';
 import 'pages/library_page.dart';
 import 'pages/dictionary_page.dart';
 import 'pages/settings_page.dart';
@@ -187,7 +188,7 @@ class _MainNavigationViewState extends State<MainNavigationView> {
 
   void _onDestinationSelected(int index) {
     // Захист від некоректних індексів
-    if (index >= 0 && index <= 2) {
+    if (index >= 0 && index <= 3) {
       setState(() {
         _selectedIndex = index;
       });
@@ -197,13 +198,15 @@ class _MainNavigationViewState extends State<MainNavigationView> {
   Widget _getCurrentPage() {
     switch (_selectedIndex) {
       case 0:
-        return const LibraryPage();
+        return const HomePage();
       case 1:
-        return const DictionaryPage();
+        return const LibraryPage();
       case 2:
+        return const DictionaryPage();
+      case 3:
         return const SettingsPage();
       default:
-        return const LibraryPage();
+        return const HomePage();
     }
   }
 

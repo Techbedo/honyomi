@@ -12,6 +12,41 @@ This document provides comprehensive API documentation for Honyomi v1.0.1, inclu
 6. [Utility Functions](#utility-functions)
 
 ## Core Application
+### AddWordDialog Widget
+
+Reusable dialog for adding words to the dictionary, used in both PDF viewer and Dictionary page.
+
+```dart
+class AddWordDialog extends StatefulWidget {
+  final String? initialWord;
+  final void Function(String word, String translation, String? wordType)? onWordAdded;
+  // ...existing code...
+}
+```
+
+**Features:**
+- Supports all word types (noun, verb, adjective, adverb, preposition, conjunction, interjection, other)
+- Used in both PDF context menu and Dictionary page
+- Localized labels and validation
+
+### Context Menu Integration
+
+Context menu in PDF viewer and Dictionary page allows adding selected text as a word to the dictionary.
+
+**PDF:** Right-click selected text → "Add Word"
+**Dictionary:** Click "..." button → "Add Word"
+
+### AwesomeSnackbarContent
+
+All notifications and feedback use awesome_snackbar_content with localized texts.
+
+### Dictionary Search & Filtering
+
+Dictionary page supports search by word/translation and tabs for All/New/Learned words.
+
+### SettingsPage Spacing
+
+All settings blocks use equal vertical spacing for a harmonious UI.
 
 ### MyApp Class
 

@@ -8,13 +8,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
-- Translation features integration
-- Additional language support for interface
 - Cloud synchronization for dictionary
 - Mobile optimization
 - Enhanced PDF annotation features
 
-## [1.0.1] - 2025-08-22
+## [0.1.1] - 2025-09-03
+
+### Added
+- Context menu for adding words in PDF and Dictionary (unified dialog)
+- Dropdown for theme selection (Light/Dark/System) in settings
+- Dictionary search and filtering: tabs All/New/Learned, search by word/translation
+- All word types available when adding
+- Unified AddWordDialog widget for both PDF and Dictionary
+
+### Changed
+- All SnackBars replaced with awesome_snackbar_content and localized texts
+- Consistent vertical spacing between settings blocks
+- Improved code structure, Provider usage, separation of concerns
+
+### Removed
+- Obsolete files removed (*_new.dart, *_backup.dart)
+
+### Documentation
+- Updated USER_GUIDE, CHANGELOG, API.md to reflect new features and changes
+
+
+## [0.0.2] - 2025-08-22
 
 ### 🚀 Major Changes
 
@@ -145,8 +164,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Version History
 
-- **v2.0.0**: Material 3 migration and enhanced localization
-- **v1.0.0**: Initial release with Fluent UI
+- **v0.0.2**: Material 3 migration and enhanced localization
+- **v0.0.1**: Initial release with Fluent UI
 
 ## Contributing
 
@@ -160,7 +179,7 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## Release Notes
 
-### v1.0.0 - Initial Release
+### v0.0.1 - Initial Release
 
 This is the first stable release of Honyomi, featuring a complete PDF reading experience designed for language learners.
 

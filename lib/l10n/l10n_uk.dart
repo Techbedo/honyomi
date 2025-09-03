@@ -18,7 +18,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get dictionary => 'Словник';
 
   @override
-  String get settings => 'Налаштування';
+  String get settings => 'Настройки';
 
   @override
   String get about => 'Про застосунок';
@@ -417,4 +417,228 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get invalidFileFormat =>
       'Неправильний формат файлу: очікується об\'єкт з властивістю \"words\"';
+
+  @override
+  String get home => 'Головна';
+
+  @override
+  String get goodMorning => 'Доброго ранку';
+
+  @override
+  String get goodAfternoon => 'Доброго дня';
+
+  @override
+  String get goodEvening => 'Доброго вечора';
+
+  @override
+  String get goodNight => 'Доброї ночі';
+
+  @override
+  String get wordsToStudy => 'Слова для вивчення';
+
+  @override
+  String get recentPdfFiles => 'Нещодавні PDF файли';
+
+  @override
+  String get newWords => 'Нові слова';
+
+  @override
+  String get learnedWords => 'Вивчені слова';
+
+  @override
+  String get searchWords => 'Пошук слів...';
+
+  @override
+  String get allWords => 'Усі слова';
+
+  @override
+  String get noWordsFound => 'Слова не знайдені';
+
+  @override
+  String get noWordsFoundMessage => 'Спробуйте змінити запит пошуку';
+
+  @override
+  String get toggleLearned => 'Перемкнути статус вивчення';
+
+  @override
+  String get wordLearned => 'Слово вивчене';
+
+  @override
+  String get wordUnlearned => 'Слово позначене як нове';
+
+  @override
+  String get searchFiles => 'Пошук файлів...';
+
+  @override
+  String get isLearned => 'Вивчено';
+
+  @override
+  String get markAsLearned => 'Позначити як вивчене';
+
+  @override
+  String get markAsNotLearned => 'Позначити як не вивчене';
+
+  @override
+  String learnedAt(String date) {
+    return 'Вивчено $date';
+  }
+
+  @override
+  String get wordAlreadyExists => 'Слово вже існує';
+
+  @override
+  String wordAlreadyExistsMessage(String word) {
+    return 'Слово \'$word\' вже є у вашому словнику';
+  }
+
+  @override
+  String get updateChannel => 'Канал оновлень';
+
+  @override
+  String get stable => 'Стабільний';
+
+  @override
+  String get beta => 'Тестовий';
+
+  @override
+  String get noWordsToStudy => 'Немає слів для вивчення';
+
+  @override
+  String get noPdfFiles => 'Немає PDF файлів';
+
+  @override
+  String get rename => 'Змінити назву';
+
+  @override
+  String get pin => 'Закріпити';
+
+  @override
+  String get unpin => 'Відкріпити';
+
+  @override
+  String get pinnedFiles => 'Закріплені файли';
+
+  @override
+  String get webVersionMessage =>
+      'У веб-версії необхідно перевибрати файл. Використовуйте кнопку \"Відкрити файл\".';
+
+  @override
+  String get webVersionLibraryInfo =>
+      'У веб-версії файли не зберігаються у списку недавніх';
+
+  @override
+  String get openPdfFilePrompt =>
+      'Натисніть кнопку нижче, щоб відкрити PDF файл';
+
+  @override
+  String get readyToStudy => 'Готовий до вивчення?';
+
+  @override
+  String get totalWords => 'Всього слів';
+
+  @override
+  String get morningMessage => 'Доброго ранку! Готовий вивчити щось нове?';
+
+  @override
+  String get afternoonMessage => 'Доброго дня! Продовжимо навчання!';
+
+  @override
+  String get eveningMessage => 'Доброго вечора! Час для навчання!';
+
+  @override
+  String get nightMessage => 'Доброї ночі! Може, трохи легкого читання?';
+
+  @override
+  String get appInformation => 'Інформація про додаток';
+
+  @override
+  String get learnMoreAboutHonyomi => 'Дізнайтеся більше про Хоньомі';
+
+  @override
+  String get exportDictionaryToFile => 'Експортуйте свій словник у файл';
+
+  @override
+  String get importDictionaryFromFile => 'Імпортуйте словник з файлу';
+
+  @override
+  String get checkForAppUpdates => 'Перевірте наявність оновлень додатку';
+
+  @override
+  String get updateAvailable => 'Доступне оновлення';
+
+  @override
+  String get noUpdatesAvailable => 'Оновлення відсутні';
+
+  @override
+  String get youAreUsingLatestVersion => 'Ви використовуєте останню версію';
+
+  @override
+  String get downloadUpdate => 'Завантажити оновлення';
+
+  @override
+  String get checkingForUpdates => 'Перевірка оновлень...';
+
+  @override
+  String get appearance => 'Зовнішній вигляд';
+
+  @override
+  String get darkTheme => 'Темна тема';
+
+  @override
+  String get darkThemeDesc => 'Використовувати темну тему для додатку';
+
+  @override
+  String get updates => 'Оновлення';
+
+  @override
+  String get ok => 'ОК';
+
+  @override
+  String get error => 'Помилка';
+
+  @override
+  String get updateCheckError =>
+      'Не вдалося перевірити оновлення. Спробуйте пізніше.';
+
+  @override
+  String get updateAvailableMessage => 'Доступна нова версія для завантаження.';
+
+  @override
+  String get appUpToDate => 'Ви використовуєте найновішу версію додатку.';
+
+  @override
+  String get importExport => 'Імпорт і експорт';
+
+  @override
+  String get exportWords => 'Експорт слів';
+
+  @override
+  String get importWords => 'Імпорт слів';
+
+  @override
+  String get success => 'Успіх';
+
+  @override
+  String get warning => 'Попередження';
+
+  @override
+  String get info => 'Інфо';
+
+  @override
+  String get bookmark => 'Закладка';
+
+  @override
+  String get importSuccessful => 'Імпорт успішний';
+
+  @override
+  String get exportSuccessful => 'Експорт успішний';
+
+  @override
+  String get themeMode => 'Тема';
+
+  @override
+  String get lightTheme => 'Світла тема';
+
+  @override
+  String get systemTheme => 'Системна тема';
 }

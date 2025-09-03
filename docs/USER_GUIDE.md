@@ -2,6 +2,15 @@
 
 Welcome to Honyomi! This guide will help you get started with your language learning PDF reader.
 
+## What's New in 2025
+
+- **Material 3**: Modern design, NavigationRail, card-based layout.
+- **Context Menu**: Add words from PDF and Dictionary via right-click or "..." button, all word types available.
+- **SnackBar**: All notifications use awesome_snackbar_content with localized texts.
+- **Search & Filtering**: Dictionary supports search by word/translation, tabs for All/New/Learned.
+- **Unified Add Word Dialog**: Same dialog for PDF and Dictionary, supports all word types.
+- **Consistent Settings Spacing**: All settings blocks have equal vertical spacing for a harmonious look.
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -108,15 +117,17 @@ When reading a PDF, you'll see a compact command bar at the top with:
 
 **From PDF Text Selection:**
 1. Select text in the PDF viewer
-2. Right-click and choose "Add to Dictionary"
-3. Enter the word and its translation
-4. Click "Add" to save
+2. In the context menu, choose "Add Word"
+3. The dialog opens with the selected word pre-filled
+4. Choose word type, enter translation
+5. Click "Add" to save
 
-**Manual Entry:**
+**Manual Entry (Dictionary):**
 1. Go to the Dictionary section
 2. Click "Add Word" button
-3. Enter the word and translation
-4. Click "Add" to save
+3. The same dialog opens
+4. Fill in the fields, choose word type
+5. Click "Add" to save
 
 ### Managing Dictionary Entries
 
@@ -149,8 +160,12 @@ View your progress in the Settings section:
 
 Change your app's appearance:
 1. Go to Settings section
-2. Select "Theme" dropdown
-3. Choose from Light, Dark, or System
+2. Select "Theme" from the dropdown menu
+3. Choose Light, Dark, or System
+
+- All notifications use localized SnackBar
+- All word types available when adding
+- Consistent spacing between settings blocks
 
 ### Language Settings
 

@@ -1308,6 +1308,716 @@ class S {
       args: [],
     );
   }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: 'Home page title',
+      args: [],
+    );
+  }
+
+  /// `Good morning`
+  String get goodMorning {
+    return Intl.message(
+      'Good morning',
+      name: 'goodMorning',
+      desc: 'Morning greeting',
+      args: [],
+    );
+  }
+
+  /// `Good afternoon`
+  String get goodAfternoon {
+    return Intl.message(
+      'Good afternoon',
+      name: 'goodAfternoon',
+      desc: 'Afternoon greeting',
+      args: [],
+    );
+  }
+
+  /// `Good evening`
+  String get goodEvening {
+    return Intl.message(
+      'Good evening',
+      name: 'goodEvening',
+      desc: 'Evening greeting',
+      args: [],
+    );
+  }
+
+  /// `Good night`
+  String get goodNight {
+    return Intl.message(
+      'Good night',
+      name: 'goodNight',
+      desc: 'Night greeting',
+      args: [],
+    );
+  }
+
+  /// `Words to study`
+  String get wordsToStudy {
+    return Intl.message(
+      'Words to study',
+      name: 'wordsToStudy',
+      desc: 'Section title for words to study',
+      args: [],
+    );
+  }
+
+  /// `Recent PDF files`
+  String get recentPdfFiles {
+    return Intl.message(
+      'Recent PDF files',
+      name: 'recentPdfFiles',
+      desc: 'Section title for recent PDF files',
+      args: [],
+    );
+  }
+
+  /// `New words`
+  String get newWords {
+    return Intl.message(
+      'New words',
+      name: 'newWords',
+      desc: 'Section title for new words',
+      args: [],
+    );
+  }
+
+  /// `Learned words`
+  String get learnedWords {
+    return Intl.message(
+      'Learned words',
+      name: 'learnedWords',
+      desc: 'Section title for learned words',
+      args: [],
+    );
+  }
+
+  /// `Search words...`
+  String get searchWords {
+    return Intl.message(
+      'Search words...',
+      name: 'searchWords',
+      desc: 'Hint text for word search',
+      args: [],
+    );
+  }
+
+  /// `All Words`
+  String get allWords {
+    return Intl.message('All Words', name: 'allWords', desc: '', args: []);
+  }
+
+  /// `No words found`
+  String get noWordsFound {
+    return Intl.message(
+      'No words found',
+      name: 'noWordsFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try adjusting your search query`
+  String get noWordsFoundMessage {
+    return Intl.message(
+      'Try adjusting your search query',
+      name: 'noWordsFoundMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Toggle learned status`
+  String get toggleLearned {
+    return Intl.message(
+      'Toggle learned status',
+      name: 'toggleLearned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Word learned`
+  String get wordLearned {
+    return Intl.message(
+      'Word learned',
+      name: 'wordLearned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Word marked as new`
+  String get wordUnlearned {
+    return Intl.message(
+      'Word marked as new',
+      name: 'wordUnlearned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search files...`
+  String get searchFiles {
+    return Intl.message(
+      'Search files...',
+      name: 'searchFiles',
+      desc: 'Hint text for file search',
+      args: [],
+    );
+  }
+
+  /// `Learned`
+  String get isLearned {
+    return Intl.message(
+      'Learned',
+      name: 'isLearned',
+      desc: 'Label for learned status',
+      args: [],
+    );
+  }
+
+  /// `Mark as learned`
+  String get markAsLearned {
+    return Intl.message(
+      'Mark as learned',
+      name: 'markAsLearned',
+      desc: 'Action to mark word as learned',
+      args: [],
+    );
+  }
+
+  /// `Mark as not learned`
+  String get markAsNotLearned {
+    return Intl.message(
+      'Mark as not learned',
+      name: 'markAsNotLearned',
+      desc: 'Action to mark word as not learned',
+      args: [],
+    );
+  }
+
+  /// `Learned at {date}`
+  String learnedAt(String date) {
+    return Intl.message(
+      'Learned at $date',
+      name: 'learnedAt',
+      desc: 'Shows when word was learned',
+      args: [date],
+    );
+  }
+
+  /// `Word already exists`
+  String get wordAlreadyExists {
+    return Intl.message(
+      'Word already exists',
+      name: 'wordAlreadyExists',
+      desc: 'Warning when word already exists',
+      args: [],
+    );
+  }
+
+  /// `The word '{word}' is already in your dictionary`
+  String wordAlreadyExistsMessage(String word) {
+    return Intl.message(
+      'The word \'$word\' is already in your dictionary',
+      name: 'wordAlreadyExistsMessage',
+      desc: 'Warning message when word already exists',
+      args: [word],
+    );
+  }
+
+  /// `Update channel`
+  String get updateChannel {
+    return Intl.message(
+      'Update channel',
+      name: 'updateChannel',
+      desc: 'Update channel setting',
+      args: [],
+    );
+  }
+
+  /// `Stable`
+  String get stable {
+    return Intl.message(
+      'Stable',
+      name: 'stable',
+      desc: 'Stable update channel',
+      args: [],
+    );
+  }
+
+  /// `Beta`
+  String get beta {
+    return Intl.message(
+      'Beta',
+      name: 'beta',
+      desc: 'Beta update channel',
+      args: [],
+    );
+  }
+
+  /// `No words to study`
+  String get noWordsToStudy {
+    return Intl.message(
+      'No words to study',
+      name: 'noWordsToStudy',
+      desc: 'Message when no words to study',
+      args: [],
+    );
+  }
+
+  /// `No PDF files`
+  String get noPdfFiles {
+    return Intl.message(
+      'No PDF files',
+      name: 'noPdfFiles',
+      desc: 'Message when no PDF files',
+      args: [],
+    );
+  }
+
+  /// `Rename`
+  String get rename {
+    return Intl.message(
+      'Rename',
+      name: 'rename',
+      desc: 'Action to rename',
+      args: [],
+    );
+  }
+
+  /// `Pin`
+  String get pin {
+    return Intl.message(
+      'Pin',
+      name: 'pin',
+      desc: 'Action to pin file',
+      args: [],
+    );
+  }
+
+  /// `Unpin`
+  String get unpin {
+    return Intl.message(
+      'Unpin',
+      name: 'unpin',
+      desc: 'Action to unpin file',
+      args: [],
+    );
+  }
+
+  /// `Pinned files`
+  String get pinnedFiles {
+    return Intl.message(
+      'Pinned files',
+      name: 'pinnedFiles',
+      desc: 'Pinned files section',
+      args: [],
+    );
+  }
+
+  /// `In web version you need to reselect the file. Use the "Open file" button.`
+  String get webVersionMessage {
+    return Intl.message(
+      'In web version you need to reselect the file. Use the "Open file" button.',
+      name: 'webVersionMessage',
+      desc: 'Message for web version about file reselection',
+      args: [],
+    );
+  }
+
+  /// `In web version files are not saved in recent list`
+  String get webVersionLibraryInfo {
+    return Intl.message(
+      'In web version files are not saved in recent list',
+      name: 'webVersionLibraryInfo',
+      desc: 'Information about web version library limitations',
+      args: [],
+    );
+  }
+
+  /// `Click the button below to open a PDF file`
+  String get openPdfFilePrompt {
+    return Intl.message(
+      'Click the button below to open a PDF file',
+      name: 'openPdfFilePrompt',
+      desc: 'Prompt to open PDF file',
+      args: [],
+    );
+  }
+
+  /// `Ready to study?`
+  String get readyToStudy {
+    return Intl.message(
+      'Ready to study?',
+      name: 'readyToStudy',
+      desc: 'Greeting phrase about readiness to study',
+      args: [],
+    );
+  }
+
+  /// `Total words`
+  String get totalWords {
+    return Intl.message(
+      'Total words',
+      name: 'totalWords',
+      desc: 'Label for total words count',
+      args: [],
+    );
+  }
+
+  /// `Good morning! Ready to learn something new?`
+  String get morningMessage {
+    return Intl.message(
+      'Good morning! Ready to learn something new?',
+      name: 'morningMessage',
+      desc: 'Morning greeting message',
+      args: [],
+    );
+  }
+
+  /// `Good afternoon! Let's continue learning!`
+  String get afternoonMessage {
+    return Intl.message(
+      'Good afternoon! Let\'s continue learning!',
+      name: 'afternoonMessage',
+      desc: 'Afternoon greeting message',
+      args: [],
+    );
+  }
+
+  /// `Good evening! Time for some study!`
+  String get eveningMessage {
+    return Intl.message(
+      'Good evening! Time for some study!',
+      name: 'eveningMessage',
+      desc: 'Evening greeting message',
+      args: [],
+    );
+  }
+
+  /// `Good night! Maybe some light reading?`
+  String get nightMessage {
+    return Intl.message(
+      'Good night! Maybe some light reading?',
+      name: 'nightMessage',
+      desc: 'Night greeting message',
+      args: [],
+    );
+  }
+
+  /// `App Information`
+  String get appInformation {
+    return Intl.message(
+      'App Information',
+      name: 'appInformation',
+      desc: 'App information section title',
+      args: [],
+    );
+  }
+
+  /// `Learn more about Honyomi`
+  String get learnMoreAboutHonyomi {
+    return Intl.message(
+      'Learn more about Honyomi',
+      name: 'learnMoreAboutHonyomi',
+      desc: 'Subtitle for about app option',
+      args: [],
+    );
+  }
+
+  /// `Export your dictionary to a file`
+  String get exportDictionaryToFile {
+    return Intl.message(
+      'Export your dictionary to a file',
+      name: 'exportDictionaryToFile',
+      desc: 'Subtitle for export dictionary option',
+      args: [],
+    );
+  }
+
+  /// `Import dictionary from a file`
+  String get importDictionaryFromFile {
+    return Intl.message(
+      'Import dictionary from a file',
+      name: 'importDictionaryFromFile',
+      desc: 'Subtitle for import dictionary option',
+      args: [],
+    );
+  }
+
+  /// `Check for app updates`
+  String get checkForAppUpdates {
+    return Intl.message(
+      'Check for app updates',
+      name: 'checkForAppUpdates',
+      desc: 'Subtitle for check updates option',
+      args: [],
+    );
+  }
+
+  /// `Update available`
+  String get updateAvailable {
+    return Intl.message(
+      'Update available',
+      name: 'updateAvailable',
+      desc: 'Title when update is available',
+      args: [],
+    );
+  }
+
+  /// `No updates available`
+  String get noUpdatesAvailable {
+    return Intl.message(
+      'No updates available',
+      name: 'noUpdatesAvailable',
+      desc: 'Message when no updates are available',
+      args: [],
+    );
+  }
+
+  /// `You are using the latest version`
+  String get youAreUsingLatestVersion {
+    return Intl.message(
+      'You are using the latest version',
+      name: 'youAreUsingLatestVersion',
+      desc: 'Message when using latest version',
+      args: [],
+    );
+  }
+
+  /// `Download Update`
+  String get downloadUpdate {
+    return Intl.message(
+      'Download Update',
+      name: 'downloadUpdate',
+      desc: 'Button to download update',
+      args: [],
+    );
+  }
+
+  /// `Checking for updates...`
+  String get checkingForUpdates {
+    return Intl.message(
+      'Checking for updates...',
+      name: 'checkingForUpdates',
+      desc: 'Message while checking for updates',
+      args: [],
+    );
+  }
+
+  /// `Appearance`
+  String get appearance {
+    return Intl.message(
+      'Appearance',
+      name: 'appearance',
+      desc: 'Appearance settings section title',
+      args: [],
+    );
+  }
+
+  /// `Dark theme`
+  String get darkTheme {
+    return Intl.message(
+      'Dark theme',
+      name: 'darkTheme',
+      desc: 'Dark theme switch title',
+      args: [],
+    );
+  }
+
+  /// `Use dark theme for the app`
+  String get darkThemeDesc {
+    return Intl.message(
+      'Use dark theme for the app',
+      name: 'darkThemeDesc',
+      desc: 'Dark theme switch description',
+      args: [],
+    );
+  }
+
+  /// `Updates`
+  String get updates {
+    return Intl.message(
+      'Updates',
+      name: 'updates',
+      desc: 'Updates section title',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message('OK', name: 'ok', desc: 'OK button', args: []);
+  }
+
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: 'Error dialog title',
+      args: [],
+    );
+  }
+
+  /// `Failed to check for updates. Please try again later.`
+  String get updateCheckError {
+    return Intl.message(
+      'Failed to check for updates. Please try again later.',
+      name: 'updateCheckError',
+      desc: 'Error message when update check fails',
+      args: [],
+    );
+  }
+
+  /// `A new version is available for download.`
+  String get updateAvailableMessage {
+    return Intl.message(
+      'A new version is available for download.',
+      name: 'updateAvailableMessage',
+      desc: 'Message when update is available',
+      args: [],
+    );
+  }
+
+  /// `You are using the latest version of the app.`
+  String get appUpToDate {
+    return Intl.message(
+      'You are using the latest version of the app.',
+      name: 'appUpToDate',
+      desc: 'Message when app is up to date',
+      args: [],
+    );
+  }
+
+  /// `Import & Export`
+  String get importExport {
+    return Intl.message(
+      'Import & Export',
+      name: 'importExport',
+      desc: 'Import & Export section title',
+      args: [],
+    );
+  }
+
+  /// `Export Words`
+  String get exportWords {
+    return Intl.message(
+      'Export Words',
+      name: 'exportWords',
+      desc: 'Export words button',
+      args: [],
+    );
+  }
+
+  /// `Import Words`
+  String get importWords {
+    return Intl.message(
+      'Import Words',
+      name: 'importWords',
+      desc: 'Import words button',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get success {
+    return Intl.message(
+      'Success',
+      name: 'success',
+      desc: 'Generic success title',
+      args: [],
+    );
+  }
+
+  /// `Warning`
+  String get warning {
+    return Intl.message(
+      'Warning',
+      name: 'warning',
+      desc: 'Generic warning title',
+      args: [],
+    );
+  }
+
+  /// `Info`
+  String get info {
+    return Intl.message(
+      'Info',
+      name: 'info',
+      desc: 'Generic info title',
+      args: [],
+    );
+  }
+
+  /// `Bookmark`
+  String get bookmark {
+    return Intl.message(
+      'Bookmark',
+      name: 'bookmark',
+      desc: 'Bookmark title',
+      args: [],
+    );
+  }
+
+  /// `Import successful`
+  String get importSuccessful {
+    return Intl.message(
+      'Import successful',
+      name: 'importSuccessful',
+      desc: 'Shown when import finishes successfully',
+      args: [],
+    );
+  }
+
+  /// `Export successful`
+  String get exportSuccessful {
+    return Intl.message(
+      'Export successful',
+      name: 'exportSuccessful',
+      desc: 'Shown when export finishes successfully',
+      args: [],
+    );
+  }
+
+  /// `Theme mode`
+  String get themeMode {
+    return Intl.message(
+      'Theme mode',
+      name: 'themeMode',
+      desc: 'Theme mode selection label',
+      args: [],
+    );
+  }
+
+  /// `Light theme`
+  String get lightTheme {
+    return Intl.message(
+      'Light theme',
+      name: 'lightTheme',
+      desc: 'Light theme option',
+      args: [],
+    );
+  }
+
+  /// `System theme`
+  String get systemTheme {
+    return Intl.message(
+      'System theme',
+      name: 'systemTheme',
+      desc: 'Follow system theme option',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

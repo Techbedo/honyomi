@@ -20,7 +20,7 @@ class DatabaseService {
 
   Future<Database> _initDatabase() async {
     // Використовуємо умовний імпорт для ініціалізації бази даних
-    return await initDatabase(3, _onCreate, _onUpgrade);
+    return await initDatabase(4, _onCreate, _onUpgrade);
   }
 
   Future<void> _onCreate(Database db, int version) async {
@@ -31,6 +31,8 @@ class DatabaseService {
         word TEXT NOT NULL,
         pronunciation TEXT,
         is_favorite INTEGER DEFAULT 0,
+        is_learned INTEGER DEFAULT 0,
+        learned_at INTEGER,
         created_at INTEGER NOT NULL,
         updated_at INTEGER
       )
@@ -129,6 +131,17 @@ class DatabaseService {
         UPDATE word_definitions 
         SET part_of_speech = 'other' 
         WHERE part_of_speech = 'unknown'
+      ''');
+    }
+    
+    if (oldVersion < 4) {
+      // Міграція з версії 3 до версії 4: додаємо колонки для вивчення слів
+      await db.execute('''
+        ALTER TABLE dictionary_words ADD COLUMN is_learned INTEGER DEFAULT 0
+      ''');
+      
+      await db.execute('''
+        ALTER TABLE dictionary_words ADD COLUMN learned_at INTEGER
       ''');
     }
   }

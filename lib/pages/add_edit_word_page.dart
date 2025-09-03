@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import '../generated/l10n.dart';
 import '../models/dictionary_word.dart';
 import '../models/word_definition.dart';
@@ -21,6 +22,24 @@ class _AddEditWordPageState extends State<AddEditWordPage> {
   
   List<WordDefinitionForm> _definitions = [];
   bool _isFavorite = false;
+
+  void _showAwesomeSnackBar(String title, String message, ContentType contentType) {
+    final snackBar = SnackBar(
+      /// need to set following properties for best effect of awesome_snackbar_content
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: title,
+        message: message,
+        contentType: contentType,
+      ),
+    );
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
+  }
 
   @override
   void initState() {
@@ -386,11 +405,10 @@ class _AddEditWordPageState extends State<AddEditWordPage> {
     }
 
     if (definitions.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(S.of(context).pleaseAddAtLeastOneDefinition),
-          backgroundColor: Theme.of(context).colorScheme.error,
-        ),
+      _showAwesomeSnackBar(
+        S.of(context).warning,
+        S.of(context).pleaseAddAtLeastOneDefinition,
+        ContentType.warning,
       );
       return;
     }
@@ -431,11 +449,10 @@ class _AddEditWordPageState extends State<AddEditWordPage> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('${S.of(context).errorSavingWord}: $e'),
-            backgroundColor: Theme.of(context).colorScheme.error,
-          ),
+        _showAwesomeSnackBar(
+          S.of(context).error,
+          '${S.of(context).errorSavingWord}: $e',
+          ContentType.failure,
         );
       }
     }

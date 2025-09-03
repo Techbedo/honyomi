@@ -25,6 +25,12 @@ class _NavigationLayoutState extends State<NavigationLayout>
 
   final List<NavigationItem> _navigationItems = [
     NavigationItem(
+      route: '/home',
+      icon: Icons.home_outlined,
+      selectedIcon: Icons.home,
+      labelKey: 'home',
+    ),
+    NavigationItem(
       route: '/library',
       icon: Icons.library_books_outlined,
       selectedIcon: Icons.library_books,
@@ -189,10 +195,11 @@ class _NavigationLayoutState extends State<NavigationLayout>
                           // Основні розділи
                           buildTrailingItem(_navigationItems[0], 0),
                           buildTrailingItem(_navigationItems[1], 1),
+                          buildTrailingItem(_navigationItems[2], 2),
                           // Spacer для розташування елементів внизу
                           const Spacer(),
                           // Нижні елементи
-                          buildTrailingItem(_navigationItems[2], 2),
+                          buildTrailingItem(_navigationItems[3], 3),
                           const SizedBox(height: 16),
                         ],
                       ),
@@ -247,6 +254,8 @@ class _NavigationLayoutState extends State<NavigationLayout>
 
   String _getLabel(BuildContext context, String labelKey) {
     switch (labelKey) {
+      case 'home':
+        return S.of(context).home;
       case 'library':
         return S.of(context).library;
       case 'dictionary':

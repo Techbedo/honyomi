@@ -543,5 +543,267 @@
   "invalidFileFormat": "Invalid file format: expected object with \"words\" property",
   "@invalidFileFormat": {
     "description": "Error message for invalid file format"
-  }
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home page title"
+  },
+  "goodMorning": "Good morning",
+  "@goodMorning": {
+    "description": "Morning greeting"
+  },
+  "goodAfternoon": "Good afternoon",
+  "@goodAfternoon": {
+    "description": "Afternoon greeting"
+  },
+  "goodEvening": "Good evening",
+  "@goodEvening": {
+    "description": "Evening greeting"
+  },
+  "goodNight": "Good night",
+  "@goodNight": {
+    "description": "Night greeting"
+  },
+  "wordsToStudy": "Words to study",
+  "@wordsToStudy": {
+    "description": "Section title for words to study"
+  },
+  "recentPdfFiles": "Recent PDF files",
+  "@recentPdfFiles": {
+    "description": "Section title for recent PDF files"
+  },
+  "newWords": "New words",
+  "@newWords": {
+    "description": "Section title for new words"
+  },
+  "learnedWords": "Learned words",
+  "@learnedWords": {
+    "description": "Section title for learned words"
+  },
+  "searchWords": "Search words...",
+  "@searchWords": {
+    "description": "Hint text for word search"
+  },
+  "allWords": "All Words",
+  "noWordsFound": "No words found",
+  "noWordsFoundMessage": "Try adjusting your search query",
+  "toggleLearned": "Toggle learned status",
+  "wordLearned": "Word learned",
+  "wordUnlearned": "Word marked as new",
+  "searchFiles": "Search files...",
+  "@searchFiles": {
+    "description": "Hint text for file search"
+  },
+  "isLearned": "Learned",
+  "@isLearned": {
+    "description": "Label for learned status"
+  },
+  "markAsLearned": "Mark as learned",
+  "@markAsLearned": {
+    "description": "Action to mark word as learned"
+  },
+  "markAsNotLearned": "Mark as not learned",
+  "@markAsNotLearned": {
+    "description": "Action to mark word as not learned"
+  },
+  "learnedAt": "Learned at {date}",
+  "@learnedAt": {
+    "description": "Shows when word was learned",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "wordAlreadyExists": "Word already exists",
+  "@wordAlreadyExists": {
+    "description": "Warning when word already exists"
+  },
+  "wordAlreadyExistsMessage": "The word '{word}' is already in your dictionary",
+  "@wordAlreadyExistsMessage": {
+    "description": "Warning message when word already exists",
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "updateChannel": "Update channel",
+  "@updateChannel": {
+    "description": "Update channel setting"
+  },
+  "stable": "Stable",
+  "@stable": {
+    "description": "Stable update channel"
+  },
+  "beta": "Beta",
+  "@beta": {
+    "description": "Beta update channel"
+  },
+  "noWordsToStudy": "No words to study",
+  "@noWordsToStudy": {
+    "description": "Message when no words to study"
+  },
+  "noPdfFiles": "No PDF files",
+  "@noPdfFiles": {
+    "description": "Message when no PDF files"
+  },
+  "rename": "Rename",
+  "@rename": {
+    "description": "Action to rename"
+  },
+  "pin": "Pin",
+  "@pin": {
+    "description": "Action to pin file"
+  },
+  "unpin": "Unpin",
+  "@unpin": {
+    "description": "Action to unpin file"
+  },
+  "pinnedFiles": "Pinned files",
+  "@pinnedFiles": {
+    "description": "Pinned files section"
+  },
+  "webVersionMessage": "In web version you need to reselect the file. Use the \"Open file\" button.",
+  "@webVersionMessage": {
+    "description": "Message for web version about file reselection"
+  },
+  "webVersionLibraryInfo": "In web version files are not saved in recent list",
+  "@webVersionLibraryInfo": {
+    "description": "Information about web version library limitations"
+  },
+  "openPdfFilePrompt": "Click the button below to open a PDF file",
+  "@openPdfFilePrompt": {
+    "description": "Prompt to open PDF file"
+  },
+  "readyToStudy": "Ready to study?",
+  "@readyToStudy": {
+    "description": "Greeting phrase about readiness to study"
+  },
+  "totalWords": "Total words",
+  "@totalWords": {
+    "description": "Label for total words count"
+  },
+  "morningMessage": "Good morning! Ready to learn something new?",
+  "@morningMessage": {
+    "description": "Morning greeting message"
+  },
+  "afternoonMessage": "Good afternoon! Let's continue learning!",
+  "@afternoonMessage": {
+    "description": "Afternoon greeting message"
+  },
+  "eveningMessage": "Good evening! Time for some study!",
+  "@eveningMessage": {
+    "description": "Evening greeting message"
+  },
+  "nightMessage": "Good night! Maybe some light reading?",
+  "@nightMessage": {
+    "description": "Night greeting message"
+  },
+  "appInformation": "App Information",
+  "@appInformation": {
+    "description": "App information section title"
+  },
+  "learnMoreAboutHonyomi": "Learn more about Honyomi",
+  "@learnMoreAboutHonyomi": {
+    "description": "Subtitle for about app option"
+  },
+  "exportDictionaryToFile": "Export your dictionary to a file",
+  "@exportDictionaryToFile": {
+    "description": "Subtitle for export dictionary option"
+  },
+  "importDictionaryFromFile": "Import dictionary from a file",
+  "@importDictionaryFromFile": {
+    "description": "Subtitle for import dictionary option"
+  },
+  "checkForAppUpdates": "Check for app updates",
+  "@checkForAppUpdates": {
+    "description": "Subtitle for check updates option"
+  },
+  "updateAvailable": "Update available",
+  "@updateAvailable": {
+    "description": "Title when update is available"
+  },
+  "noUpdatesAvailable": "No updates available",
+  "@noUpdatesAvailable": {
+    "description": "Message when no updates are available"
+  },
+  "youAreUsingLatestVersion": "You are using the latest version",
+  "@youAreUsingLatestVersion": {
+    "description": "Message when using latest version"
+  },
+  "downloadUpdate": "Download Update",
+  "@downloadUpdate": {
+    "description": "Button to download update"
+  },
+  "checkingForUpdates": "Checking for updates...",
+  "@checkingForUpdates": {
+    "description": "Message while checking for updates"
+  },
+  "appearance": "Appearance",
+  "@appearance": {
+    "description": "Appearance settings section title"
+  },
+  "darkTheme": "Dark theme",
+  "@darkTheme": {
+    "description": "Dark theme switch title"
+  },
+  "darkThemeDesc": "Use dark theme for the app",
+  "@darkThemeDesc": {
+    "description": "Dark theme switch description"
+  },
+  "updates": "Updates",
+  "@updates": {
+    "description": "Updates section title"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error dialog title"
+  },
+  "updateCheckError": "Failed to check for updates. Please try again later.",
+  "@updateCheckError": {
+    "description": "Error message when update check fails"
+  },
+  "updateAvailableMessage": "A new version is available for download.",
+  "@updateAvailableMessage": {
+    "description": "Message when update is available"
+  },
+  "appUpToDate": "You are using the latest version of the app.",
+  "@appUpToDate": {
+    "description": "Message when app is up to date"
+  },
+  "importExport": "Import & Export",
+  "@importExport": {
+    "description": "Import & Export section title"
+  },
+  "exportWords": "Export Words",
+  "@exportWords": {
+    "description": "Export words button"
+  },
+  "importWords": "Import Words",
+  "@importWords": {
+    "description": "Import words button"
+  },
+  "success": "Success",
+  "@success": {"description": "Generic success title"},
+  "warning": "Warning",
+  "@warning": {"description": "Generic warning title"},
+  "info": "Info",
+  "@info": {"description": "Generic info title"},
+  "bookmark": "Bookmark",
+  "@bookmark": {"description": "Bookmark title"},
+  "importSuccessful": "Import successful",
+  "@importSuccessful": {"description": "Shown when import finishes successfully"},
+  "exportSuccessful": "Export successful",
+  "@exportSuccessful": {"description": "Shown when export finishes successfully"},
+  "themeMode": "Theme mode",
+  "@themeMode": {"description": "Theme mode selection label"},
+  "lightTheme": "Light theme",
+  "@lightTheme": {"description": "Light theme option"},
+  "systemTheme": "System theme",
+  "@systemTheme": {"description": "Follow system theme option"}
 }

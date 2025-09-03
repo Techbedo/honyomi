@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import '../models/dictionary_word.dart';
 import '../models/word_definition.dart';
 import '../generated/l10n.dart';
@@ -7,13 +7,11 @@ import 'add_edit_word_page.dart';
 
 class WordDetailPage extends StatefulWidget {
   final DictionaryWord word;
-  final VoidCallback? onFavoriteToggle;
   final Function(DictionaryWord)? onWordUpdated;
 
   const WordDetailPage({
     super.key,
     required this.word,
-    this.onFavoriteToggle,
     this.onWordUpdated,
   });
 
@@ -51,18 +49,15 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
         actions: [
           IconButton(
             icon: Icon(
-              _word.isFavorite ? Icons.star : Icons.star_border,
-              color: _word.isFavorite ? Colors.amber : null,
+              _word.isLearned ? Icons.check_circle : Icons.check_circle_outline,
+              color: _word.isLearned ? Colors.green : null,
             ),
-            onPressed: _toggleFavorite,
+            onPressed: _toggleLearned,
+            tooltip: _word.isLearned ? S.of(context).markAsNotLearned : S.of(context).markAsLearned,
           ),
           IconButton(
             icon: const Icon(Icons.edit),
             onPressed: _editWord,
-          ),
-          IconButton(
-            icon: const Icon(Icons.volume_up),
-            onPressed: () => _playPronunciation(),
           ),
           IconButton(
             icon: const Icon(Icons.close),
@@ -87,23 +82,12 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        _word.word,
-                        style: theme.textTheme.headlineMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: colorScheme.onSurface,
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.volume_up),
-                      onPressed: _playPronunciation,
-                      iconSize: 28,
-                    ),
-                  ],
+                Text(
+                  _word.word,
+                  style: theme.textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onSurface,
+                  ),
                 ),
                 if (_word.pronunciation != null) ...[
                   const SizedBox(height: 8),
@@ -464,11 +448,35 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
     }
   }
 
-  void _toggleFavorite() {
+  void _toggleLearned() {
     setState(() {
-      _word = _word.copyWith(isFavorite: !_word.isFavorite);
+      _word = _word.copyWith(isLearned: !_word.isLearned, learnedAt: _word.isLearned ? null : DateTime.now());
     });
-    widget.onFavoriteToggle?.call();
+    widget.onWordUpdated?.call(_word);
+    
+    // Тактильний відгук
+    if (_word.isLearned) {
+      // Віброспрацьовування для позначення як вивчене
+      Navigator.of(context).maybePop().then((_) {
+        // Можна додати вібрацію пізніше
+      });
+    }
+    
+    // Показуємо повідомлення
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: _word.isLearned ? S.of(context).success : S.of(context).info,
+        message: _word.isLearned ? S.of(context).wordLearned : S.of(context).wordUnlearned,
+        contentType: _word.isLearned ? ContentType.success : ContentType.help,
+      ),
+    );
+    
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
   }
 
   void _editWord() async {
@@ -485,16 +493,5 @@ class _WordDetailPageState extends State<WordDetailPage> with TickerProviderStat
       });
       widget.onWordUpdated?.call(result);
     }
-  }
-
-  void _playPronunciation() {
-    // Тут можна додати функцію відтворення вимови
-    HapticFeedback.lightImpact();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(S.of(context).pronunciationNotAvailable),
-        duration: const Duration(seconds: 2),
-      ),
-    );
   }
 }

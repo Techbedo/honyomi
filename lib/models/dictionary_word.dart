@@ -5,6 +5,8 @@ class DictionaryWord {
   final String word;
   final String? pronunciation; // Фонетична транскрипція
   final bool isFavorite; // Чи додано до улюблених
+  final bool isLearned; // Чи вивчено слово
+  final DateTime? learnedAt; // Коли слово було вивчено
   final DateTime createdAt;
   final DateTime? updatedAt;
   final List<WordDefinition> definitions; // Список визначень для різних частин мови
@@ -14,6 +16,8 @@ class DictionaryWord {
     required this.word,
     this.pronunciation,
     this.isFavorite = false,
+    this.isLearned = false,
+    this.learnedAt,
     required this.createdAt,
     this.updatedAt,
     this.definitions = const [],
@@ -37,6 +41,8 @@ class DictionaryWord {
       'word': word,
       'pronunciation': pronunciation,
       'is_favorite': isFavorite ? 1 : 0,
+      'is_learned': isLearned ? 1 : 0,
+      'learned_at': learnedAt?.millisecondsSinceEpoch,
       'created_at': createdAt.millisecondsSinceEpoch,
       'updated_at': updatedAt?.millisecondsSinceEpoch,
     };
@@ -48,6 +54,10 @@ class DictionaryWord {
       word: map['word'],
       pronunciation: map['pronunciation'],
       isFavorite: (map['is_favorite'] ?? 0) == 1,
+      isLearned: (map['is_learned'] ?? 0) == 1,
+      learnedAt: map['learned_at'] != null 
+          ? DateTime.fromMillisecondsSinceEpoch(map['learned_at'])
+          : null,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['created_at']),
       updatedAt: map['updated_at'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['updated_at'])
@@ -80,6 +90,10 @@ class DictionaryWord {
       word: map['word'],
       pronunciation: map['pronunciation'],
       isFavorite: (map['is_favorite'] ?? 0) == 1,
+      isLearned: (map['is_learned'] ?? 0) == 1,
+      learnedAt: map['learned_at'] != null 
+          ? DateTime.fromMillisecondsSinceEpoch(map['learned_at'])
+          : null,
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['created_at']),
       updatedAt: map['updated_at'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['updated_at'])
@@ -93,6 +107,8 @@ class DictionaryWord {
     String? word,
     String? pronunciation,
     bool? isFavorite,
+    bool? isLearned,
+    DateTime? learnedAt,
     DateTime? createdAt,
     DateTime? updatedAt,
     List<WordDefinition>? definitions,
@@ -102,6 +118,8 @@ class DictionaryWord {
       word: word ?? this.word,
       pronunciation: pronunciation ?? this.pronunciation,
       isFavorite: isFavorite ?? this.isFavorite,
+      isLearned: isLearned ?? this.isLearned,
+      learnedAt: learnedAt ?? this.learnedAt,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       definitions: definitions ?? this.definitions,
@@ -110,6 +128,6 @@ class DictionaryWord {
 
   @override
   String toString() {
-    return 'DictionaryWord{id: $id, word: $word, pronunciation: $pronunciation, isFavorite: $isFavorite, definitions: ${definitions.length}, createdAt: $createdAt, updatedAt: $updatedAt}';
+    return 'DictionaryWord{id: $id, word: $word, pronunciation: $pronunciation, isFavorite: $isFavorite, isLearned: $isLearned, learnedAt: $learnedAt, definitions: ${definitions.length}, createdAt: $createdAt, updatedAt: $updatedAt}';
   }
 }

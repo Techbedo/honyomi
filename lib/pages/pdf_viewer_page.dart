@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pdfrx/pdfrx.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import '../generated/l10n.dart';
 import '../providers/app_state.dart';
+import '../widgets/add_word_dialog.dart';
 
 class PdfViewerPage extends StatefulWidget {
   final dynamic arguments;
@@ -17,6 +19,98 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
   final PdfViewerController _pdfViewerController = PdfViewerController();
   int? _lastPage;
   bool _bookmarkLoaded = false;
+
+  void _showAwesomeSnackBar(String title, String message, ContentType contentType) {
+    final snackBar = SnackBar(
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: title,
+        message: message,
+        contentType: contentType,
+      ),
+    );
+    
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
+  }
+
+  Future<void> _showAddWordDialog(String selectedText) async {
+    await showDialog(
+      context: context,
+      builder: (context) => AddWordDialog(
+        initialWord: selectedText.trim(),
+        onWordAdded: (word, translation, wordType) async {
+          final appState = Provider.of<AppState>(context, listen: false);
+          await appState.addDictionaryWord(word, translation, wordType: wordType);
+          _showAwesomeSnackBar(
+            S.of(context).wordAdded,
+            S.of(context).wordAddedMessage(word, translation),
+            ContentType.success,
+          );
+        },
+      ),
+    );
+  }
+
+  Widget? _buildContextMenu(BuildContext context, PdfViewerContextMenuBuilderParams params) {
+    final l10n = S.of(context);
+    final items = <ContextMenuButtonItem>[];
+
+    // Додаємо стандартні опції для вибору тексту
+    if (params.isTextSelectionEnabled &&
+        params.textSelectionDelegate.isCopyAllowed &&
+        params.textSelectionDelegate.hasSelectedText) {
+      items.add(
+        ContextMenuButtonItem(
+          onPressed: () => params.textSelectionDelegate.copyTextSelection(),
+          label: l10n.copy,
+          type: ContextMenuButtonType.copy,
+        ),
+      );
+    }
+
+    if (params.isTextSelectionEnabled && !params.textSelectionDelegate.isSelectingAllText) {
+      items.add(
+        ContextMenuButtonItem(
+          onPressed: () => params.textSelectionDelegate.selectAllText(),
+          label: l10n.selectAll,
+          type: ContextMenuButtonType.selectAll,
+        ),
+      );
+    }
+
+    // Додаємо нашу кнопку "Add Word"
+    if (params.isTextSelectionEnabled && params.textSelectionDelegate.hasSelectedText) {
+      items.add(
+        ContextMenuButtonItem(
+          onPressed: () async {
+            final selectedText = await params.textSelectionDelegate.getSelectedText();
+            _showAddWordDialog(selectedText);
+          },
+          label: l10n.addWord,
+          type: ContextMenuButtonType.custom,
+        ),
+      );
+    }
+
+    if (items.isEmpty) {
+      return null;
+    }
+
+    return Align(
+      alignment: Alignment.topLeft,
+      child: AdaptiveTextSelectionToolbar.buttonItems(
+        anchors: TextSelectionToolbarAnchors(
+          primaryAnchor: params.anchorA,
+          secondaryAnchor: params.anchorB,
+        ),
+        buttonItems: items,
+      ),
+    );
+  }
 
   String get fileName {
     if (widget.arguments is Map) {
@@ -68,11 +162,10 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
         _pdfViewerController.goToPage(pageNumber: bookmark);
 
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(S.of(context).bookmarkResumed(bookmark)),
-              duration: const Duration(seconds: 2),
-            ),
+          _showAwesomeSnackBar(
+            'Bookmark',
+            S.of(context).bookmarkResumed(bookmark),
+            ContentType.success,
           );
         }
       }
@@ -154,19 +247,21 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
               widget.arguments['fileBytes'],
               sourceName: fileName,
               controller: _pdfViewerController,
-              params: const PdfViewerParams(
-                boundaryMargin: EdgeInsets.all(16.0),
+              params: PdfViewerParams(
+                boundaryMargin: const EdgeInsets.all(16.0),
                 minScale: 1.0,
                 maxScale: 10.0,
+                buildContextMenu: _buildContextMenu,
               ),
             )
           : PdfViewer.file(
               widget.arguments as String,
               controller: _pdfViewerController,
-              params: const PdfViewerParams(
-                boundaryMargin: EdgeInsets.all(16.0),
+              params: PdfViewerParams(
+                boundaryMargin: const EdgeInsets.all(16.0),
                 minScale: 1.0,
                 maxScale: 10.0,
+                buildContextMenu: _buildContextMenu,
               ),
             ),
     );

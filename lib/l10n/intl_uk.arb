@@ -12,7 +12,7 @@
   "@dictionary": {
     "description": "Назва сторінки словника"
   },
-  "settings": "Налаштування",
+  "settings": "Настройки",
   "@settings": {
     "description": "Назва сторінки налаштувань"
   },
@@ -543,5 +543,267 @@
   "invalidFileFormat": "Неправильний формат файлу: очікується об'єкт з властивістю \"words\"",
   "@invalidFileFormat": {
     "description": "Повідомлення про помилку неправильного формату файлу"
-  }
+  },
+  "home": "Головна",
+  "@home": {
+    "description": "Заголовок головної сторінки"
+  },
+  "goodMorning": "Доброго ранку",
+  "@goodMorning": {
+    "description": "Ранкове привітання"
+  },
+  "goodAfternoon": "Доброго дня",
+  "@goodAfternoon": {
+    "description": "Денне привітання"
+  },
+  "goodEvening": "Доброго вечора",
+  "@goodEvening": {
+    "description": "Вечірнє привітання"
+  },
+  "goodNight": "Доброї ночі",
+  "@goodNight": {
+    "description": "Нічне привітання"
+  },
+  "wordsToStudy": "Слова для вивчення",
+  "@wordsToStudy": {
+    "description": "Заголовок розділу слів для вивчення"
+  },
+  "recentPdfFiles": "Нещодавні PDF файли",
+  "@recentPdfFiles": {
+    "description": "Заголовок розділу нещодавніх PDF файлів"
+  },
+  "newWords": "Нові слова",
+  "@newWords": {
+    "description": "Заголовок розділу нових слів"
+  },
+  "learnedWords": "Вивчені слова",
+  "@learnedWords": {
+    "description": "Заголовок розділу вивчених слів"
+  },
+  "searchWords": "Пошук слів...",
+  "@searchWords": {
+    "description": "Підказка для пошуку слів"
+  },
+  "allWords": "Усі слова",
+  "noWordsFound": "Слова не знайдені",
+  "noWordsFoundMessage": "Спробуйте змінити запит пошуку",
+  "toggleLearned": "Перемкнути статус вивчення",
+  "wordLearned": "Слово вивчене",
+  "wordUnlearned": "Слово позначене як нове",
+  "searchFiles": "Пошук файлів...",
+  "@searchFiles": {
+    "description": "Підказка для пошуку файлів"
+  },
+  "isLearned": "Вивчено",
+  "@isLearned": {
+    "description": "Позначка статусу вивчення"
+  },
+  "markAsLearned": "Позначити як вивчене",
+  "@markAsLearned": {
+    "description": "Дія для позначення слова як вивченого"
+  },
+  "markAsNotLearned": "Позначити як не вивчене",
+  "@markAsNotLearned": {
+    "description": "Дія для позначення слова як не вивченого"
+  },
+  "learnedAt": "Вивчено {date}",
+  "@learnedAt": {
+    "description": "Показує коли слово було вивчено",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "wordAlreadyExists": "Слово вже існує",
+  "@wordAlreadyExists": {
+    "description": "Попередження коли слово вже існує"
+  },
+  "wordAlreadyExistsMessage": "Слово '{word}' вже є у вашому словнику",
+  "@wordAlreadyExistsMessage": {
+    "description": "Повідомлення попередження коли слово вже існує",
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "updateChannel": "Канал оновлень",
+  "@updateChannel": {
+    "description": "Налаштування каналу оновлень"
+  },
+  "stable": "Стабільний",
+  "@stable": {
+    "description": "Стабільний канал оновлень"
+  },
+  "beta": "Тестовий",
+  "@beta": {
+    "description": "Тестовий канал оновлень"
+  },
+  "noWordsToStudy": "Немає слів для вивчення",
+  "@noWordsToStudy": {
+    "description": "Повідомлення коли немає слів для вивчення"
+  },
+  "noPdfFiles": "Немає PDF файлів",
+  "@noPdfFiles": {
+    "description": "Повідомлення коли немає PDF файлів"
+  },
+  "rename": "Змінити назву",
+  "@rename": {
+    "description": "Дія для зміни назви"
+  },
+  "pin": "Закріпити",
+  "@pin": {
+    "description": "Дія для закріплення файлу"
+  },
+  "unpin": "Відкріпити",
+  "@unpin": {
+    "description": "Дія для відкріплення файлу"
+  },
+  "pinnedFiles": "Закріплені файли",
+  "@pinnedFiles": {
+    "description": "Секція закріплених файлів"
+  },
+  "webVersionMessage": "У веб-версії необхідно перевибрати файл. Використовуйте кнопку \"Відкрити файл\".",
+  "@webVersionMessage": {
+    "description": "Повідомлення для веб-версії про перевибір файлу"
+  },
+  "webVersionLibraryInfo": "У веб-версії файли не зберігаються у списку недавніх",
+  "@webVersionLibraryInfo": {
+    "description": "Інформація про обмеження веб-версії для бібліотеки"
+  },
+  "openPdfFilePrompt": "Натисніть кнопку нижче, щоб відкрити PDF файл",
+  "@openPdfFilePrompt": {
+    "description": "Підказка для відкриття PDF файлу"
+  },
+  "readyToStudy": "Готовий до вивчення?",
+  "@readyToStudy": {
+    "description": "Фраза привітання про готовність до вивчення"
+  },
+  "totalWords": "Всього слів",
+  "@totalWords": {
+    "description": "Позначка загальної кількості слів"
+  },
+  "morningMessage": "Доброго ранку! Готовий вивчити щось нове?",
+  "@morningMessage": {
+    "description": "Ранкове привітальне повідомлення"
+  },
+  "afternoonMessage": "Доброго дня! Продовжимо навчання!",
+  "@afternoonMessage": {
+    "description": "Денне привітальне повідомлення"
+  },
+  "eveningMessage": "Доброго вечора! Час для навчання!",
+  "@eveningMessage": {
+    "description": "Вечірнє привітальне повідомлення"
+  },
+  "nightMessage": "Доброї ночі! Може, трохи легкого читання?",
+  "@nightMessage": {
+    "description": "Нічне привітальне повідомлення"
+  },
+  "appInformation": "Інформація про додаток",
+  "@appInformation": {
+    "description": "Заголовок секції інформації про додаток"
+  },
+  "learnMoreAboutHonyomi": "Дізнайтеся більше про Хоньомі",
+  "@learnMoreAboutHonyomi": {
+    "description": "Підзаголовок для опції про додаток"
+  },
+  "exportDictionaryToFile": "Експортуйте свій словник у файл",
+  "@exportDictionaryToFile": {
+    "description": "Підзаголовок для опції експорту словника"
+  },
+  "importDictionaryFromFile": "Імпортуйте словник з файлу",
+  "@importDictionaryFromFile": {
+    "description": "Підзаголовок для опції імпорту словника"
+  },
+  "checkForAppUpdates": "Перевірте наявність оновлень додатку",
+  "@checkForAppUpdates": {
+    "description": "Підзаголовок для опції перевірки оновлень"
+  },
+  "updateAvailable": "Доступне оновлення",
+  "@updateAvailable": {
+    "description": "Заголовок коли доступне оновлення"
+  },
+  "noUpdatesAvailable": "Оновлення відсутні",
+  "@noUpdatesAvailable": {
+    "description": "Повідомлення коли немає оновлень"
+  },
+  "youAreUsingLatestVersion": "Ви використовуєте останню версію",
+  "@youAreUsingLatestVersion": {
+    "description": "Повідомлення коли використовується остання версія"
+  },
+  "downloadUpdate": "Завантажити оновлення",
+  "@downloadUpdate": {
+    "description": "Кнопка завантаження оновлення"
+  },
+  "checkingForUpdates": "Перевірка оновлень...",
+  "@checkingForUpdates": {
+    "description": "Повідомлення під час перевірки оновлень"
+  },
+  "appearance": "Зовнішній вигляд",
+  "@appearance": {
+    "description": "Назва розділу налаштувань зовнішнього вигляду"
+  },
+  "darkTheme": "Темна тема",
+  "@darkTheme": {
+    "description": "Назва перемикача темної теми"
+  },
+  "darkThemeDesc": "Використовувати темну тему для додатку",
+  "@darkThemeDesc": {
+    "description": "Опис перемикача темної теми"
+  },
+  "updates": "Оновлення",
+  "@updates": {
+    "description": "Назва розділу оновлень"
+  },
+  "ok": "ОК",
+  "@ok": {
+    "description": "Кнопка ОК"
+  },
+  "error": "Помилка",
+  "@error": {
+    "description": "Заголовок діалогу помилки"
+  },
+  "updateCheckError": "Не вдалося перевірити оновлення. Спробуйте пізніше.",
+  "@updateCheckError": {
+    "description": "Повідомлення помилки при перевірці оновлень"
+  },
+  "updateAvailableMessage": "Доступна нова версія для завантаження.",
+  "@updateAvailableMessage": {
+    "description": "Повідомлення коли доступне оновлення"
+  },
+  "appUpToDate": "Ви використовуєте найновішу версію додатку.",
+  "@appUpToDate": {
+    "description": "Повідомлення коли додаток оновлений"
+  },
+  "importExport": "Імпорт і експорт",
+  "@importExport": {
+    "description": "Назва розділу імпорту та експорту"
+  },
+  "exportWords": "Експорт слів",
+  "@exportWords": {
+    "description": "Кнопка експорту слів"
+  },
+  "importWords": "Імпорт слів",
+  "@importWords": {
+    "description": "Кнопка імпорту слів"
+  },
+  "success": "Успіх",
+  "@success": {"description": "Загальний заголовок успішної операції"},
+  "warning": "Попередження",
+  "@warning": {"description": "Загальний заголовок попередження"},
+  "info": "Інфо",
+  "@info": {"description": "Загальний заголовок інформації"},
+  "bookmark": "Закладка",
+  "@bookmark": {"description": "Заголовок закладки"},
+  "importSuccessful": "Імпорт успішний",
+  "@importSuccessful": {"description": "Повідомлення після успішного імпорту"},
+  "exportSuccessful": "Експорт успішний",
+  "@exportSuccessful": {"description": "Повідомлення після успішного експорту"},
+  "themeMode": "Тема",
+  "@themeMode": {"description": "Мітка вибору теми"},
+  "lightTheme": "Світла тема",
+  "@lightTheme": {"description": "Опція світлої теми"},
+  "systemTheme": "Системна тема",
+  "@systemTheme": {"description": "Опція системної теми"}
 }

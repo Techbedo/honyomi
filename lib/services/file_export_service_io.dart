@@ -12,8 +12,32 @@ class FileExportServiceImpl {
     try {
       final jsonString = const JsonEncoder.withIndent('  ').convert(data);
       
-      // Зберігаємо у Documents папку
-      final directory = await getApplicationDocumentsDirectory();
+      Directory directory;
+      
+      if (Platform.isAndroid) {
+        // На Android API 30+ використовуємо Downloads папку
+        try {
+          // Спочатку пробуємо getExternalStorageDirectory
+          final externalDir = await getExternalStorageDirectory();
+          if (externalDir != null) {
+            // Створюємо папку Download якщо її немає
+            directory = Directory('${externalDir.path}/Download');
+            if (!await directory.exists()) {
+              await directory.create(recursive: true);
+            }
+          } else {
+            // Fallback до application documents
+            directory = await getApplicationDocumentsDirectory();
+          }
+        } catch (e) {
+          // Якщо все інше не працює, використовуємо внутрішню папку
+          directory = await getApplicationDocumentsDirectory();
+        }
+      } else {
+        // На інших платформах використовуємо Documents папку
+        directory = await getApplicationDocumentsDirectory();
+      }
+      
       final file = File('${directory.path}/$fileName');
       await file.writeAsString(jsonString);
       
